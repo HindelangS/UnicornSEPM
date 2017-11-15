@@ -1,6 +1,8 @@
 package control;
 
 public class UnderworldField {
+	
+	
 	private final int x;
 	private final int y;
 	private boolean belegt;
@@ -24,7 +26,6 @@ public class UnderworldField {
 		this.einheit = einheit;
 		this.belegt = true;
 	}
-	
 	
 	public UnderworldField(boolean belegt,int x,int y){
 		this.belegt = belegt;
