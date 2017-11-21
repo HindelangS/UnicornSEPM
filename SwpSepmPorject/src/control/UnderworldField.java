@@ -2,13 +2,12 @@ package control;
 
 public class UnderworldField {
 	
-	
 	private final int x;
 	private final int y;
 	private boolean belegt;
 	private Einheit einheit;
 	private Gebäude gebäude;
-	
+
 	public void setGebäude(Gebäude gebäude) {
 		this.gebäude = gebäude;
 		this.belegt = true;
@@ -33,6 +32,8 @@ public class UnderworldField {
 		this.y = y;
 	}
 	
+
+
 	public boolean isBelegt() {
 		return belegt;
 	}

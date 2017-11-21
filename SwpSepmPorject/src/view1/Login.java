@@ -26,13 +26,13 @@ public class Login extends JFrame{
 	
 	public Login(){
 		
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Startingpage.class.getResource("/view/pictures/Unicorn.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Startingpage.class.getResource("/pictures/Unicorn.png")));
 		getContentPane().setEnabled(false);
 		setTitle("Cute Unicorn Figth To Death");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 400);
-		setContentPane(new JLabel(new ImageIcon(Startingpage.class.getResource("/view/pictures/Login.png"))));
+		setContentPane(new JLabel(new ImageIcon(Startingpage.class.getResource("/pictures/Login.png"))));
 		getContentPane().setLayout(null);
 		
 		/** Platziert den Frame in der Mitte des Bildschirms; genau dort wo zuerst die Startseite war*/
@@ -88,6 +88,15 @@ public class Login extends JFrame{
 				}
 			}
 		});
+	}
+
+	public JTextField getTxtName() {
+		return txtName;
+	}
+
+
+	public JTextField getTxtPwd() {
+		return txtPwd;
 	}
 
 

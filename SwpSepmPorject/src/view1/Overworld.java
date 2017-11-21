@@ -18,7 +18,7 @@ import javax.swing.JLabel;
 import net.miginfocom.swing.MigLayout;
 import java.awt.Toolkit;
 
-public class Underworld{
+public class Overworld extends JFrame{
 
 	private JFrame frame;
 	private JPanel panelStatus;
@@ -29,10 +29,10 @@ public class Underworld{
 	private JPanel panel;
 	
 	Field[][] felder;
-	Underworld uw; 
+	Overworld uw; 
 
-	private static int spalten = 15; 
-	private static int reihen = 10;
+	private static int spalten = 7; 
+	private static int reihen = 5;
 
 	/**
 	 * Launch the application.
@@ -41,7 +41,7 @@ public class Underworld{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Underworld window = new Underworld(reihen, spalten);
+					Overworld window = new Overworld(reihen, spalten);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,7 +53,7 @@ public class Underworld{
 	/**
 	 * Create the application.
 	 */
-	public Underworld(int reihen, int spalten) {
+	public Overworld(int reihen, int spalten) {
 		setAnzReihen(reihen);
 		setAnzSpalten(spalten);
 		initialize();
@@ -65,11 +65,11 @@ public class Underworld{
 	private void initialize() {
 
 		frame = new JFrame();
-		ImageIcon img = new ImageIcon(Underworld.class.getResource("/pictures/rosa.jpg"));
+		ImageIcon img = new ImageIcon(Overworld.class.getResource("/pictures/rosa.jpg"));
 		Image im = img.getImage().getScaledInstance(1920, 1080, Image.SCALE_FAST);
 		img = new ImageIcon(im);
 		frame.setContentPane(new JLabel(img));
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Underworld.class.getResource("/pictures/unicorn.PNG")));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Overworld.class.getResource("/pictures/unicorn.PNG")));
 		frame.setBounds(100, 100, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new MigLayout("", "[434px,grow]", "[37px][grow]"));
@@ -114,7 +114,7 @@ public class Underworld{
 				felder[i][j] = new Field(i, j, uw);
 				felder[i][j].setVisible(true);
 				felder[i][j].setBackground(new Color((int) (Math.random()*255), (int)(Math.random()*255),(int)(Math.random()*255)));
-				felder[i][j].setOpaque(true);
+//				felder[i][j].setOpaque(true);
 				panel.add(felder[i][j]);
 				
 			}
