@@ -29,6 +29,8 @@ public class Overworld extends JFrame{
 	private JLabel lblGeld;
 	private JPanel panel;
 	
+	private boolean angemeldet;
+	
 	Field[][] felder;
 	Overworld uw; 
 
@@ -60,6 +62,10 @@ public class Overworld extends JFrame{
 		initialize();
 	}
 
+
+	
+	
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -121,6 +127,20 @@ public class Overworld extends JFrame{
 				
 			}
 		}
+		
+		anmelden(false);
+
+	}
+	
+	public boolean isAngemeldet() {
+		return angemeldet;
+	}
+	
+	public void anmelden(boolean anmelden){ 
+		
+		//TODO hier label setzten und 
+		
+		lblWelt.setText("Achtung du bist "	);
 
 	}
 

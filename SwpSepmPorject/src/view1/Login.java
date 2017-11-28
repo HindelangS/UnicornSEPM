@@ -1,9 +1,11 @@
 package view1;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,8 +25,22 @@ public class Login extends JFrame{
 	JButton btnContinue;
 	JTextField txtName;
 	JTextField txtPwd;
+	private Overworld ow;
+	private static Login frame;
 	
-	public Login(){
+	private ArrayList<Component> focusComps;
+	
+	public Login(Overworld ovw) {
+		this();
+		ow = ovw;
+		ow.setEnabled(false);
+	}
+	
+	public Login() {
+		initialize();
+		frame = this;
+	}
+	private void initialize() {
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Startingpage.class.getResource("/pictures/Unicorn.png")));
 		getContentPane().setEnabled(false);
@@ -70,11 +86,35 @@ public class Login extends JFrame{
 		btnContinue.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		btnContinue.setBounds(455, 313, 102, 37);
 		btnContinue.setForeground(Color.WHITE);
-//		btnContinue.addActionListener(new ActionListenerContinueBtn(this));
+		btnContinue.addActionListener(new ActionListernerContinueBtn(this));
 		getContentPane().add(btnContinue);
+		
+		focusComps = new ArrayList<Component>();
+		focusComps.add(txtName);
+		focusComps.add(txtPwd);
+		focusComps.add(btnContinue);
 		
 		validate();
 
+	}
+	
+	@Override
+	public void dispose() {
+		
+		if(ow != null) {
+			ow.setEnabled(true);
+			ow = null;
+		}
+		super.dispose();
+	}
+	
+	public void anmelden() {
+		
+		if(ow != null) {
+			// TODO: Mit Spieler Objekt verknuepfen
+			ow.anmelden(true);
+		}
+		dispose();
 	}
 	
 	public static void main(String[] args) {
