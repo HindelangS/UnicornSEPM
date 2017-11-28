@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import net.miginfocom.swing.MigLayout;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 
 public class Overworld extends JFrame{
 
@@ -106,16 +107,17 @@ public class Overworld extends JFrame{
 		panel.setLayout(new GridLayout(reihen, spalten));
 		frame.getContentPane().add(panel, "cell 0 1,grow");
 		
-		felder = new Field[reihen][spalten];
+		ArrayList<ArrayList<Field>> liste = new ArrayList<ArrayList<Field>>();
 		
 		for(int i = 0; i < reihen; i++) {
+			liste.add(new ArrayList<Field>());
 			for(int j = 0; j < spalten; j++) {
 				
-				felder[i][j] = new Field(i, j, uw);
-				felder[i][j].setVisible(true);
-				felder[i][j].setBackground(new Color((int) (Math.random()*255), (int)(Math.random()*255),(int)(Math.random()*255)));
-//				felder[i][j].setOpaque(true);
-				panel.add(felder[i][j]);
+				liste.get(i).add(new Field(i,j,uw));
+				liste.get(i).get(j).setBackground(new Color((int) (Math.random()*255), (int)(Math.random()*255),(int)(Math.random()*255)));
+				liste.get(i).get(j).setVisible(true);
+				panel.add(liste.get(i).get(j));
+
 				
 			}
 		}

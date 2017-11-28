@@ -90,10 +90,10 @@ public class Login extends JFrame{
 		});
 	}
 
+
 	public JTextField getTxtName() {
 		return txtName;
 	}
-
 
 	public JTextField getTxtPwd() {
 		return txtPwd;

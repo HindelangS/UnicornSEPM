@@ -3,6 +3,7 @@ package view1;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
@@ -74,6 +75,18 @@ public Field(int x, int y, Underworld uw ){
 			e.printStackTrace();
 		}
 		setBild(bild);
+	}
+	
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		try {
+			
+			g.drawImage(bild, 0, 0, null);
+			
+		}
+		catch(NullPointerException ex) {
+			ex.printStackTrace();
+		}
 	}
 	
 
