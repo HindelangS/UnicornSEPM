@@ -9,7 +9,7 @@ public class GebäudeEinheitSchwertkämpfer extends Gebäude {
 	}
 
 	private Schwertkämpfer produziereEinheit(){
-		Schwertkämpfer kämpfer = new Schwertkämpfer(this.level);
+		Schwertkämpfer kämpfer = new Schwertkämpfer(this.getLevel());
 		
 		
 		return kämpfer;

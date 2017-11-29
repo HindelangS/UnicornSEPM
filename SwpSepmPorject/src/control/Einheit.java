@@ -1,14 +1,23 @@
 package control;
 
 public class Einheit {
-	int leben;
-	int schaden;
-	boolean isMoved;
-	int level;
-	
+	private int leben;
+	private int schaden;
+	private boolean isMoved;
+	private int level = 1;
+	private int movement = 3*level;
+	public int getLeben() {
+		return leben;
+	}public int getMovement() {
+		return movement;
+	}public int getSchaden() {
+		return schaden;
+	}public int getLevel() {
+		return level;
+	}
 	private int calculateSchaden(int schaden, int leben){
 		int schadenberechnet;
-		schadenberechnet = level * 2 + schaden;
+		schadenberechnet = getLevel() * 2 + schaden;
 		
 		return schadenberechnet;
 	}
@@ -17,6 +26,15 @@ public class Einheit {
 		int lebenberechnet;
 		lebenberechnet = level*2+leben;
 		return lebenberechnet;
+	}
+	public void setSchaden(int schaden) {
+		this.schaden = schaden;
+	}
+	public void setLeben(int leben) {
+		this.leben = leben;
+	}
+	public void setLevel(int level) {
+		this.level = level;
 	}
 
 }

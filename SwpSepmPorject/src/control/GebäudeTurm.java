@@ -1,7 +1,7 @@
 package control;
 
 public class GebäudeTurm extends Gebäude {
-	int Reichweite = calcReichweite(level);
+	int Reichweite = calcReichweite(getLevel());
 
 	public GebäudeTurm(int level) {
 		super(level);
