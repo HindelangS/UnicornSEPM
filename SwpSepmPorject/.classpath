@@ -2,5 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+<<<<<<< HEAD
+=======
+	<classpathentry kind="lib" path="src/library/miglayout-4.0-swing.jar"/>
+>>>>>>> branch 'master' of https://github.com/HindelangS/UnicornSEPM.git
 	<classpathentry kind="output" path="bin"/>
 </classpath>

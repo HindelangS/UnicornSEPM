@@ -13,6 +13,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import net.miginfocom.swing.MigLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -143,7 +145,6 @@ public class Underworld{
 				liste.get(i).add(new Field(i,j,uw));
 				liste.get(i).get(j).setBackground(new Color((int) (Math.random()*255), (int)(Math.random()*255),(int)(Math.random()*255)));
 				liste.get(i).get(j).setVisible(true);
-//				liste.get(i).get(j).add
 				panelFelder.add(liste.get(i).get(j));
 
 			}
@@ -154,56 +155,68 @@ public class Underworld{
 		panelEast.setOpaque(false);
 
 		btnHaus1 = new JButton("normal house");
+		btnHaus1.addActionListener(new btnH1ActionListener());
 		btnHaus1.setToolTipText("a normal house can be built ");
 		panelEast.add(btnHaus1, "cell 0 0,growx,aligny top");
 
 		btnHaus2 = new JButton("super house");
+		btnHaus2.addActionListener(new btnH2ActionListener());
 		btnHaus2.setToolTipText("a super house can be built ");
 		btnHaus2.setEnabled(false);
 		panelEast.add(btnHaus2, "cell 0 1,growx");
 
 		btnHaus3 = new JButton("fantastic house");
 		btnHaus3.setEnabled(false);
+		btnHaus3.addActionListener(new btnH3ActionListener());
 		btnHaus3.setToolTipText("a fantastic house can be built");
 		panelEast.add(btnHaus3, "cell 0 2,growx");
 
 		btnZaun1 = new JButton("fence");
+		btnZaun1.addActionListener(new btnZ1ActionListener());
 		btnZaun1.setToolTipText("built a fence");
 		panelEast.add(btnZaun1, "cell 0 3,growx");
 
 		btnZaun2 = new JButton("super strong fence");
+		btnZaun2.addActionListener(new btnZ2ActionListener());
 		btnZaun2.setToolTipText("a super strong fence can be built ");
 		btnZaun2.setEnabled(false);
 		panelEast.add(btnZaun2, "cell 0 4,growx");
 
 		btnWall = new JButton("wall");
+		btnWall.addActionListener(new btnZ3ActionListener());
 		btnWall.setToolTipText("a super strong wall can be built ");
 		btnWall.setEnabled(false);
 		panelEast.add(btnWall, "cell 0 5,growx");
 
 		btnEnergy1 = new JButton("small energy source");
+		btnEnergy1.addActionListener(new btnE1ActionListener());
 		btnEnergy1.setToolTipText("a small energy source can be set up");
 		panelEast.add(btnEnergy1, "cell 0 6,growx");
 
 		btnEnergy2 = new JButton("energy source");
+		btnEnergy2.addActionListener(new btnE2ActionListener());
 		btnEnergy2.setToolTipText("a small energy source can be set up");
 		btnEnergy2.setEnabled(false);
 		panelEast.add(btnEnergy2, "cell 0 7,growx");
 
 		btnEnergy3 = new JButton("super energy source");
+		btnEnergy3.addActionListener(new btnE3ActionListener());
 		btnEnergy3.setToolTipText("set up a big enery source");
 		btnEnergy3.setEnabled(false);
 		panelEast.add(btnEnergy3, "cell 0 8");
 
 		btnWaffe1 = new JButton("weapon");
+		btnWaffe1.addActionListener(new btnW1ActionListener());
 		btnWaffe1.setToolTipText("place a weapon");
 		panelEast.add(btnWaffe1, "cell 0 9,growx");
 
 		btnWaffe2 = new JButton("weapon3");
+		btnWaffe2.addActionListener(new btnW2ActionListener());
 		btnWaffe2.setToolTipText("place a weapon");
 		panelEast.add(btnWaffe2, "cell 0 10,growx");
 
 		btnWaffe3 = new JButton("weapon2");
+		btnWaffe3.addActionListener(new btnW3ActionListener());
 		btnWaffe3.setToolTipText("place a weapon");
 		panelEast.add(btnWaffe3, "cell 0 11,growx");
 
@@ -214,22 +227,113 @@ public class Underworld{
 
 			if(cbBearbeiten.isSelected()){
 
-
+				JOptionPane.showMessageDialog(null, "Um Gegenstand auf Feld zu setzen bitte zuerst Panel auswählen");
 				System.out.println("ok cool");
-
 				frame.getContentPane().add(panelEast, BorderLayout.EAST);
 				panelEast.validate();
 				frame.getContentPane().validate();
 			}
+			
 			if(cbBearbeiten.isSelected()==false){
 
 				frame.getContentPane().remove(panelEast);
 				frame.getContentPane().validate();
-
 			}
 		}
 	}
+	
+	private class btnH1ActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
 
+		
+		}
+	}
+
+	private class btnH2ActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+
+		
+		}
+	}
+	
+	private class btnH3ActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+
+		
+			
+		}
+	}
+	
+	private class btnZ1ActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+
+			
+		
+		}
+	}
+	
+	private class btnZ2ActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+
+			
+		
+		}
+	}
+	
+	private class btnZ3ActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+
+			
+		
+		}
+	}
+	
+	
+	private class btnE1ActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+
+		
+		}
+	}
+
+	private class btnE2ActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+
+		
+		}
+	}
+	
+	private class btnE3ActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+
+		
+			
+		}
+	}
+	
+	
+	private class btnW1ActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+
+		
+		}
+	}
+
+	private class btnW2ActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+
+		
+		}
+	}
+	
+	private class btnW3ActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+
+		
+			
+		}
+	}
+	
 	private void setAnzReihen(int anz) {
 		reihen = anz;
 	}
