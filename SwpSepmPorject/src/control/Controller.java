@@ -72,12 +72,13 @@ public class Controller {
 			if(zielField.getGebäude() == null){
 				Underworld2.get(getField(Underworld2, startField.getX(), startField.getY())).setEinheit(null);;
 				Underworld2.get(getField(Underworld2, zielField.getX(), zielField.getY())).setEinheit(einheit);;
-				System.out.println("um 1 bewegt");
+				System.out.println("um 1 bewegt "+startField.getX()+"/"+startField.getY()+" --> "+zielField.getX()+"/"+zielField.getY());
 				
 			}
 			else{
 				System.out.println("Gebäude davor");
 				System.out.println("Gebäude wird angegriffen");
+				Underworld2 = attack(startField, zielField, Underworld2);
 				
 			}
 			
@@ -93,6 +94,7 @@ public class Controller {
 
 
 	public ArrayList <UnderworldField> move(UnderworldField startField, UnderworldField zielField,ArrayList <UnderworldField> Underworld2){
+	System.out.println("called");
 		if(startField.getEinheit() != null && (startField.getX() != zielField.getX() || startField.getY() != zielField.getY())){
 			Einheit einheit = startField.getEinheit();
 			int reichweite = einheit.getMovement();
@@ -107,7 +109,19 @@ public class Controller {
 						System.out.println("geht ost oder west");
 						if(startField.getX() - zielField.getX() > 0){
 							System.out.println("geht west");
-							for(int i = startField.getX();i >= zielField.getX();i--){
+							for(int i = startField.getX();i > zielField.getX();i--){
+								System.out.println(i);
+								UnderworldField aktuell = new UnderworldField(true,i,startField.getY());
+								int nextF = getField(Underworld2, i-1, startField.getY());
+								UnderworldField nextField = Underworld2.get(nextF);
+								Underworld2 = movefor1(aktuell, nextField, Underworld2);
+								
+							}
+
+						}
+						else{
+							System.out.println("geht ost");
+							for(int i = startField.getX();i < zielField.getX();i++){
 								System.out.println(i);
 								UnderworldField aktuell = new UnderworldField(true,i,startField.getY());
 								int nextF = getField(Underworld2, i+1, startField.getY());
@@ -117,10 +131,6 @@ public class Controller {
 							}
 
 						}
-						else{
-							System.out.println("geht ost");
-
-						}
 
 					}
 					else{
@@ -128,10 +138,28 @@ public class Controller {
 
 						if(startField.getY() - zielField.getY() > 0){
 							System.out.println("geht süd");
+							
+							for(int i = startField.getY();i > zielField.getY();i--){
+								System.out.println(i);
+								UnderworldField aktuell = new UnderworldField(true,startField.getX(),i);
+								int nextF = getField(Underworld2, startField.getX(), i-1);
+								UnderworldField nextField = Underworld2.get(nextF);
+								Underworld2 = movefor1(aktuell, nextField, Underworld2);
+								
+							}
+							
 
 						}
 						else{
 							System.out.println("geht nord");
+							for(int i = startField.getY();i < zielField.getY();i++){
+								System.out.println(i);
+								UnderworldField aktuell = new UnderworldField(true,startField.getX(),i);
+								int nextF = getField(Underworld2, startField.getX(), i+1);
+								UnderworldField nextField = Underworld2.get(nextF);
+								Underworld2 = movefor1(aktuell, nextField, Underworld2);
+								
+							}
 
 						}
 					}
@@ -152,10 +180,10 @@ public class Controller {
 
 	}
 	public static void main(String[] args) {
-		System.out.println("Start");
+		System.out.println("Starten");
 		Controller c1 = new Controller();
 		ArrayList <UnderworldField> Underworld2 = c1.create();
-		UnderworldField startField = new UnderworldField(false,6,2);
+		UnderworldField startField = new UnderworldField(false,5,4);
 		Schildkämpfer einheit = new Schildkämpfer(3);
 		startField.setEinheit(einheit);
 		startField.setBelegt(true);
