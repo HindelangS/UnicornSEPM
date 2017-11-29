@@ -25,7 +25,7 @@ import java.awt.Dimension;
 
 import javax.swing.JPasswordField;
 
-public class Regist extends JFrame {
+public class Register extends JFrame {
 
 	private JPanel contentPane;
 	private JTextPane txtpnRegistrieren;
@@ -53,7 +53,7 @@ public class Regist extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Regist frame = new Regist();
+					Register frame = new Register();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -67,7 +67,7 @@ public class Regist extends JFrame {
 	 * LogIn Fenster deaktivieren
 	 * @param login LogIn Fenster, von dem aus das Registrierungsfenster aufgerufen wird (optional)
 	 */
-	public Regist(Login login) {
+	public Register(Login login) {
 		// Anderen Konstruktor aufrufen
 		this();
 		this.login = login;
@@ -76,7 +76,7 @@ public class Regist extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Regist() {
+	public Register() {
 		initialize();
 	}
 	private void initialize() {

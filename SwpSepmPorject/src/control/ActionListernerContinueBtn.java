@@ -26,6 +26,7 @@ public class ActionListernerContinueBtn implements ActionListener {
 		// erfolreich
 		Overworld frame = new Overworld(10, 15);
 		frame.setVisible(true);
+		System.out.println("Overworld sollte erstellt werden");
 		log.dispose();
 
 		//		}

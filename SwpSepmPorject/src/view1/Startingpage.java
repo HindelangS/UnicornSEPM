@@ -34,11 +34,11 @@ public class Startingpage extends JFrame{
 		int y = (int) ((dimension.getHeight() - getHeight()) / 3);
 		setLocation(x, y);
 
-		btnLogin = new JButton("Login ->");
+		btnLogin = new JButton("getting started");
 		btnLogin.setBackground(new Color(255, 153, 204));
 		btnLogin.setFont(new Font("Century Schoolbook", Font.PLAIN, 14));
 		btnLogin.addActionListener(new ActionListenerStartingpageBtn(this)); 
-		btnLogin.setBounds(490, 322, 128, 33);
+		btnLogin.setBounds(490, 322, 150, 40);
 		getContentPane().add(btnLogin);
 
 		lblStartbild = new JLabel("");
