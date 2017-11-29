@@ -1,6 +1,9 @@
 package control;
 
-public class UnderworldField {
+import view1.Field;
+
+public class UnderworldField{
+	
 	private final int x;
 	private final int y;
 	private boolean belegt;
