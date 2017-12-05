@@ -1,6 +1,6 @@
 package control;
 
-import view1.Field;
+import javax.swing.JOptionPane;
 
 public class UnderworldField{
 	
@@ -14,11 +14,13 @@ public class UnderworldField{
 		if(this.belegt == false){
 			this.gebäude = gebäude;
 			this.belegt = true;
+			
 			if(this.gebäude == null){
 				this.belegt = false;
 			}
 		}
 		else{
+			JOptionPane.showMessageDialog(null, "Fehler, Feld bereits besetzt");
 			System.out.println("Fehler, Feld bereits besetzt");
 		}
 
@@ -36,6 +38,7 @@ public class UnderworldField{
 		if(this.belegt == false){
 			this.einheit = einheit;
 			this.belegt = true;
+			
 			if(this.einheit == null){
 				this.belegt = false;
 			}
@@ -60,6 +63,8 @@ public class UnderworldField{
 		this.belegt = belegt;
 	}
 	@Override
+	
+	//Was genau macht des? 
 	public boolean equals(Object obj) {
 		// TODO Auto-generated method stub
 		UnderworldField u =(UnderworldField)obj;

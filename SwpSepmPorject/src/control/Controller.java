@@ -4,9 +4,12 @@ import java.util.ArrayList;
 
 public class Controller {
 
+	//2D array Underworld bseitzt alle Underworldfielder, in echt dann 8x10??? 
 	UnderworldField[][] Underworld = new UnderworldField[10][10];
 
+	//Erstellt die ganzen (funktionellen) Felder einzeln und setzt sie defaultm‰ﬂig auf leer 
 	public  ArrayList <UnderworldField> create(){
+		
 		ArrayList <UnderworldField> Underworld2 = new ArrayList<>();
 
 		for(int i = 0;i <= 9;i++){
@@ -16,20 +19,20 @@ public class Controller {
 				Underworld2.add(new UnderworldField(false, a, i));
 			}
 		}
-		
 		return Underworld2;
-
 	}
 
+	
 	public int getField(ArrayList <UnderworldField> Underworld,int x,int y){
-		UnderworldField feld = new UnderworldField(false,x,y);
-		UnderworldField feld2 = new UnderworldField(true,x,y);
+		
+		UnderworldField feldFrei = new UnderworldField(false,x,y);
+		UnderworldField feldbesetzt = new UnderworldField(true,x,y);
 
 		for(int i = 0;i<=Underworld.size();i++){
-			if(Underworld.get(i).equals(feld)){
+			if(Underworld.get(i).equals(feldFrei)){
 				return i;
 			}
-			if(Underworld.get(i).equals(feld2)){
+			if(Underworld.get(i).equals(feldbesetzt)){
 				return i;
 			}
 		}
@@ -174,12 +177,13 @@ public class Controller {
 
 		}
 		else{
-			System.out.println("keine einheit oder felder gleich");
+			System.out.println("keine Einheit oder Felder gleich");
 		}
 		return Underworld2;
 
 	}
 	public static void main(String[] args) {
+		
 		System.out.println("Starten");
 		Controller c1 = new Controller();
 		ArrayList <UnderworldField> Underworld2 = c1.create();

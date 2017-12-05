@@ -10,6 +10,7 @@ public class Gebäude {
 		// TODO Auto-generated constructor stub
 	}
 	
+	
 	private int berechneLeben(int level){
 		int lebennerechnet = level * 3 + 30;
 		

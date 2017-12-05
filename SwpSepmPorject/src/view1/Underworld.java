@@ -19,8 +19,9 @@ import net.miginfocom.swing.MigLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-
+import control.*;
 public class Underworld{
 
 	private JFrame frame;
@@ -45,9 +46,15 @@ public class Underworld{
 	private JButton btnWaffe1;
 	private JButton btnWaffe2;
 	private JButton btnWaffe3;
+	private JButton btnDelete;
+
+	//ArrayList vom Typ UnderworldField um Funktion zu Feld hinzuzufügen mit getX
+	public static ArrayList <UnderworldField> UnderworldFieldstest;
+
+	public static int x;
 
 	Field[][] felder;
-	Underworld uw; 
+	public static Field lastclicked;
 
 	private static int spalten = 10; 
 	private static int reihen = 8;
@@ -134,21 +141,67 @@ public class Underworld{
 		panelFelder.setBackground(Color.PINK);
 		panelFelder.setOpaque(false);
 		panelFelder.setLayout(new GridLayout(reihen, spalten));
-		frame.getContentPane().add(panelFelder, "cell 0 1,grow");
+//		panelFelder.setBild("pictures/cloud.jpg");
+		frame.getContentPane().add(panelFelder, "cell 0 1,grow");	
 
 		ArrayList<ArrayList<Field>> liste = new ArrayList<ArrayList<Field>>();
 
+		Controller tester = new Controller();
+		UnderworldFieldstest =  tester.create();
+
+		//				UnderworldFieldstest.get(16).setEinheit(new Schildkämpfer(3));
+		//				UnderworldFieldstest.get(16).setBelegt(true);
+
 		for(int i = 0; i < reihen; i++) {
+
 			liste.add(new ArrayList<Field>());
+
 			for(int j = 0; j < spalten; j++) {
 
-				liste.get(i).add(new Field(i,j,uw));
-				liste.get(i).get(j).setBackground(new Color((int) (Math.random()*255), (int)(Math.random()*255),(int)(Math.random()*255)));
-				liste.get(i).get(j).setVisible(true);
-				panelFelder.add(liste.get(i).get(j));
+				int index = tester.getField(UnderworldFieldstest, i, j);
+				Einheit einheit = null;
+				einheit = UnderworldFieldstest.get(index).getEinheit();
+				Gebäude geb = UnderworldFieldstest.get(index).getGebäude();
+				
+				System.out.println("Derzeitige Einheit: "+einheit);
+				System.out.println("I: "+i+" J:"+j);
+				
+				
+				
+				if(geb != null){
+					System.out.println("Gebaude ");
+					liste.get(i).add(drawFeld(geb, i, j));
+					panelFelder.add(liste.get(i).get(j));
+				}
+				if(einheit != null){
+					
+					System.out.println("Einheit ");
+					liste.get(i).add(drawFeld(einheit, i, j));
+					panelFelder.add(liste.get(i).get(j));
 
+					//				if(einheit.getClass()== Schildkämpfer.class){
+					//					Field buffer = new Field(i,j);
+					//					System.out.println("afdasfe");
+					//					buffer.setBild("pictures/cloud.jpg");
+					//					liste.get(i).add(buffer);
+					//					panelFelder.add(liste.get(i).get(j));
+					//					System.out.println(liste.get(i).get(j).getBild());
+					//				}
+					//				else{
+					//					liste.get(i).add(new Field(i,j));
+					//					panelFelder.add(liste.get(i).get(j));
+					//				}
+				}else{
+					System.out.println("nix");
+					liste.get(i).add(new Field(i,j));
+					panelFelder.add(liste.get(i).get(j));
+				}
+				
+				System.out.println("--------------------------");
 			}
 		}
+		System.out.println("XXXXXX"+liste.size());
+		panelFelder.repaint();
 
 		panelEast = new JPanel();
 		panelEast.setLayout(new MigLayout("", "[89px]", "[23px][][][][][][][][][][][]"));
@@ -220,6 +273,11 @@ public class Underworld{
 		btnWaffe3.setToolTipText("place a weapon");
 		panelEast.add(btnWaffe3, "cell 0 11,growx");
 
+		btnDelete = new JButton("weapon2");
+		btnDelete.addActionListener(new btnW3ActionListener());
+		btnDelete.setToolTipText("place a weapon");
+		panelEast.add(btnDelete, "cell 0 11,growx");
+
 	}
 
 	private class CbBearbeitenActionListener implements ActionListener {
@@ -233,7 +291,7 @@ public class Underworld{
 				panelEast.validate();
 				frame.getContentPane().validate();
 			}
-			
+
 			if(cbBearbeiten.isSelected()==false){
 
 				frame.getContentPane().remove(panelEast);
@@ -241,105 +299,162 @@ public class Underworld{
 			}
 		}
 	}
-	
+
+	private void redraw(){
+		
+		//neu malen
+
+	}
+
 	private class btnH1ActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
+			
+			Controller c1 = new Controller();
+			int index = c1.getField(UnderworldFieldstest, lastclicked.getKoordX(), lastclicked.getKoordY());
 
-		
+			UnderworldFieldstest.get(index).setGebäude(new GebäudeTurm(1));
+			UnderworldFieldstest.get(index).setBelegt(true);
+			redraw();
+
 		}
 	}
 
 	private class btnH2ActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 
-		
+
 		}
 	}
-	
+
 	private class btnH3ActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 
-		
-			
+
+
 		}
 	}
-	
+
 	private class btnZ1ActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 
-			
-		
+
+
 		}
 	}
-	
+
 	private class btnZ2ActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 
-			
-		
+
+
 		}
 	}
-	
+
 	private class btnZ3ActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 
-			
-		
+
+
 		}
 	}
-	
-	
+
+
 	private class btnE1ActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 
-		
+
 		}
 	}
 
 	private class btnE2ActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 
-		
+
 		}
 	}
-	
+
 	private class btnE3ActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 
-		
-			
+
+
 		}
 	}
-	
-	
+
+
 	private class btnW1ActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 
-		
+
 		}
 	}
 
 	private class btnW2ActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 
-		
+
 		}
 	}
-	
+
 	private class btnW3ActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 
-		
-			
+
+
 		}
 	}
-	
+
 	private void setAnzReihen(int anz) {
 		reihen = anz;
 	}
 
 	private void setAnzSpalten(int anz) {
 		spalten = anz;
+	}
+
+	public Field drawFeld(Gebäude geb,int x,int y){
+		
+		Field buffer = new Field(x,y);
+		String gebtyp = geb.getClass().getName();
+		
+		switch(gebtyp){
+		case "control.GebäudeTurm":{
+			System.out.println("Turm wird auf"+x+"/"+y+" gezeichnet.");
+			buffer.setBild("pictures/house1..jpg");
+			break;
+		}
+
+		default:{
+			System.out.println("UNBEKANNTE KLASSE GEBÄUDE ERROR");
+		}
+		}
+
+		return buffer;
+	}
+
+	public Field drawFeld(Einheit einheit,int x, int y){
+
+		Field buffer = new Field(x,y);
+		String einheitstyp = einheit.getClass().getName();
+
+		switch(einheitstyp){
+		case "control.Schildkämpfer":{
+			System.out.println("Schildkämpfer wird auf"+x+"/"+y+" gezeichnet.");
+			buffer.setBild("pictures/cloud.jpg");
+			break;
+		}
+		case "control.Schwertkämpfer":{
+			System.out.println("Schildkämpfer wird auf"+x+"/"+y+" gezeichnet.");
+			buffer.setBild("pictures/house1..jpg");
+			break;
+		}
+		default:{
+			System.out.println("UNBEKANNTE KLASSE KÄMPFER; ERROR");
+		}
+		}
+
+		return buffer;
+
 	}
 
 

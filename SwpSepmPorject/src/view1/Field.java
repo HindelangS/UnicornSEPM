@@ -29,12 +29,14 @@ public class Field extends JPanel{
 		
 		this.x = x; 
 		this.y = y; 
-
+		System.out.println("Was dazu: "+x+" / "+y);
 		setLayout(new BorderLayout());
-		lblId = new JLabel(x+","+y);
+		lblId = new JLabel(x+" / "+y);
 		lblId.setFont(new Font("Century Schoolbook", Font.PLAIN, 24));
+		add(lblId);
 		setOpaque(false);
-		setBackground( Color.black);
+		
+		setBackground(new Color((int) (Math.random()*255), (int)(Math.random()*255),(int)(Math.random()*255)));
 		addMouseListener(new PanelFeldMouseListener(this));
 
 	}
@@ -42,7 +44,12 @@ public class Field extends JPanel{
 	public void setBild(BufferedImage _bild) {
 		bild = _bild;
 	}
-
+	
+	public URL getBild()
+	{
+		return this.bildURL;
+	}
+	
 	public void setBild(String bildPfad) {
 
 		bildURL = this.getClass().getClassLoader().getResource(bildPfad);
