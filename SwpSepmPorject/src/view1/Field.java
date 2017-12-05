@@ -41,6 +41,22 @@ public class Field extends JPanel{
 
 	}
 
+	public Field(int y, int x, Overworld uw) {
+		// TODO Auto-generated constructor stub
+		super();
+		
+		this.x = x; 
+		this.y = y;
+	}
+
+	public Field(int y, int x, Underworld uw) {
+		// TODO Auto-generated constructor stub
+		super();
+		
+		this.x = x; 
+		this.y = y;
+	}
+
 	public void setBild(BufferedImage _bild) {
 		bild = _bild;
 	}
@@ -84,5 +100,9 @@ public class Field extends JPanel{
 	public int getKoordX (){
 		return x;
 	}
-
+	
+	public Underworld getUWorld() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
