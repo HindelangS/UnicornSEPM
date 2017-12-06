@@ -1,15 +1,29 @@
 package control;
 
-public class UnderworldField {
+import javax.swing.JOptionPane;
+
+public class UnderworldField{
+	
 	private final int x;
 	private final int y;
 	private boolean belegt;
 	private Einheit einheit;
 	private Gebäude gebäude;
 	
-	public void setGebäude(Gebäude gebäude) {
-		this.gebäude = gebäude;
-		this.belegt = true;
+	public void setGebäude(Gebäude gebäude){
+		if(this.belegt == false){
+			this.gebäude = gebäude;
+			this.belegt = true;
+			
+			if(this.gebäude == null){
+				this.belegt = false;
+			}
+		}
+		else{
+			JOptionPane.showMessageDialog(null, "Fehler, Feld bereits besetzt");
+			System.out.println("Fehler, Feld bereits besetzt");
+		}
+
 	}
 	public int getY() {
 		return y;
@@ -20,9 +34,19 @@ public class UnderworldField {
 	}public Gebäude getGebäude() {
 		return gebäude;
 	}
-	public void setEinheit(Einheit einheit) {
-		this.einheit = einheit;
-		this.belegt = true;
+	public void setEinheit(Einheit einheit)  {
+		if(this.belegt == false){
+			this.einheit = einheit;
+			this.belegt = true;
+			
+			if(this.einheit == null){
+				this.belegt = false;
+			}
+		}
+		else{
+			System.out.println("ERROR FELD BELEGT");
+		}
+
 	}
 	
 	
@@ -39,6 +63,8 @@ public class UnderworldField {
 		this.belegt = belegt;
 	}
 	@Override
+	
+	//Was genau macht des? 
 	public boolean equals(Object obj) {
 		// TODO Auto-generated method stub
 		UnderworldField u =(UnderworldField)obj;
