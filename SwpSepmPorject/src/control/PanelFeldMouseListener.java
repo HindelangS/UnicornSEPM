@@ -4,11 +4,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import view1.Field;
-import view1.Underworld;
+import view1.UnderworldE;
 
 public class PanelFeldMouseListener extends MouseAdapter{
 
-	Underworld underw; 
+	UnderworldE underw; 
 	Field pf;
 
 	public PanelFeldMouseListener(Field field) {
@@ -22,10 +22,10 @@ public class PanelFeldMouseListener extends MouseAdapter{
 		System.out.println("geklickt");
 		System.out.println(pf.getKoordX()+" / "+pf.getKoordY()+" "+pf.getBild());
 
-		Underworld.lastclicked = pf;
+		UnderworldE.lastclicked = pf;
 		Controller c3 = new Controller();
-		int index = c3.getField(Underworld.UnderworldFieldstest, pf.getKoordX(), pf.getKoordY());
-		System.out.println(Underworld.UnderworldFieldstest.get(index).getGebäude());
+		int index = c3.getField(UnderworldE.UnderworldFieldstest, pf.getKoordX(), pf.getKoordY());
+		System.out.println(UnderworldE.UnderworldFieldstest.get(index).getGebäude());
 		//		pf.setBild(_bild);
 
 	}

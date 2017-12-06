@@ -3,7 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="D:/Projects/sepm/UnicornSEPM/mysql-connector-java-5.1.38-bin.jar"/>
-	<classpathentry kind="lib" path="D:/Projects/sepm/UnicornSEPM/SwpSepmPorject/src/library/miglayout-4.0-swing.jar"/>
 	<classpathentry kind="lib" path="D:/Projects/sepm/UnicornSEPM/javaee-api-7.0.jar"/>
+	<classpathentry kind="lib" path="src/library/miglayout-4.0-swing.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

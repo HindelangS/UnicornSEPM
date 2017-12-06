@@ -29,13 +29,11 @@ public class Field extends JPanel{
 		
 		this.x = x; 
 		this.y = y; 
-		System.out.println("Was dazu: "+x+" / "+y);
 		setLayout(new BorderLayout());
-		lblId = new JLabel(x+" / "+y);
-		lblId.setFont(new Font("Century Schoolbook", Font.PLAIN, 24));
+		lblId = new JLabel("|"+x+" /wtf "+y+"|");
+		lblId.setFont(new Font("Century Schoolbook", Font.PLAIN, 10));
 		add(lblId);
 		setOpaque(false);
-		
 		setBackground(new Color((int) (Math.random()*255), (int)(Math.random()*255),(int)(Math.random()*255)));
 		addMouseListener(new PanelFeldMouseListener(this));
 
@@ -49,7 +47,7 @@ public class Field extends JPanel{
 		this.y = y;
 	}
 
-	public Field(int y, int x, Underworld uw) {
+	public Field(int y, int x, UnderworldE uw) {
 		// TODO Auto-generated constructor stub
 		super();
 		
@@ -101,7 +99,7 @@ public class Field extends JPanel{
 		return x;
 	}
 	
-	public Underworld getUWorld() {
+	public UnderworldE getUWorld() {
 		// TODO Auto-generated method stub
 		return null;
 	}
