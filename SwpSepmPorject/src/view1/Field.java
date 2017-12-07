@@ -30,7 +30,7 @@ public class Field extends JPanel{
 		this.x = x; 
 		this.y = y; 
 		setLayout(new BorderLayout());
-		lblId = new JLabel("|"+x+" /wtf "+y+"|");
+		lblId = new JLabel("|"+x+" / "+y+"|");
 		lblId.setFont(new Font("Century Schoolbook", Font.PLAIN, 10));
 		add(lblId);
 		setOpaque(false);

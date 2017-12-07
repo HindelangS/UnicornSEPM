@@ -200,6 +200,7 @@ public class UnderworldE{
 		panelEast.setOpaque(false);
 
 		btnHaus1 = new JButton("normal house");
+//		btnHaus1.setIcon("pictures/cloud.jpg");
 		btnHaus1.addActionListener(new btnH1ActionListener());
 		btnHaus1.setToolTipText("a normal house can be built ");
 		btnHaus1.setBackground(Color.darkGray);
@@ -225,60 +226,28 @@ public class UnderworldE{
 		btnZaun1.setBackground(Color.darkGray);
 		panelEast.add(btnZaun1, "cell 0 3,growx");
 
-		btnZaun2 = new JButton("super strong fence");
-		btnZaun2.addActionListener(new btnZ2ActionListener());
-		btnZaun2.setToolTipText("a super strong fence can be built ");
-		btnZaun2.setEnabled(false);
-		btnZaun2.setBackground(Color.darkGray);
-		panelEast.add(btnZaun2, "cell 0 4,growx");
-
-		btnWall = new JButton("wall");
-		btnWall.addActionListener(new btnZ3ActionListener());
-		btnWall.setToolTipText("a super strong wall can be built ");
-		btnWall.setEnabled(false);
-		btnWall.setBackground(Color.darkGray);
-		panelEast.add(btnWall, "cell 0 5,growx");
-
 		btnEnergy1 = new JButton("small energy source");
 		btnEnergy1.addActionListener(new btnE1ActionListener());
 		btnEnergy1.setToolTipText("a small energy source can be set up");
 		btnEnergy1.setBackground(Color.darkGray);
-		panelEast.add(btnEnergy1, "cell 0 6,growx");
+		panelEast.add(btnEnergy1, "cell 0 4,growx");
 
 		btnEnergy2 = new JButton("energy source");
 		btnEnergy2.addActionListener(new btnE2ActionListener());
 		btnEnergy2.setToolTipText("a energy source can be set up");
 		btnEnergy2.setEnabled(false);
 		btnEnergy2.setBackground(Color.darkGray);
-		panelEast.add(btnEnergy2, "cell 0 7,growx");
+		panelEast.add(btnEnergy2, "cell 0 5,growx");
 
 		btnEnergy3 = new JButton("super energy source");
 		btnEnergy3.addActionListener(new btnE3ActionListener());
 		btnEnergy3.setToolTipText("set up a big enery source");
 		btnEnergy3.setEnabled(false);
 		btnEnergy3.setBackground(Color.darkGray);
-		panelEast.add(btnEnergy3, "cell 0 8");
-
-		btnWaffe1 = new JButton("weapon");
-		btnWaffe1.addActionListener(new btnW1ActionListener());
-		btnWaffe1.setToolTipText("place a weapon");
-		btnWaffe1.setBackground(Color.darkGray);
-		panelEast.add(btnWaffe1, "cell 0 9,growx");
-
-		btnWaffe2 = new JButton("weapon3");
-		btnWaffe2.addActionListener(new btnW2ActionListener());
-		btnWaffe2.setToolTipText("place a weapon");
-		btnWaffe2.setBackground(Color.darkGray);
-		panelEast.add(btnWaffe2, "cell 0 10,growx");
-
-		btnWaffe3 = new JButton("weapon2");
-		btnWaffe3.addActionListener(new btnW3ActionListener());
-		btnWaffe3.setToolTipText("place a weapon");
-		btnWaffe3.setBackground(Color.darkGray);
-		panelEast.add(btnWaffe3, "cell 0 11,growx");
+		panelEast.add(btnEnergy3, "cell 0 6");
 
 		btnDelete = new JButton("delete");
-		btnDelete.addActionListener(new btnW3ActionListener());
+		btnDelete.addActionListener(new btnDActionListener());
 		btnDelete.setToolTipText("select a item you want to delete");
 		btnDelete.setBackground(Color.darkGray);
 		panelEast.add(btnDelete, "cell 0 12,growx");
@@ -361,23 +330,6 @@ public class UnderworldE{
 		}
 	}
 
-	private class btnZ2ActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent arg0) {
-
-
-
-		}
-	}
-
-	private class btnZ3ActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent arg0) {
-
-
-
-		}
-	}
-
-
 	private class btnE1ActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 
@@ -401,21 +353,7 @@ public class UnderworldE{
 	}
 
 
-	private class btnW1ActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent arg0) {
-
-
-		}
-	}
-
-	private class btnW2ActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent arg0) {
-
-
-		}
-	}
-
-	private class btnW3ActionListener implements ActionListener {
+	private class btnDActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 
 

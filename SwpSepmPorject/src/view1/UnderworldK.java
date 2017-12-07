@@ -198,40 +198,40 @@ public class UnderworldK{
 		panelEast.setLayout(new MigLayout("", "[89px]", "[23px][][][][][][][][][][][]"));
 		panelEast.setOpaque(false);
 
-		btnKaempfer1 = new JButton("Warrior who is strong but very vulnerable");
+		btnKaempfer1 = new JButton("Warrior1");
 		btnKaempfer1.addActionListener(new btnH1ActionListener());
-		btnKaempfer1.setToolTipText("a normal house can be built ");
+		btnKaempfer1.setToolTipText("Warrior who is strong but very vulnerable");
 		btnKaempfer1.setBackground(Color.darkGray);
 		panelEast.add(btnKaempfer1, "cell 0 0,growx,aligny top");
 
-		btnKaempfer2 = new JButton("warrior who is neraly indestructibel but not very strong");
+		btnKaempfer2 = new JButton("Warrior2");
 		btnKaempfer2.addActionListener(new btnH2ActionListener());
-		btnKaempfer2.setToolTipText("a super house can be built ");
+		btnKaempfer2.setToolTipText("warrior who is neraly indestructibel but not very strong");
 		btnKaempfer2.setEnabled(false);
 		btnKaempfer2.setBackground(Color.darkGray);
 		panelEast.add(btnKaempfer2, "cell 0 1,growx");
 
-		btnKaempfer3 = new JButton("strong and neraly indestructible warrior");
+		btnKaempfer3 = new JButton("Warrior3");
 		btnKaempfer3.setEnabled(false);
 		btnKaempfer3.addActionListener(new btnH3ActionListener());
-		btnKaempfer3.setToolTipText("a fantastic house can be built");
+		btnKaempfer3.setToolTipText("strong and neraly indestructible warrior");
 		btnKaempfer3.setBackground(Color.darkGray);
 		panelEast.add(btnKaempfer3, "cell 0 2,growx");
 
-		btnWeapon1 = new JButton("fence");
+		btnWeapon1 = new JButton("weapon1");
 		btnWeapon1.addActionListener(new btnZ1ActionListener());
 		btnWeapon1.setToolTipText("set up a small bomb");
 		btnWeapon1.setBackground(Color.darkGray);
 		panelEast.add(btnWeapon1, "cell 0 3,growx");
 
-		btnWeapon2 = new JButton("super strong fence");
+		btnWeapon2 = new JButton("werapon2");
 		btnWeapon2.addActionListener(new btnZ2ActionListener());
 		btnWeapon2.setToolTipText("cause a big mess ");
 		btnWeapon2.setEnabled(false);
 		btnWeapon2.setBackground(Color.darkGray);
 		panelEast.add(btnWeapon2, "cell 0 4,growx");
 
-		btnWeapon3 = new JButton("wall");
+		btnWeapon3 = new JButton("weapon");
 		btnWeapon3.addActionListener(new btnZ3ActionListener());
 		btnWeapon3.setToolTipText("destroy this! ");
 		btnWeapon3.setEnabled(false);
