@@ -27,9 +27,11 @@ public class Einheit {
 		lebenberechnet = level*2+leben;
 		return lebenberechnet;
 	}
+	
 	public void setSchaden(int schaden) {
 		this.schaden = schaden;
 	}
+	
 	public void setLeben(int leben) {
 		this.leben = leben;
 	}
