@@ -267,18 +267,66 @@ public class UnderworldK{
 	}
 
 	private void redraw(){
+	
+			//panelFelder = new JPanel();
+			panelFelder.removeAll();
+			System.out.println("REDRAW");
+			ArrayList<ArrayList<Field>> liste = new ArrayList<ArrayList<Field>>();
 
-		//neu malen
-		//		if(einheit.getClass()== Schildkämpfer.class){
-		//					Field buffer = new Field(i,j);
-		//					System.out.println("afdasfe");
-		//					buffer.setBild("pictures/cloud.jpg");
-		//					liste.get(i).add(buffer);
-		//					panelFelder.add(liste.get(i).get(j));
-		//					System.out.println(liste.get(i).get(j).getBild());
-		//				}
+			Controller tester = new Controller();
+			
+			for(int i = 0; i < reihen; i++) {
+				
+				liste.add(new ArrayList<Field>());
 
-	}
+					for(int j = 0; j < spalten; j++) {
+						
+						int index = tester.getField(UnderworldFieldstest, j, i);
+						Einheit einheit = null;
+						einheit = UnderworldFieldstest.get(index).getEinheit();
+						Gebäude geb = UnderworldFieldstest.get(index).getGebäude();
+
+						System.out.println("Derzeitige Einheit: "+einheit+ "I: "+i+" J:"+j);
+
+						if(geb != null){
+							System.out.println("Gebaude vorhanden");
+							liste.get(i).add(setWarrior(geb, i, j));
+							panelFelder.add(liste.get(i).get(j));
+						}
+						if(einheit != null){
+
+							System.out.println("Einheit vorhanden");
+							liste.get(i).add(setWarrior(einheit, i, j));
+							panelFelder.add(liste.get(i).get(j));
+
+						}
+						if(geb == null && einheit == null){
+							System.out.println("nix auf dem Feld");
+							liste.get(i).add(new Field(i,j));
+							panelFelder.add(liste.get(i).get(j));
+						}
+
+						
+						
+					}
+					
+			}
+			
+			frame.getContentPane().repaint();
+			frame.getContentPane().validate();
+			
+			//neu malen
+			//		if(einheit.getClass()== Schildkämpfer.class){
+			//					Field buffer = new Field(i,j);
+			//					System.out.println("afdasfe");
+			//					buffer.setBild("pictures/cloud.jpg");
+			//					liste.get(i).add(buffer);
+			//					panelFelder.add(liste.get(i).get(j));
+			//					System.out.println(liste.get(i).get(j).getBild());
+			//				}
+
+		}
+	
 
 	private class btnH1ActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
@@ -292,7 +340,7 @@ public class UnderworldK{
 //			panelFelder.add(buffer.get(i).get(j));
 
 
-			UnderworldFieldstest.get(index).setGebäude(new GebäudeTurm(1));
+			UnderworldFieldstest.get(index).setGebäude(new GebEnergie1(1));
 			UnderworldFieldstest.get(index).setBelegt(true);
 			redraw();
 

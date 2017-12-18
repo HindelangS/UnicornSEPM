@@ -10,8 +10,8 @@ public abstract class GebEnergie extends Gebäude {
 		// TODO Auto-generated constructor stub
 	}
 	
-	int getProduktion(int level){
-		return level * prodrate;
+	int getProduktion(){
+		return this.getLevel() * prodrate;
 	}
 
 }

@@ -184,16 +184,37 @@ public class Controller {
 	}
 	public static void main(String[] args) {
 		
-		System.out.println("Starten");
-		Controller c1 = new Controller();
-		ArrayList <UnderworldField> Underworld2 = c1.create();
-		UnderworldField startField = new UnderworldField(false,5,4);
-		Schildkämpfer einheit = new Schildkämpfer(3);
-		startField.setEinheit(einheit);
-		startField.setBelegt(true);
-		UnderworldField zielField = new UnderworldField(false,5,2);
+//		System.out.println("Starten");
+//		Controller c1 = new Controller();
+//		ArrayList <UnderworldField> Underworld2 = c1.create();
+//		UnderworldField startField = new UnderworldField(false,5,4);
+//		Schildkämpfer einheit = new Schildkämpfer(3);
+//		startField.setEinheit(einheit);
+//		startField.setBelegt(true);
+//		UnderworldField zielField = new UnderworldField(false,5,2);
+//		
+//		c1.move(startField, zielField, Underworld2);
 		
-		c1.move(startField, zielField, Underworld2);
+		for(int i = 1;i<= 8;i++){
+			System.out.println("Level: "+i);
+			GebEnergie1 geb1 = new GebEnergie1(i);
+			GebEnergie2 geb2 = new GebEnergie2(i);
+			GebEnergie3 geb3 = new GebEnergie3(i);
+			int kosten1 = geb1.berechneKosten();
+			int kosten2 = geb2.berechneKosten(); 
+			int kosten3 = geb3.berechneKosten();
+			int leben = geb1.getLeben();
+			int prodrate1 = geb1.getProduktion();
+			int prodrate2 = geb2.getProduktion();
+			int prodrate3 = geb3.getProduktion();
+			
+			System.out.println("Geb1: Kosten: "+kosten1+", Produktion: "+prodrate1+", Leben: "+leben);
+			System.out.println("Geb2: Kosten: "+kosten2+", Produktion: "+prodrate2+", Leben: "+leben);
+			System.out.println("Geb3: Kosten: "+kosten3+", Produktion: "+prodrate3+", Leben: "+leben);
+			System.out.println("------------------------------------------------------");
+		}
+		
+		
 		
 	}
 
