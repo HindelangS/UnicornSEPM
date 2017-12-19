@@ -38,7 +38,7 @@ public class Field extends JPanel{
 		setLayout(new BorderLayout());
 		lblId = new JLabel("|"+x+" / "+y+"|");
 		lblId.setFont(new Font("Century Schoolbook", Font.PLAIN, 10));
-		add(lblId);
+//		add(lblId);
 		setOpaque(false);
 		setBackground(new Color((int) (Math.random()*255), (int)(Math.random()*255),(int)(Math.random()*255)));
 		if(Art == "K"){
@@ -65,6 +65,12 @@ public class Field extends JPanel{
 		
 		this.x = x; 
 		this.y = y;
+	}
+
+	public Field() {
+		// TODO Auto-generated constructor stub
+		this.x = -1; 
+		this.y = -1;
 	}
 
 	public void setBild(BufferedImage _bild) {

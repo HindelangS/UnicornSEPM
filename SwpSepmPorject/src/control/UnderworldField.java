@@ -46,12 +46,13 @@ public class UnderworldField{
 	public void deleteField(){
 		
 		if(this.belegt == true){
+			this.einheit = null; 
 			this.gebäude = null;
 			this.haus = null; 
 			this.zz = null; 
 			this.belegt = false;
 
-			if(this.gebäude == null || this.haus == null || this.zz == null){
+			if(this.gebäude == null || this.haus == null || this.zz == null || this.einheit == null){
 				this.belegt = false;
 			}
 		}
@@ -91,7 +92,6 @@ public class UnderworldField{
 			System.out.println(this);
 			System.out.println("ERROR FELD BELEGT");
 		}
-
 	}
 
 	public int getY() {

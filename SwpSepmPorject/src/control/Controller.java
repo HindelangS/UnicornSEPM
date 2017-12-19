@@ -200,7 +200,7 @@ public class Controller {
 		Controller c1 = new Controller();
 		ArrayList <UnderworldField> Underworld2 = c1.create();
 		UnderworldField startField = new UnderworldField(false,5,4);
-		Schildkämpfer einheit = new Schildkämpfer(3);
+		SimpleUnicorn einheit = new SimpleUnicorn(3);
 		startField.setEinheit(einheit);
 		int h = c1.getField(Underworld2, 5, 4);
 		Underworld2.set(h, startField);

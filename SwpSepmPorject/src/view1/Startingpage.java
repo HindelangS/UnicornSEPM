@@ -22,7 +22,7 @@ public class Startingpage extends JFrame{
 	public Startingpage() {
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Sara\\Documents\\SWP-SEPM 5 Kl\\unicorn.png"));
-		setTitle("Cute Unicorn Fight To Death");
+		setTitle("Cute UnicornWarrior Fight To Death");
 		setFont(new Font("Century Schoolbook", Font.ITALIC, 14));
 		setBounds(100, 100, 700, 437);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
