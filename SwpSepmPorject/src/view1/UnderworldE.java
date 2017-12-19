@@ -41,14 +41,9 @@ public class UnderworldE{
 	private JCheckBox cbBearbeiten;
 	private JPanel phPanel;
 	private JButton btnZaun1;
-	private JButton btnZaun2;
-	private JButton btnWall;
 	private JButton btnEnergy1;
 	private JButton btnEnergy2;
 	private JButton btnEnergy3;
-	private JButton btnWaffe1;
-	private JButton btnWaffe2;
-	private JButton btnWaffe3;
 	private JButton btnDelete;
 
 	//ArrayList vom Typ UnderworldField um Funktion zu Feld hinzuzufügen mit getX
@@ -200,7 +195,6 @@ public class UnderworldE{
 		panelEast.setOpaque(false);
 
 		btnHaus1 = new JButton("normal house");
-//		btnHaus1.setIcon("pictures/cloud.jpg");
 		btnHaus1.addActionListener(new btnH1ActionListener());
 		btnHaus1.setToolTipText("a normal house can be built ");
 		btnHaus1.setBackground(Color.darkGray);

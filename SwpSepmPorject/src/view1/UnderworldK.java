@@ -224,14 +224,14 @@ public class UnderworldK{
 		btnWeapon1.setBackground(Color.darkGray);
 		panelEast.add(btnWeapon1, "cell 0 3,growx");
 
-		btnWeapon2 = new JButton("werapon2");
+		btnWeapon2 = new JButton("weapon2");
 		btnWeapon2.addActionListener(new btnZ2ActionListener());
 		btnWeapon2.setToolTipText("cause a big mess ");
 		btnWeapon2.setEnabled(false);
 		btnWeapon2.setBackground(Color.darkGray);
 		panelEast.add(btnWeapon2, "cell 0 4,growx");
 
-		btnWeapon3 = new JButton("weapon");
+		btnWeapon3 = new JButton("weapon3");
 		btnWeapon3.addActionListener(new btnZ3ActionListener());
 		btnWeapon3.setToolTipText("destroy this! ");
 		btnWeapon3.setEnabled(false);
