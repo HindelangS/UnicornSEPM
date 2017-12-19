@@ -183,7 +183,7 @@ public class UnderworldK{
 
 				}else{
 					System.out.println("nix auf dem Feld");
-					liste.get(i).add(new Field(i,j));
+					liste.get(i).add(new Field(i,j,"K"));
 					panelFelder.add(liste.get(i).get(j));
 				}
 
@@ -302,7 +302,7 @@ public class UnderworldK{
 						}
 						if(geb == null && einheit == null){
 							System.out.println("nix auf dem Feld");
-							liste.get(i).add(new Field(i,j));
+							liste.get(i).add(new Field(i,j,"K"));
 							panelFelder.add(liste.get(i).get(j));
 						}
 
@@ -334,7 +334,7 @@ public class UnderworldK{
 			Controller c1 = new Controller();
 			int index = c1.getField(UnderworldFieldstest, lastclicked.getKoordX(), lastclicked.getKoordY());
 			
-			Field buffer = new Field(lastclicked.getKoordX(), lastclicked.getKoordY());
+			Field buffer = new Field(lastclicked.getKoordX(), lastclicked.getKoordY(),"K");
 			buffer.setBild("pictures/haus1_klein.png");
 //			liste.get(i).add(buffer);
 //			panelFelder.add(buffer.get(i).get(j));
@@ -404,7 +404,7 @@ public class UnderworldK{
 
 	public Field setWarrior(Gebäude geb,int x,int y){
 
-		Field buffer = new Field(x,y);
+		Field buffer = new Field(x,y,"K");
 		String gebtyp = geb.getClass().getName();
 
 		switch(gebtyp){
@@ -424,7 +424,7 @@ public class UnderworldK{
 
 	public Field setWarrior(Einheit einheit,int x, int y){
 
-		Field buffer = new Field(x,y);
+		Field buffer = new Field(x,y,"K");
 		String einheitstyp = einheit.getClass().getName();
 
 		switch(einheitstyp){

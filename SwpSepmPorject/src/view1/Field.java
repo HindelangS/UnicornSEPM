@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import control.Einheit;
 import control.Gebäude;
 import control.PanelFeldMouseListener;
+import control.PanelFeldMouseListenerK;
 
 public class Field extends JPanel{
 
@@ -25,7 +26,7 @@ public class Field extends JPanel{
 	BufferedImage bild;
 	URL bildURL;
 	
-	public Field( int y, int x){
+	public Field( int y, int x,String Art){
 		
 		this.x = x; 
 		this.y = y; 
@@ -35,7 +36,13 @@ public class Field extends JPanel{
 		add(lblId);
 		setOpaque(false);
 		setBackground(new Color((int) (Math.random()*255), (int)(Math.random()*255),(int)(Math.random()*255)));
-		addMouseListener(new PanelFeldMouseListener(this));
+		if(Art == "K"){
+			addMouseListener(new PanelFeldMouseListenerK(this));
+
+		}
+		if(Art == "E"){
+				addMouseListener(new PanelFeldMouseListener(this));
+		}
 
 	}
 

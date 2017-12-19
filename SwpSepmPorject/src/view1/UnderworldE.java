@@ -18,6 +18,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+
 import net.miginfocom.swing.MigLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -87,6 +88,7 @@ public class UnderworldE{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		 
 
 		frame = new JFrame();
 		ImageIcon img = new ImageIcon(UnderworldE.class.getResource("/pictures/rosa.jpg"));
@@ -183,7 +185,7 @@ public class UnderworldE{
 
 				}else{
 					System.out.println("nix auf dem Feld");
-					liste.get(i).add(new Field(i,j));
+					liste.get(i).add(new Field(i,j,"E"));
 					panelFelder.add(liste.get(i).get(j));
 				}
 
@@ -308,7 +310,7 @@ public class UnderworldE{
 					}
 					if(geb == null && einheit == null){
 						System.out.println("nix auf dem Feld");
-						liste.get(i).add(new Field(i,j));
+						liste.get(i).add(new Field(i,j,"E"));
 						panelFelder.add(liste.get(i).get(j));
 					}
 
@@ -339,7 +341,7 @@ public class UnderworldE{
 			Controller c1 = new Controller();
 			int index = c1.getField(UnderworldFieldstest, lastclicked.getKoordX(), lastclicked.getKoordY());
 			
-			Field buffer = new Field(lastclicked.getKoordX(), lastclicked.getKoordY());
+			Field buffer = new Field(lastclicked.getKoordX(), lastclicked.getKoordY(),"E");
 			buffer.setBild("pictures/haus1_klein.png");
 //			liste.get(i).add(buffer);
 //			panelFelder.add(buffer.get(i).get(j));
@@ -417,7 +419,7 @@ public class UnderworldE{
 
 	public Field drawFeld(Gebäude geb,int x,int y){
 
-		Field buffer = new Field(x,y);
+		Field buffer = new Field(x,y,"E");
 		String gebtyp = geb.getClass().getName();
 
 		switch(gebtyp){
@@ -442,7 +444,7 @@ public class UnderworldE{
 
 	public Field drawFeld(Einheit einheit,int x, int y){
 		System.out.println("DRAW FELD");
-		Field buffer = new Field(x,y);
+		Field buffer = new Field(x,y,"E");
 		String einheitstyp = einheit.getClass().getName();
 
 		switch(einheitstyp){
