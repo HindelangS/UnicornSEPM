@@ -26,6 +26,11 @@ public class Field extends JPanel{
 	BufferedImage bild;
 	URL bildURL;
 	
+	public Field() {
+		this.x = -1;
+		this.y = -1;
+	}
+	
 	public Field( int y, int x,String Art){
 		
 		this.x = x; 
@@ -33,7 +38,7 @@ public class Field extends JPanel{
 		setLayout(new BorderLayout());
 		lblId = new JLabel("|"+x+" / "+y+"|");
 		lblId.setFont(new Font("Century Schoolbook", Font.PLAIN, 10));
-		add(lblId);
+//		add(lblId);
 		setOpaque(false);
 		setBackground(new Color((int) (Math.random()*255), (int)(Math.random()*255),(int)(Math.random()*255)));
 		if(Art == "K"){
