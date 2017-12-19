@@ -168,7 +168,7 @@ public class UnderworldK{
 				einheit = UnderworldFieldstest.get(index).getEinheit();
 				Gebäude geb = UnderworldFieldstest.get(index).getGebäude();
 
-				System.out.println("Derzeitige Einheit: "+einheit+ "I: "+i+" J:"+j);
+	//			System.out.println("Derzeitige Einheit: "+einheit+ "I: "+i+" J:"+j);
 
 				if(geb != null){
 					System.out.println("Gebaude vorhanden");
@@ -182,8 +182,8 @@ public class UnderworldK{
 					panelFelder.add(liste.get(i).get(j));
 
 				}else{
-					System.out.println("nix auf dem Feld");
-					liste.get(i).add(new Field(i,j,"K"));
+			//		System.out.println("nix auf dem Feld");
+					liste.get(i).add(new Field(i,j,"K", this));
 					panelFelder.add(liste.get(i).get(j));
 				}
 
@@ -265,8 +265,9 @@ public class UnderworldK{
 			}
 		}
 	}
+	
 
-	private void redraw(){
+	public void redraw(){
 	
 			//panelFelder = new JPanel();
 			panelFelder.removeAll();
@@ -286,7 +287,7 @@ public class UnderworldK{
 						einheit = UnderworldFieldstest.get(index).getEinheit();
 						Gebäude geb = UnderworldFieldstest.get(index).getGebäude();
 
-						System.out.println("Derzeitige Einheit: "+einheit+ "I: "+i+" J:"+j);
+	//					System.out.println("Derzeitige Einheit: "+einheit+ "I: "+i+" J:"+j);
 
 						if(geb != null){
 							System.out.println("Gebaude vorhanden");
@@ -301,8 +302,8 @@ public class UnderworldK{
 
 						}
 						if(geb == null && einheit == null){
-							System.out.println("nix auf dem Feld");
-							liste.get(i).add(new Field(i,j,"K"));
+		//					System.out.println("nix auf dem Feld");
+							liste.get(i).add(new Field(i,j,"K", this));
 							panelFelder.add(liste.get(i).get(j));
 						}
 
@@ -334,18 +335,21 @@ public class UnderworldK{
 			Controller c1 = new Controller();
 			int index = c1.getField(UnderworldFieldstest, lastclicked.getKoordX(), lastclicked.getKoordY());
 			
-			Field buffer = new Field(lastclicked.getKoordX(), lastclicked.getKoordY(),"K");
-			buffer.setBild("pictures/haus1_klein.png");
+//			Field buffer = new Field(lastclicked.getKoordX(), lastclicked.getKoordY(),"K");
+//			buffer.setBild("pictures/haus1_klein.png");
 //			liste.get(i).add(buffer);
 //			panelFelder.add(buffer.get(i).get(j));
 
-
-			UnderworldFieldstest.get(index).setGebäude(new GebEnergie1(1));
+			Einheit einheit = new Schildkämpfer(1);
+			UnderworldFieldstest.get(index).setEinheit(einheit);
 			UnderworldFieldstest.get(index).setBelegt(true);
 			redraw();
 
 		}
 	}
+	
+	
+	
 
 	private class btnH2ActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
@@ -404,7 +408,7 @@ public class UnderworldK{
 
 	public Field setWarrior(Gebäude geb,int x,int y){
 
-		Field buffer = new Field(x,y,"K");
+		Field buffer = new Field(x,y,"K", this);
 		String gebtyp = geb.getClass().getName();
 
 		switch(gebtyp){
@@ -424,7 +428,7 @@ public class UnderworldK{
 
 	public Field setWarrior(Einheit einheit,int x, int y){
 
-		Field buffer = new Field(x,y,"K");
+		Field buffer = new Field(x,y,"K", this);
 		String einheitstyp = einheit.getClass().getName();
 
 		switch(einheitstyp){
