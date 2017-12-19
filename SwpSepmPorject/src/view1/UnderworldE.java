@@ -11,6 +11,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.MatteBorder;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -102,6 +103,9 @@ public class UnderworldE{
 		int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
 		int y = (int) ((dimension.getHeight() - frame.getHeight()) / 3);
 		frame.setLocation(x, y);
+		
+//		Color farbe = new Color(120,0,0); 
+//		lastclicked.setBorder(new MatteBorder(5, 5, 5, 5, farbe));
 
 		panelStatus = new JPanel();
 		panelStatus.setOpaque(false);
@@ -269,6 +273,7 @@ public class UnderworldE{
 	}
 
 	private void redraw(){
+		
 		//panelFelder = new JPanel();
 		panelFelder.removeAll();
 		System.out.println("REDRAW");
