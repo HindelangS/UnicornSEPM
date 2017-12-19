@@ -69,10 +69,12 @@ public class Controller {
 		Einheit einheit = startField.getEinheit();
 		if(Math.abs(startField.getX() - zielField.getX()) <= 1 && Math.abs(startField.getY() - zielField.getY()) <= 1 ){
 			if(zielField.getGebäude() == null){
-				Underworld2.get(getField(Underworld2, startField.getX(), startField.getY())).setEinheit(null);;
-				Underworld2.get(getField(Underworld2, zielField.getX(), zielField.getY())).setEinheit(einheit);;
-				System.out.println("um 1 bewegt "+startField.getX()+"/"+startField.getY()+" --> "+zielField.getX()+"/"+zielField.getY());
-				
+				int index = getField(Underworld2, startField.getX(), startField.getY());
+				UnderworldField buffer = new UnderworldField(false, startField.getX(), startField.getY());
+				Underworld2.set(index, buffer);
+				Underworld2.get(getField(Underworld2, zielField.getX(), zielField.getY())).setEinheit(einheit);
+				System.out.println(einheit+ " um 1 bewegt "+startField.getX()+"/"+startField.getY()+" --> "+zielField.getX()+"/"+zielField.getY());
+				System.out.println("old field: "+Underworld2.get(getField(Underworld2, startField.getX(), startField.getY())));
 			}
 			else{
 				System.out.println("Gebäude davor");
@@ -98,8 +100,8 @@ public class Controller {
 			Einheit einheit = startField.getEinheit();
 			int reichweite = einheit.getMovement();
 
-			Underworld2.get(getField(Underworld2, startField.getX(), startField.getY()));
-			Underworld2.get(getField(Underworld2, zielField.getX(), zielField.getY()));
+			//Underworld2.get(getField(Underworld2, startField.getX(), startField.getY()));
+			//Underworld2.get(getField(Underworld2, zielField.getX(), zielField.getY()));
 
 
 			if(Math.abs(startField.getX() - zielField.getX()) <= reichweite && Math.abs(startField.getY() - zielField.getY()) <= reichweite ){
@@ -110,7 +112,10 @@ public class Controller {
 							System.out.println("geht west");
 							for(int i = startField.getX();i > zielField.getX();i--){
 								System.out.println(i);
-								UnderworldField aktuell = new UnderworldField(true,i,startField.getY());
+								int a = getField(Underworld2,i,startField.getY());
+								UnderworldField aktuell = Underworld2.get(a);
+//								UnderworldField aktuell = new UnderworldField(true,i,startField.getY());
+//								aktuell.setEinheit(einheit);
 								int nextF = getField(Underworld2, i-1, startField.getY());
 								UnderworldField nextField = Underworld2.get(nextF);
 								Underworld2 = movefor1(aktuell, nextField, Underworld2);
@@ -122,7 +127,10 @@ public class Controller {
 							System.out.println("geht ost");
 							for(int i = startField.getX();i < zielField.getX();i++){
 								System.out.println(i);
-								UnderworldField aktuell = new UnderworldField(true,i,startField.getY());
+								int a = getField(Underworld2, i, startField.getY());
+								UnderworldField aktuell = Underworld2.get(a);
+//								UnderworldField aktuell = new UnderworldField(true,i,startField.getY());
+//								aktuell.setEinheit(einheit);
 								int nextF = getField(Underworld2, i+1, startField.getY());
 								UnderworldField nextField = Underworld2.get(nextF);
 								Underworld2 = movefor1(aktuell, nextField, Underworld2);
@@ -140,9 +148,14 @@ public class Controller {
 							
 							for(int i = startField.getY();i > zielField.getY();i--){
 								System.out.println(i);
-								UnderworldField aktuell = new UnderworldField(true,startField.getX(),i);
+								
+								int a = getField(Underworld2, startField.getX(), i);
+								UnderworldField aktuell = Underworld2.get(a);
+//								UnderworldField aktuell = new UnderworldField(true,startField.getX(),i);
+//								aktuell.setEinheit(einheit);
 								int nextF = getField(Underworld2, startField.getX(), i-1);
 								UnderworldField nextField = Underworld2.get(nextF);
+								System.out.println("aktuell: "+Underworld2.get(a));
 								Underworld2 = movefor1(aktuell, nextField, Underworld2);
 								
 							}
@@ -153,7 +166,10 @@ public class Controller {
 							System.out.println("geht nord");
 							for(int i = startField.getY();i < zielField.getY();i++){
 								System.out.println(i);
-								UnderworldField aktuell = new UnderworldField(true,startField.getX(),i);
+								int a = getField(Underworld2, startField.getX(), i);
+								UnderworldField aktuell = Underworld2.get(a);
+//								UnderworldField aktuell = new UnderworldField(true,startField.getX(),i);
+//								aktuell.setEinheit(einheit);
 								int nextF = getField(Underworld2, startField.getX(), i+1);
 								UnderworldField nextField = Underworld2.get(nextF);
 								Underworld2 = movefor1(aktuell, nextField, Underworld2);
@@ -180,16 +196,23 @@ public class Controller {
 	}
 	public static void main(String[] args) {
 		
-//		System.out.println("Starten");
-//		Controller c1 = new Controller();
-//		ArrayList <UnderworldField> Underworld2 = c1.create();
-//		UnderworldField startField = new UnderworldField(false,5,4);
-//		Schildkämpfer einheit = new Schildkämpfer(3);
-//		startField.setEinheit(einheit);
-//		startField.setBelegt(true);
-//		UnderworldField zielField = new UnderworldField(false,5,2);
+		System.out.println("Starten");
+		Controller c1 = new Controller();
+		ArrayList <UnderworldField> Underworld2 = c1.create();
+		UnderworldField startField = new UnderworldField(false,5,4);
+		Schildkämpfer einheit = new Schildkämpfer(3);
+		startField.setEinheit(einheit);
+		int h = c1.getField(Underworld2, 5, 4);
+		Underworld2.set(h, startField);
+		System.out.println("Startfeld: "+Underworld2.get(h));
+		UnderworldField zielField = new UnderworldField(false,5,3);
 //		
-//		c1.move(startField, zielField, Underworld2);
+		c1.move(startField, zielField, Underworld2);
+		int e = c1.getField(Underworld2, 5, 3);
+		int u = c1.getField(Underworld2, 5, 4);
+		System.out.println(Underworld2.get(e));
+		System.out.println(Underworld2.get(u));
+
 		
 		for(int i = 1;i<= 8;i++){
 			System.out.println("Level: "+i);

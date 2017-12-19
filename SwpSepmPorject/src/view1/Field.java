@@ -19,6 +19,11 @@ import control.PanelFeldMouseListenerK;
 
 public class Field extends JPanel{
 
+	@Override
+	public String toString() {
+		return "Field [x=" + x + ", y=" + y + "]";
+	}
+
 	private JLabel lblId;  //dient ‹bergangsm‰ﬂig als Hilfe zur Orientierung
 	private final int x;
 	private final int y;
@@ -26,23 +31,18 @@ public class Field extends JPanel{
 	BufferedImage bild;
 	URL bildURL;
 	
-	public Field() {
-		this.x = -1;
-		this.y = -1;
-	}
-	
-	public Field( int y, int x,String Art){
+	public Field( int y, int x,String Art,UnderworldK underw){
 		
 		this.x = x; 
 		this.y = y; 
 		setLayout(new BorderLayout());
 		lblId = new JLabel("|"+x+" / "+y+"|");
 		lblId.setFont(new Font("Century Schoolbook", Font.PLAIN, 10));
-//		add(lblId);
+		add(lblId);
 		setOpaque(false);
 		setBackground(new Color((int) (Math.random()*255), (int)(Math.random()*255),(int)(Math.random()*255)));
 		if(Art == "K"){
-			addMouseListener(new PanelFeldMouseListenerK(this));
+			addMouseListener(new PanelFeldMouseListenerK(this, underw));
 
 		}
 		if(Art == "E"){

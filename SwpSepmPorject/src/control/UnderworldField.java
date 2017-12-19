@@ -88,6 +88,7 @@ public class UnderworldField{
 			}
 		}
 		else{
+			System.out.println(this);
 			System.out.println("ERROR FELD BELEGT");
 		}
 
@@ -133,6 +134,11 @@ public class UnderworldField{
 		// TODO Auto-generated method stub
 		UnderworldField u =(UnderworldField)obj;
 		return belegt == u.isBelegt() && x == u.getX() && y == u.getY() ;
+	}
+	@Override
+	public String toString() {
+		return "UnderworldField [x=" + x + ", y=" + y + ", belegt=" + belegt + ", einheit=" + einheit + ", gebäude="
+				+ gebäude + "]";
 	}
 
 }
