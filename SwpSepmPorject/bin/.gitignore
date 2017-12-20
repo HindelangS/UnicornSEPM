@@ -1,3 +1,8 @@
-/view1/
 /control/
+<<<<<<< HEAD
+/model/
+/view1/
+=======
 /pictures/
+/model/
+>>>>>>> branch 'master' of https://github.com/HindelangS/UnicornSEPM.git

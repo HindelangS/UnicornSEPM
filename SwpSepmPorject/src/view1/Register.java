@@ -7,12 +7,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import model.DatenbankUnicorn;
+
 import javax.swing.JTextPane;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.JTextField;
@@ -40,6 +48,10 @@ public class Register extends JFrame {
 
 	private Login login;
 	private ArrayList<Component> focusComps;
+
+	static final String DB_URL = "jdbc:mysql://localhost:3306/cuftd?user=root&password=&useSSL=false";
+
+	static private String username;
 
 	/**
 	 * Wie lange das Passwort mindestens sein muss
@@ -85,14 +97,14 @@ public class Register extends JFrame {
 		setTitle("Register");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Overworld.class.getResource("/pictures/unicorn.PNG")));
-		
+
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.window);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		int x = (int) ((dimension.getWidth() - getWidth()) / 2);
 		int y = (int) ((dimension.getHeight() - getHeight()) / 3);
@@ -186,7 +198,7 @@ public class Register extends JFrame {
 
 					// In der DB neuen Spieler anlegen
 					int fehlercode;
-//					if((fehlercode = Datenbank.spielerRegistrieren(textField.getText(), String.valueOf(passwordField_1.getPassword()))) == 0) {
+					if((fehlercode = DatenbankUnicorn.spielerRegistrieren(textField.getText(), String.valueOf(passwordField_1.getPassword()))) == 0) {
 						// erfolgreich
 
 						// Falls Registrierungsfenster durch Login Fenster aufgerufen wurde, dort auch anmelden TODO
@@ -197,7 +209,7 @@ public class Register extends JFrame {
 					}
 					else {
 						// Fehlgeschlagen (Grund wurde in Fehlercode definiert)
-//						lblError.setText(Datenbank.fehlercodeAufloesen(fehlercode));
+						lblError.setText(DatenbankUnicorn.fehlercodeAufloesen(fehlercode));
 					}
 				}
 				else {
@@ -205,11 +217,11 @@ public class Register extends JFrame {
 					lblError.setText("Die beiden Passwoerter stimmen nicht ueberein!");
 				}
 			}
-//			else {
-//				// PW nicht lang genug
-//				lblError.setText("Das Passwort muss mindestens 8 Zeichen lang sein!");
-//			}	
-//		}
+			else {
+				// PW nicht lang genug
+				lblError.setText("Das Passwort muss mindestens 8 Zeichen lang sein!");
+			}	
+		}
 
 	}
 }

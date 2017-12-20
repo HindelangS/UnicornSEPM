@@ -68,6 +68,10 @@ public class Controller {
 	public ArrayList <UnderworldField> movefor1(UnderworldField startField, UnderworldField zielField,ArrayList <UnderworldField> Underworld2) {
 		Einheit einheit = startField.getEinheit();
 		if(Math.abs(startField.getX() - zielField.getX()) <= 1 && Math.abs(startField.getY() - zielField.getY()) <= 1 ){
+			if(zielField.getEinheit() != null){
+				System.out.println("Einheit auf Zielfield "+zielField+". Bleibe stehen");
+				return Underworld2;
+			}
 			if(zielField.getGebäude() == null){
 				int index = getField(Underworld2, startField.getX(), startField.getY());
 				UnderworldField buffer = new UnderworldField(false, startField.getX(), startField.getY());
