@@ -14,18 +14,18 @@ public class OverworldField{
 	
 	public void setEinheit(Einheit einheit)  {
 		if(this.belegt == false){
-			this.einheit = einheit;
-			this.belegt = true;
 
-			if(this.einheit == null){
-				this.belegt = false;
-			}
+//			this.einheit = einheit;
+//			this.belegt = true;
+//
+//			if(this.einheit == null){
+//				this.belegt = false;
+//			}
 		}
 		else{
 			System.out.println(this);
 			System.out.println("ERROR FELD BELEGT");
 		}
 	}
-
 
 }
