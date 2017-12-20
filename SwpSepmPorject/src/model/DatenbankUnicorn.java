@@ -251,9 +251,7 @@ public class DatenbankUnicorn {
 		
 		try {
 			pstmt = getConnection().prepareStatement(sql);
-			
 			pstmt.setString(1, nickname);
-			
 			ResultSet rs = pstmt.executeQuery();
 			
 			// Wenn Feld fuer Benutzername nicht leer ist (wenn es einen Spieler mit diesem Nickname gibt)
@@ -291,7 +289,7 @@ public class DatenbankUnicorn {
 	public static boolean SpielstandspeichernSpieler(String username, int erfahrungspunkte, int geldeinheiten, int level)
 	{
 		
-		String SQL="UPDATE Spieler set erfahrungspunkte ='"+erfahrungspunkte+"', geldeinheiten= '"+geldeinheiten+"', level= '"+level+"' WHERE username = '"+username+"';";
+		String SQL="UPDATE spieler set erfahrungspunkte ='"+erfahrungspunkte+"', geldeinheiten= '"+geldeinheiten+"', level= '"+level+"' WHERE username = '"+username+"';";
 		
 		try {
 			
@@ -372,18 +370,18 @@ public class DatenbankUnicorn {
 		
 	}
 	
-	public static int spielerRegistrieren(String nickname, String passwort)
+	public static int spielerRegistrieren(String username, String passwort)
 	{
-		String sql = "INSERT INTO Spieler(Nickname, Passwort) VALUES (?, ?)";
+		String sql = "INSERT INTO spieler(username, password) VALUES (?, ?)";
 		
 		try {
 			PreparedStatement stm = getConnection().prepareStatement(sql);
-			stm.setString(1, nickname);
+			stm.setString(1, username);
 			stm.setString(2, passwort);
 			stm.execute();
 			
 			// TODO Hier das objektorientierte Spieler-Objekt veraendern
-			System.out.println("Ein neuer Spieler (" + nickname + ") wurde hinzugefuegt");
+			System.out.println("Ein neuer Spieler (" + username + ") wurde hinzugefuegt");
 			// Erfolgreich
 			return 0;
 			
