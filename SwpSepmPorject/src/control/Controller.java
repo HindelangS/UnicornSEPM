@@ -122,7 +122,9 @@ public class Controller {
 //								aktuell.setEinheit(einheit);
 								int nextF = getField(Underworld2, i-1, startField.getY());
 								UnderworldField nextField = Underworld2.get(nextF);
+								ArrayList <UnderworldField> oldunderw = Underworld2;
 								Underworld2 = movefor1(aktuell, nextField, Underworld2);
+								if(Underworld2 == oldunderw)break;
 								
 							}
 
@@ -137,7 +139,10 @@ public class Controller {
 //								aktuell.setEinheit(einheit);
 								int nextF = getField(Underworld2, i+1, startField.getY());
 								UnderworldField nextField = Underworld2.get(nextF);
+								ArrayList <UnderworldField> oldunderw = Underworld2;
 								Underworld2 = movefor1(aktuell, nextField, Underworld2);
+								if(Underworld2 == oldunderw)break;
+
 								
 							}
 
@@ -160,8 +165,11 @@ public class Controller {
 								int nextF = getField(Underworld2, startField.getX(), i-1);
 								UnderworldField nextField = Underworld2.get(nextF);
 								System.out.println("aktuell: "+Underworld2.get(a));
+								ArrayList <UnderworldField> oldunderw = Underworld2;
+
 								Underworld2 = movefor1(aktuell, nextField, Underworld2);
-								
+								if(Underworld2 == oldunderw)break;
+
 							}
 							
 
@@ -176,8 +184,11 @@ public class Controller {
 //								aktuell.setEinheit(einheit);
 								int nextF = getField(Underworld2, startField.getX(), i+1);
 								UnderworldField nextField = Underworld2.get(nextF);
+								ArrayList <UnderworldField> oldunderw = Underworld2;
+
 								Underworld2 = movefor1(aktuell, nextField, Underworld2);
-								
+								if(Underworld2 == oldunderw)break;
+
 							}
 
 						}
@@ -200,9 +211,10 @@ public class Controller {
 	}
 	public static void main(String[] args) {
 		
+		
 		System.out.println("Starten");
 		Controller c1 = new Controller();
-		ArrayList <UnderworldField> Underworld2 = c1.create();
+		ArrayList <UnderworldField> Underworld2 = c1.create();		
 		UnderworldField startField = new UnderworldField(false,5,4);
 		SimpleUnicorn einheit = new SimpleUnicorn(3);
 		startField.setEinheit(einheit);
