@@ -23,7 +23,9 @@ public class DatenbankUnicorn {
 	static ResultSet rs = null;
 	
 	static boolean wert=true;
-	static String username="spieler2";
+	
+	//zum Testen
+	static String username="Sara";
 	static int level=35;
 	static int geld=924;
 	static int erfahrung=237;
@@ -289,7 +291,7 @@ public class DatenbankUnicorn {
 	public static boolean SpielstandspeichernSpieler(String username, int erfahrungspunkte, int geldeinheiten, int level)
 	{
 		
-		String SQL="UPDATE spieler set erfahrungspunkte ='"+erfahrungspunkte+"', geldeinheiten= '"+geldeinheiten+"', level= '"+level+"' WHERE username = '"+username+"';";
+		String SQL="UPDATE spieler set erfahrungspunkte =?, geldeinheiten= ?, level= ? WHERE username = ?;";
 		
 		try {
 			
@@ -298,7 +300,8 @@ public class DatenbankUnicorn {
 			pstmt.setInt(1, erfahrungspunkte);
 			pstmt.setInt(2, geldeinheiten);
 			pstmt.setInt(3, level);
-			ResultSet rs = pstmt.executeQuery();
+			pstmt.setString(4, username);
+			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -416,5 +419,24 @@ public static String fehlercodeAufloesen(int fehlercode) {
 		}
 	}
 	
+
+	public boolean UWerstellen(String username)
+	{
+		String SQL="Insert into underworld (gebaeudeanzahl, username) VALUES (gebaeudeanzahl='0',username='"+username+"'";
+		
+		try {
+			conn = DriverManager.getConnection(DB_URL);
+			pstmt = conn.prepareStatement(SQL);
+
+			//System.out.println("HIIIIIII"); //zur Kontrolle
+			
+			pstmt.setString(1, username);
+			pstmt.executeUpdate();
+
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		return wert;
+	}
 	
 }

@@ -15,6 +15,12 @@ import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.JTextField;
@@ -42,6 +48,10 @@ public class Register extends JFrame {
 
 	private Login login;
 	private ArrayList<Component> focusComps;
+
+	static final String DB_URL = "jdbc:mysql://localhost:3306/cuftd?user=root&password=&useSSL=false";
+
+	static private String username;
 
 	/**
 	 * Wie lange das Passwort mindestens sein muss
@@ -215,4 +225,3 @@ public class Register extends JFrame {
 
 	}
 }
-
