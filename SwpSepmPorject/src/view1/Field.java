@@ -15,8 +15,14 @@ import javax.swing.JPanel;
 import control.Einheit;
 import control.Geb‰ude;
 import control.PanelFeldMouseListener;
+import control.PanelFeldMouseListenerK;
 
 public class Field extends JPanel{
+
+	@Override
+	public String toString() {
+		return "Field [x=" + x + ", y=" + y + "]";
+	}
 
 	private JLabel lblId;  //dient ‹bergangsm‰ﬂig als Hilfe zur Orientierung
 	private final int x;
@@ -25,17 +31,23 @@ public class Field extends JPanel{
 	BufferedImage bild;
 	URL bildURL;
 	
-	public Field( int y, int x){
+	public Field( int y, int x,String Art,UnderworldK underw){
 		
 		this.x = x; 
 		this.y = y; 
 		setLayout(new BorderLayout());
 		lblId = new JLabel("|"+x+" / "+y+"|");
 		lblId.setFont(new Font("Century Schoolbook", Font.PLAIN, 10));
-		add(lblId);
+//		add(lblId);
 		setOpaque(false);
 		setBackground(new Color((int) (Math.random()*255), (int)(Math.random()*255),(int)(Math.random()*255)));
-		addMouseListener(new PanelFeldMouseListener(this));
+		if(Art == "K"){
+			addMouseListener(new PanelFeldMouseListenerK(this, underw));
+
+		}
+		if(Art == "E"){
+				addMouseListener(new PanelFeldMouseListener(this));
+		}
 
 	}
 
@@ -53,6 +65,12 @@ public class Field extends JPanel{
 		
 		this.x = x; 
 		this.y = y;
+	}
+
+	public Field() {
+		// TODO Auto-generated constructor stub
+		this.x = -1; 
+		this.y = -1;
 	}
 
 	public void setBild(BufferedImage _bild) {
