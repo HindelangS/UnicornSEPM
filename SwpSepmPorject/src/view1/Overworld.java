@@ -10,7 +10,11 @@ import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import control.Controller;
+import control.Gebäude;
+import control.Haus;
 import control.UnderworldField;
+import control.Zaun;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -27,16 +31,18 @@ public class Overworld extends JFrame{
 	private JLabel lblWelt;
 	private JLabel lblLevel;
 	private JLabel lblGeld;
-	private JPanel panel;
-	
+
 	private boolean angemeldet;
-	
+
+	Field panel;
 	Field[][] felder;
-	Overworld uw; 
+	Overworld ow; 
 
 	private static int spalten = 7; 
 	private static int reihen = 5;
 
+//	public static ArrayList <OverworldField> OverworldFieldtest;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -63,9 +69,6 @@ public class Overworld extends JFrame{
 	}
 
 
-	
-	
-	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -75,6 +78,7 @@ public class Overworld extends JFrame{
 		ImageIcon img = new ImageIcon(Overworld.class.getResource("/pictures/rosa.jpg"));
 		Image im = img.getImage().getScaledInstance(1920, 1080, Image.SCALE_FAST);
 		img = new ImageIcon(im);
+		frame.setResizable(false);
 		frame.setContentPane(new JLabel(img));
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Overworld.class.getResource("/pictures/unicorn.PNG")));
 		frame.setBounds(100, 100, 800, 600);
@@ -103,43 +107,74 @@ public class Overworld extends JFrame{
 		lblGeld.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		panelStatus.add(lblGeld, "cell 2 0,alignx left,aligny center");
 
-		btnWeiterZurberwelt = new JButton("weiter zur Overworld");
+		btnWeiterZurberwelt = new JButton("go to choosen world");
 		btnWeiterZurberwelt.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		panelStatus.add(btnWeiterZurberwelt, "cell 4 0,alignx right,aligny top");
 
-		panel = new JPanel();
-		panel.setBackground(Color.PINK);
-		panel.setOpaque(false);
+		panel = new Field();
+		panel.setBild("pictures/rainbow.png");
 		panel.setLayout(new GridLayout(reihen, spalten));
-		frame.getContentPane().add(panel, "cell 0 1,grow");
-		
+		frame.getContentPane().add(panel, "cell 0 1,grow");	
+
 		ArrayList<ArrayList<Field>> liste = new ArrayList<ArrayList<Field>>();
-		
+
+		Controller tester = new Controller();
+//		UnderworldFieldstest =  tester.create();
+
 		for(int i = 0; i < reihen; i++) {
+
 			liste.add(new ArrayList<Field>());
 			for(int j = 0; j < spalten; j++) {
-				
-				liste.get(i).add(new Field(i,j,"O", null));
-				liste.get(i).get(j).setBackground(new Color((int) (Math.random()*255), (int)(Math.random()*255),(int)(Math.random()*255)));
-				liste.get(i).get(j).setVisible(true);
-				panel.add(liste.get(i).get(j));
 
-				
+//				int index = tester.getField(UnderworldFieldstest, i, j);
+//
+//				Gebäude geb = UnderworldFieldstest.get(index).getGebäude();
+//				Haus haus = UnderworldFieldstest.get(index).getHaus();
+//				Zaun zz = UnderworldFieldstest.get(index).getZaun();
+//
+//				System.out.println("Derzeitig bestetzt durch: "+geb+","+ haus+" I: "+i+" J:"+j);
+//
+//				if(geb != null){
+//					System.out.println("Gebaude vorhanden");
+//					liste.get(i).add(drawFeld(geb, i, j));
+//					panel.add(liste.get(i).get(j));
+//				}
+//				if(haus != null){
+//					System.out.println("Haus vorhanden");
+//					liste.get(i).add(drawFeld(haus, i, j));
+//					panel.add(liste.get(i).get(j));
+//				}
+//				if(zz != null){
+//					System.out.println("Zaun vorhanden");
+//					liste.get(i).add(drawFeld(haus, i, j));
+//					panel.add(liste.get(i).get(j));
+//				}
+//				else{
+//					System.out.println("nix auf dem Feld");
+					liste.get(i).add(new Field(i,j,"E", null));
+					panel.add(liste.get(i).get(j));
+//				}
+
+				System.out.println("--------------------------");
+				System.out.println("X X X X X X "+liste.size()+ " X X X X X X ");
+				panel.repaint();
 			}
 		}
-		
+
+
+
 		anmelden(false);
 
 	}
-	
+
 	public boolean isAngemeldet() {
 		return angemeldet;
 	}
-	
+
 	public void anmelden(boolean anmelden){ 
-		
+
 		//TODO hier label setzten und 
-		
+
 		lblWelt.setText("Achtung du bist "	);
 
 	}

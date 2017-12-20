@@ -36,11 +36,11 @@ public class Login extends JFrame{
 
 	private ArrayList<Component> focusComps;
 
-	public Login(Overworld ovw) {
-		this();
-		ow = ovw;
-		ow.setEnabled(false);
-	}
+//	public Login(Overworld ovw) {
+//		this();
+//		ow = ovw;
+//		ow.setEnabled(false);
+//	}
 
 	public Login() {
 		initialize();
@@ -112,24 +112,24 @@ public class Login extends JFrame{
 		validate();
 	}
 
-	@Override
-	public void dispose() {
-
-		if(ow != null) {
-			ow.setEnabled(true);
-			ow = null;
-		}
-		super.dispose();
-	}
-
-	public void anmelden() {
-
-		if(ow != null) {
-			// TODO: Mit Spieler Objekt verknuepfen
-			ow.anmelden(true);
-		}
-		dispose();
-	}
+//	@Override
+//	public void dispose() {
+//
+//		if(ow != null) {
+//			ow.setEnabled(true);
+//			ow = null;
+//		}
+//		super.dispose();
+//	}
+//
+//	public void anmelden() {
+//
+//		if(ow != null) {
+//			// TODO: Mit Spieler Objekt verknuepfen
+//			ow.anmelden(true);
+//		}
+//		dispose();
+//	}
 
 //	public static void main(String[] args) {
 //		EventQueue.invokeLater(new Runnable() {

@@ -145,9 +145,8 @@ public class UnderworldE{
 
 		panelFelder = new Field();
 		panelFelder.setLayout(new GridLayout(reihen, spalten));
-		panelFelder.setBild("pictures/cloud.jpg");
+		panelFelder.setBild("pictures/cloud.png");
 		frame.getContentPane().add(panelFelder, "cell 0 1,grow");	
-
 
 		//2D ArrayListe die Spalten mit ihren jeweiligen Feldern speichert. 
 
@@ -273,6 +272,7 @@ public class UnderworldE{
 
 	}
 
+	
 	private class CbBearbeitenActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 

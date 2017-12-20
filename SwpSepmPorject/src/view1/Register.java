@@ -191,7 +191,7 @@ public class Register extends JFrame {
 
 						// Falls Registrierungsfenster durch Login Fenster aufgerufen wurde, dort auch anmelden TODO
 						if(login != null) {
-							login.anmelden();
+//							login.anmelden();
 						}
 						dispose();
 					}

@@ -122,7 +122,7 @@ public class UnderworldK{
 		panelStatus.add(phPanel, "cell 3 0,growx");
 
 		cbBearbeiten = new JCheckBox("edit");
-		cbBearbeiten.setToolTipText("show opitons to edit your world");
+		cbBearbeiten.setToolTipText("show opitons to start the battle");
 		panelStatus.add(cbBearbeiten, "cell 5 0,alignx right,aligny center");
 		cbBearbeiten.setSelected(false);
 		cbBearbeiten.setOpaque(false);
@@ -134,8 +134,7 @@ public class UnderworldK{
 
 		panelFelder = new Field();
 		panelFelder.setLayout(new GridLayout(reihen, spalten));
-//		panelFelder.setBild("pictures/rainbow.png");
-		panelFelder.setBackground(Color.black);
+		panelFelder.setBild("pictures/cloud.png");
 		frame.getContentPane().add(panelFelder, "cell 0 1,grow");	
 		
 		ArrayList<ArrayList<Field>> liste = new ArrayList<ArrayList<Field>>();
@@ -203,26 +202,30 @@ public class UnderworldK{
 		btnKaempfer1 = new JButton("Simple UnicornWarrior");
 		btnKaempfer1.addActionListener(new btnU1ActionListener());
 		btnKaempfer1.setToolTipText("Warrior who is strong but very vulnerable");
-		btnKaempfer1.setBackground(new Color(147,112,219));;
-		panelEast.add(btnKaempfer1, "cell 0 0,growx,aligny top");
+		btnKaempfer1.setBackground(new Color(147,112,219));
+		btnKaempfer1.setFont(new Font("Century Schoolbook", Font.PLAIN, 12));
+		panelEast.add(btnKaempfer1, "cell 0 4,growx,aligny top");
 
 		btnKaempfer2 = new JButton("UnicornWarrior Warrior");
 		btnKaempfer2.addActionListener(new btnU2ActionListener());
+		btnKaempfer2.setFont(new Font("Century Schoolbook", Font.PLAIN, 12));
 		btnKaempfer2.setToolTipText("warrior who is neraly indestructibel but not very strong");
 		btnKaempfer2.setBackground(new Color(147,112,219));
-		panelEast.add(btnKaempfer2, "cell 0 1,growx");
+		panelEast.add(btnKaempfer2, "cell 0 5,growx");
 
 		btnKaempfer3 = new JButton("Fight UnicornWarrior");
+		btnKaempfer3.setFont(new Font("Century Schoolbook", Font.PLAIN, 12));
 		btnKaempfer3.addActionListener(new btnU3ActionListener());
 		btnKaempfer3.setToolTipText("strong and neraly indestructible warrior");
 		btnKaempfer3.setBackground(new Color(147,112,219));
-		panelEast.add(btnKaempfer3, "cell 0 2,growx");
+		panelEast.add(btnKaempfer3, "cell 0 6,growx");
 
 		btnDelete = new JButton("delete");
+		btnDelete.setFont(new Font("Century Schoolbook", Font.PLAIN, 12));
 		btnDelete.addActionListener(new btnDeleteActionListener());
 		btnDelete.setToolTipText("select a item you want to delete");
 		btnDelete.setBackground(new Color(147,112,219));
-		panelEast.add(btnDelete, "cell 0 6,growx");
+		panelEast.add(btnDelete, "cell 0 9,growx");
 
 	}
 
@@ -285,7 +288,7 @@ public class UnderworldK{
 						}
 						if(geb == null && zaun == null && haus == null && einheit == null){
 							System.out.println("Feld leer");
-							liste.get(i).add(new Field(i,j,"E", null));
+							liste.get(i).add(new Field(i,j,"K", this));
 							panelFelder.add(liste.get(i).get(j));
 						}			
 					}

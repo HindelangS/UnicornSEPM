@@ -53,11 +53,12 @@ public class Field extends JPanel{
 
 	public Field(int y, int x, Overworld uw) {
 		// TODO Auto-generated constructor stub
-		super();
+//		super();
 		
 		this.x = x; 
 		this.y = y;
 	}
+
 
 	public Field(int y, int x, UnderworldE uw) {
 		// TODO Auto-generated constructor stub
