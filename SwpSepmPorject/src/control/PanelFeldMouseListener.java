@@ -24,17 +24,16 @@ public class PanelFeldMouseListener extends MouseAdapter{
 
 		System.out.println("geklickt");
 		System.out.println(pf.getKoordX()+" / "+pf.getKoordY()+" "+pf.getBild());
-		Color farbe = new Color(120,0,0);
-		pf.setBorder(new MatteBorder(5, 5, 5, 5, farbe));
+		pf.setBorder(new MatteBorder(1, 1, 1,1,  new Color(0,0,0)));
 		if(UnderworldE.lastclicked != null){
 			UnderworldE.lastclicked.setBorder(null);
 		}
+		
 		UnderworldE.lastclicked = pf;
 		
 		Controller c3 = new Controller();
 		int index = c3.getField(UnderworldE.UnderworldFieldstest, pf.getKoordX(), pf.getKoordY());
 		System.out.println(UnderworldE.UnderworldFieldstest.get(index).getGebäude());
-		//		pf.setBild(_bild);
 
 	}
 

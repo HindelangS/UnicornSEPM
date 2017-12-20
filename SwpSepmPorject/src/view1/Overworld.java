@@ -119,7 +119,7 @@ public class Overworld extends JFrame{
 			liste.add(new ArrayList<Field>());
 			for(int j = 0; j < spalten; j++) {
 				
-				liste.get(i).add(new Field(i,j));
+				liste.get(i).add(new Field(i,j,"O", null));
 				liste.get(i).get(j).setBackground(new Color((int) (Math.random()*255), (int)(Math.random()*255),(int)(Math.random()*255)));
 				liste.get(i).get(j).setVisible(true);
 				panel.add(liste.get(i).get(j));

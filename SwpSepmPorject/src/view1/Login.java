@@ -49,9 +49,9 @@ public class Login extends JFrame{
 	
 	private void initialize() {
 
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Startingpage.class.getResource("/pictures/Unicorn.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Startingpage.class.getResource("/pictures/UnicornWarrior.png")));
 		getContentPane().setEnabled(false);
-		setTitle("Cute Unicorn Figth To Death");
+		setTitle("Cute UnicornWarrior Figth To Death");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 400);

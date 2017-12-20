@@ -6,7 +6,4 @@ public class GebEnergie3 extends GebEnergie {
 		super(level, 6, 6, -2);
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-
 }
