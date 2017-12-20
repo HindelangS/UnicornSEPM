@@ -22,6 +22,7 @@ import control.ActionListernerContinueBtn;
 import control.ActionListernerRegisterBtn;
 
 import java.awt.Font;
+import java.awt.Image;
 
 public class Login extends JFrame{
 
@@ -49,7 +50,13 @@ public class Login extends JFrame{
 	
 	private void initialize() {
 
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Startingpage.class.getResource("/pictures/UnicornWarrior.png")));
+		
+		ImageIcon img = new ImageIcon(UnderworldE.class.getResource("/pictures/Login.png"));
+		Image im = img.getImage().getScaledInstance(1920, 1080, Image.SCALE_FAST);
+		img = new ImageIcon(im);
+		
+		setContentPane(new JLabel(img));
+		
 		getContentPane().setEnabled(false);
 		setTitle("Cute UnicornWarrior Figth To Death");
 		setResizable(false);

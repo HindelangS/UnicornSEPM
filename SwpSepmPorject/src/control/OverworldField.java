@@ -12,7 +12,15 @@ public class OverworldField{
 	private UnderworldE uwE; 
 	private UnderworldK uwK; 
 	
-	public void setEinheit(Einheit einheit)  {
+	public void setVillageM(Einheit einheit)  {
+		
+	
+			System.out.println("Meine Welt wird links oben angezeigt");
+	
+	
+	}
+	
+	public void setVillageF(Einheit einheit)  {
 		if(this.belegt == false){
 
 //			this.einheit = einheit;

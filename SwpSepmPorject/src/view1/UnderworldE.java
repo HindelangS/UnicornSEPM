@@ -97,6 +97,7 @@ public class UnderworldE{
 		ImageIcon img = new ImageIcon(UnderworldE.class.getResource("/pictures/rosa.jpg"));
 		Image im = img.getImage().getScaledInstance(1920, 1080, Image.SCALE_FAST);
 		img = new ImageIcon(im);
+		
 		frame.setContentPane(new JLabel(img));
 		frame.setTitle("Cute UnicornWarrior Fight to Death");
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(UnderworldE.class.getResource("/pictures/unicorn.PNG")));

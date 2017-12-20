@@ -5,10 +5,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Toolkit;
+
 import control.ActionListenerStartingpageBtn;
 
 public class Startingpage extends JFrame{
@@ -21,7 +24,14 @@ public class Startingpage extends JFrame{
 	 */
 	public Startingpage() {
 
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Sara\\Documents\\SWP-SEPM 5 Kl\\unicorn.png"));
+	
+		ImageIcon img = new ImageIcon(UnderworldE.class.getResource("/pictures/UnicornStart.png"));
+		Image im = img.getImage().getScaledInstance(1920, 1080, Image.SCALE_FAST);
+		img = new ImageIcon(im);
+		
+		setContentPane(new JLabel(img));
+		
+		setIconImage(Toolkit.getDefaultToolkit().getImage("pictures/unicorn.png"));
 		setTitle("Cute UnicornWarrior Fight To Death");
 		setFont(new Font("Century Schoolbook", Font.ITALIC, 14));
 		setBounds(100, 100, 700, 437);
