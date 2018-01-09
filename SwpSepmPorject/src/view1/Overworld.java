@@ -124,7 +124,10 @@ public class Overworld extends JFrame{
 		for(int i = 0; i < reihen; i++) {
 
 			liste.add(new ArrayList<Field>());
+			
 			for(int j = 0; j < spalten; j++) {
+				
+				
 
 //				int index = tester.getField(UnderworldFieldstest, i, j);
 //
@@ -132,7 +135,7 @@ public class Overworld extends JFrame{
 //				Haus haus = UnderworldFieldstest.get(index).getHaus();
 //				Zaun zz = UnderworldFieldstest.get(index).getZaun();
 //
-//				System.out.println("Derzeitig bestetzt durch: "+geb+","+ haus+" I: "+i+" J:"+j);
+//				System.out.println("Feld +" I: "+i+" J:"+j" derzeitig bestetzt durch: "+geb+","+ haus");
 //
 //				if(geb != null){
 //					System.out.println("Gebaude vorhanden");

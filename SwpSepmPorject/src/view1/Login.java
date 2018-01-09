@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
@@ -30,7 +31,7 @@ public class Login extends JFrame{
 	private JLabel lblPwd;
 	private JButton btnContinue;
 	private JTextField txtName;
-	private JTextField txtPwd;
+	private JPasswordField txtPwd;
 	private JButton btnRegister;
 	private Overworld ow;
 	private static Login frame;
@@ -82,7 +83,7 @@ public class Login extends JFrame{
 		txtName.setColumns(10);
 		txtName.setOpaque(false);
 
-		txtPwd = new JTextField();
+		txtPwd = new JPasswordField();
 		txtPwd.setHorizontalAlignment(SwingConstants.CENTER);
 		txtPwd.setText("*****");
 		txtPwd.setBounds(268, 262, 117, 21);
@@ -154,7 +155,7 @@ public class Login extends JFrame{
 	public JTextField getTxtName() {
 		return txtName;
 	}
-	public JTextField getTxtPwd() {
+	public JPasswordField getTxtPwd() {
 		return txtPwd;
 	}
 }
