@@ -17,72 +17,87 @@ import control.Geb‰ude;
 import control.PanelFeldMouseListener;
 import control.PanelFeldMouseListenerK;
 
-public class Field extends JPanel{
+public class Field extends JPanel {
 
 	@Override
 	public String toString() {
 		return "Field [x=" + x + ", y=" + y + "]";
 	}
 
-	private JLabel lblId;  //dient ‹bergangsm‰ﬂig als Hilfe zur Orientierung
+	private JLabel lblId; // dient ‹bergangsm‰ﬂig als Hilfe zur Orientierung
 	private final int x;
 	private final int y;
 
 	BufferedImage bild;
 	URL bildURL;
-	
-	public Field( int y, int x,String Art,UnderworldK underw){
-		
-		this.x = x; 
-		this.y = y; 
+
+	public Field(int y, int x, String Art, UnderworldK underw) {
+
+		this.x = x;
+		this.y = y;
 		setLayout(new BorderLayout());
-		lblId = new JLabel("|"+x+" / "+y+"|");
+		lblId = new JLabel("|" + x + " / " + y + "|");
 		lblId.setFont(new Font("Century Schoolbook", Font.PLAIN, 10));
-//		add(lblId);
+		// add(lblId);
 		setOpaque(false);
-		setBackground(new Color((int) (Math.random()*255), (int)(Math.random()*255),(int)(Math.random()*255)));
-		if(Art == "K"){
+		setBackground(new Color((int) (Math.random() * 255), (int) (Math.random() * 255), (int) (Math.random() * 255)));
+		if (Art == "K") {
 			addMouseListener(new PanelFeldMouseListenerK(this, underw));
 
 		}
-		if(Art == "E"){
-				addMouseListener(new PanelFeldMouseListener(this));
+		if (Art == "E") {
+			addMouseListener(new PanelFeldMouseListener(this));
+		}
+
+	}
+
+	public Field(int y, int x, String Art, UnderworldE underw) {
+
+		this.x = x;
+		this.y = y;
+		setLayout(new BorderLayout());
+		lblId = new JLabel("|" + x + " / " + y + "|");
+		lblId.setFont(new Font("Century Schoolbook", Font.PLAIN, 10));
+		// add(lblId);
+		setOpaque(false);
+		setBackground(new Color((int) (Math.random() * 255), (int) (Math.random() * 255), (int) (Math.random() * 255)));
+
+		if (Art == "E") {
+			addMouseListener(new PanelFeldMouseListener(this));
 		}
 
 	}
 
 	public Field(int y, int x, Overworld uw) {
 		// TODO Auto-generated constructor stub
-//		super();
-		
-		this.x = x; 
+		// super();
+
+		this.x = x;
 		this.y = y;
 	}
-
 
 	public Field(int y, int x, UnderworldE uw) {
 		// TODO Auto-generated constructor stub
 		super();
-		
-		this.x = x; 
+
+		this.x = x;
 		this.y = y;
 	}
 
 	public Field() {
 		// TODO Auto-generated constructor stub
-		this.x = -1; 
+		this.x = -1;
 		this.y = -1;
 	}
 
 	public void setBild(BufferedImage _bild) {
 		bild = _bild;
 	}
-	
-	public URL getBild()
-	{
+
+	public URL getBild() {
 		return this.bildURL;
 	}
-	
+
 	public void setBild(String bildPfad) {
 
 		bildURL = this.getClass().getClassLoader().getResource(bildPfad);
@@ -90,8 +105,7 @@ public class Field extends JPanel{
 		try {
 
 			bild = ImageIO.read(bildURL);
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 
 			e.printStackTrace();
 		}
@@ -104,20 +118,19 @@ public class Field extends JPanel{
 
 			g.drawImage(bild, 0, 0, null);
 
-		}
-		catch(NullPointerException ex) {
+		} catch (NullPointerException ex) {
 			ex.printStackTrace();
 		}
 	}
 
-	public int getKoordY (){
+	public int getKoordY() {
 		return y;
 	}
 
-	public int getKoordX (){
+	public int getKoordX() {
 		return x;
 	}
-	
+
 	public UnderworldE getUWorld() {
 		// TODO Auto-generated method stub
 		return null;

@@ -13,8 +13,10 @@ import javax.swing.JPanel;
 import control.Controller;
 import control.Gebäude;
 import control.Haus;
+import control.HausEinheiten1;
 import control.UnderworldField;
 import control.Zaun;
+import model.DatenbankUnicorn;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,9 +25,9 @@ import net.miginfocom.swing.MigLayout;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 
-public class Overworld extends JFrame{
+public class Overworld extends JFrame {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JPanel panelStatus;
 	private JButton btnWeiterZurberwelt;
 	private JLabel lblWelt;
@@ -33,16 +35,23 @@ public class Overworld extends JFrame{
 	private JLabel lblGeld;
 
 	private boolean angemeldet;
+	
+	public static boolean overworld = true;
+	public static Overworld overworldobj = null;
+	
+
+	public static ArrayList<String[]> owliste;
+	public static ArrayList<String[]> uwliste;
 
 	Field panel;
 	Field[][] felder;
-	Overworld ow; 
+	Overworld ow;
 
-	private static int spalten = 7; 
+	private static int spalten = 7;
 	private static int reihen = 5;
 
-//	public static ArrayList <OverworldField> OverworldFieldtest;
-	
+	// public static ArrayList <OverworldField> OverworldFieldtest;
+
 	/**
 	 * Launch the application.
 	 */
@@ -52,6 +61,7 @@ public class Overworld extends JFrame{
 				try {
 					Overworld window = new Overworld(reihen, spalten);
 					window.frame.setVisible(true);
+					overworldobj = window;
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -65,14 +75,33 @@ public class Overworld extends JFrame{
 	public Overworld(int reihen, int spalten) {
 		setAnzReihen(reihen);
 		setAnzSpalten(spalten);
+		owliste = DatenbankUnicorn.OverworldinDB();
+		uwliste = DatenbankUnicorn.UnderworldinDB();
 		initialize();
 	}
-
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		
+		String username = "sara";  //TODO change it nowwwwwwwwwwwww
+		
+		int count = 0;
+		for (String[] s : owliste) {
+			if(s[0].equalsIgnoreCase(username)) {
+				String[] ss = owliste.get(0);
+				String buf = s[0];
+				s[0] = ss[0]; //namen tauschen (user auf 0/0)
+				ss[0] = buf;
+				
+				owliste.set(0, ss);
+				owliste.set(count, s);
+				break;
+			}
+			count ++;
+		}
 
 		frame = new JFrame();
 		ImageIcon img = new ImageIcon(Overworld.class.getResource("/pictures/rosa.jpg"));
@@ -114,58 +143,95 @@ public class Overworld extends JFrame{
 		panel = new Field();
 		panel.setBild("pictures/rainbow.png");
 		panel.setLayout(new GridLayout(reihen, spalten));
-		frame.getContentPane().add(panel, "cell 0 1,grow");	
+		frame.getContentPane().add(panel, "cell 0 1,grow");
 
 		ArrayList<ArrayList<Field>> liste = new ArrayList<ArrayList<Field>>();
 
 		Controller tester = new Controller();
-//		UnderworldFieldstest =  tester.create();
+		// UnderworldFieldstest = tester.create();
 
-		for(int i = 0; i < reihen; i++) {
-
+		for (int i = 0; i < reihen; i++) {
+			//
 			liste.add(new ArrayList<Field>());
-			
-			for(int j = 0; j < spalten; j++) {
+			//
+			//
+			//
+			for (int j = 0; j < spalten; j++) {
+				//
+				// int index = tester.getField(UnderworldFieldstest, i, j);
+				//
+				// Gebäude geb = UnderworldFieldstest.get(index).getGebäude();
+				// Haus haus = UnderworldFieldstest.get(index).getHaus();
+				// Zaun zz = UnderworldFieldstest.get(index).getZaun();
+				//
+				// System.out.println("Feld +" I: "+i+" J:"+j" derzeitig bestetzt durch:
+				// "+geb+","+ haus");
+				//
+				// if(geb != null){
+				// System.out.println("Gebaude vorhanden");
+				// liste.get(i).add(drawFeld(geb, i, j));
+				// panel.add(liste.get(i).get(j));
+				// }
+				// if(haus != null){
+				// System.out.println("Haus vorhanden");
+				// liste.get(i).add(drawFeld(haus, i, j));
+				// panel.add(liste.get(i).get(j));
+				// }
+				// if(zz != null){
+				// System.out.println("Zaun vorhanden");
+				// liste.get(i).add(drawFeld(haus, i, j));
+				// panel.add(liste.get(i).get(j));
+				// }
+				// else{
+				// System.out.println("nix auf dem Feld");
+
 				
 				
-
-//				int index = tester.getField(UnderworldFieldstest, i, j);
-//
-//				Gebäude geb = UnderworldFieldstest.get(index).getGebäude();
-//				Haus haus = UnderworldFieldstest.get(index).getHaus();
-//				Zaun zz = UnderworldFieldstest.get(index).getZaun();
-//
-//				System.out.println("Feld +" I: "+i+" J:"+j" derzeitig bestetzt durch: "+geb+","+ haus");
-//
-//				if(geb != null){
-//					System.out.println("Gebaude vorhanden");
-//					liste.get(i).add(drawFeld(geb, i, j));
-//					panel.add(liste.get(i).get(j));
-//				}
-//				if(haus != null){
-//					System.out.println("Haus vorhanden");
-//					liste.get(i).add(drawFeld(haus, i, j));
-//					panel.add(liste.get(i).get(j));
-//				}
-//				if(zz != null){
-//					System.out.println("Zaun vorhanden");
-//					liste.get(i).add(drawFeld(haus, i, j));
-//					panel.add(liste.get(i).get(j));
-//				}
-//				else{
-//					System.out.println("nix auf dem Feld");
-					liste.get(i).add(new Field(i,j,"E", null));
-					panel.add(liste.get(i).get(j));
-//				}
-
-				System.out.println("--------------------------");
-				System.out.println("X X X X X X "+liste.size()+ " X X X X X X ");
-				panel.repaint();
+				boolean check = false;
+				
+				for (String[] s : owliste) {
+					//System.out.println(s[1] + "   "  + s[2]);
+					
+					
+					
+					try {
+					if(Integer.parseInt(s[1]) == j && Integer.parseInt(s[2]) == i){
+						System.out.println("add");
+						if(s[0].equalsIgnoreCase(username)) { //bitte auf usernamen prüfen von login 
+							
+							liste.get(i).add(new Field(i, j, "E", (UnderworldE) null)); // bitte statt null undrworldE der angemeldeten spielers einügen 
+							liste.get(i).get(j).setBild("pictures/haus1_klein.png");
+							
+							check = true;
+						}else {
+							liste.get(i).add(new Field(i, j, "K", (UnderworldK) null)); //statt UnderworldK null bitte die underworld des gegner (anderer spieler einfügen)
+							liste.get(i).get(j).setBild("pictures/haus2_klein.png");
+							check = true;
+						}
+						
+						
+					}else {
+						//liste.get(i).add(new Field(i, j, "E",(UnderworldK)  null));
+					}
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
+				}
+				
+				if(check == false) {
+					liste.get(i).add(new Field(i, j, "E",(UnderworldK)  null));
+				}
+				panel.add(liste.get(i).get(j));
+				//// }
+				//
+				// System.out.println("--------------------------");
+				// System.out.println("X X X X X X "+liste.size()+ " X X X X X X ");
+				// panel.repaint();
 			}
 		}
 
-
-
+		
+		panel.repaint();
 		anmelden(false);
 
 	}
@@ -174,11 +240,11 @@ public class Overworld extends JFrame{
 		return angemeldet;
 	}
 
-	public void anmelden(boolean anmelden){ 
+	public void anmelden(boolean anmelden) {
 
-		//TODO hier label setzten und 
+		// TODO hier label setzten und
 
-		lblWelt.setText("Achtung du bist "	);
+		lblWelt.setText("Achtung du bist ");
 
 	}
 
@@ -189,7 +255,5 @@ public class Overworld extends JFrame{
 	private void setAnzSpalten(int anz) {
 		spalten = anz;
 	}
-
-
 
 }

@@ -29,7 +29,7 @@ import control.*;
 
 public class UnderworldE{
 
-	private JFrame frame;
+	public JFrame frame;
 	private JPanel panelStatus;
 	private JButton btnWeiterZurberwelt;
 	private JLabel lblWelt;
@@ -59,6 +59,7 @@ public class UnderworldE{
 	Field panelFelder; 
 	public static Field lastclicked;
 
+	public static UnderworldE underworlde;
 	private static int spalten = 10; 
 	private static int reihen = 8;
 
@@ -142,6 +143,22 @@ public class UnderworldE{
 		btnWeiterZurberwelt = new JButton("weiter zur Ueberwelt");
 		btnWeiterZurberwelt.setBackground(new Color(173,216,230));
 		btnWeiterZurberwelt.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
+		btnWeiterZurberwelt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				UnderworldE.underworlde.frame.dispose();
+				Overworld.overworld = true;
+				try {
+					Overworld window = new Overworld(reihen, spalten);
+					window.frame.setVisible(true);
+					Overworld.overworldobj = window;
+				} catch (Exception ee) {
+					ee.printStackTrace();
+				}
+				
+			}
+		});
 		panelStatus.add(btnWeiterZurberwelt, "cell 4 0,alignx center,aligny center");
 
 		panelFelder = new Field();
@@ -186,7 +203,7 @@ public class UnderworldE{
 				}
 				else{
 					System.out.println("nix auf dem Feld");
-					liste.get(i).add(new Field(i,j,"E", null));
+					liste.get(i).add(new Field(i,j,"E", (UnderworldK) null));
 					panelFelder.add(liste.get(i).get(j));
 				}
 
@@ -339,7 +356,7 @@ public class UnderworldE{
 				}
 				if(geb == null && zaun == null && haus == null){
 					System.out.println("Feld leer");
-					liste.get(i).add(new Field(i,j,"E", null));
+					liste.get(i).add(new Field(i,j,"E", (UnderworldK) null));
 					panelFelder.add(liste.get(i).get(j));
 				}
 			}
@@ -494,7 +511,7 @@ public class UnderworldE{
 
 	public static Field drawFeld(Gebäude geb,int x,int y){
 
-		Field buffer = new Field(x,y,"E", null);
+		Field buffer = new Field(x,y,"E", (UnderworldK) null);
 		String gebtyp = geb.getClass().getName();
 
 		switch(gebtyp){
@@ -525,7 +542,7 @@ public class UnderworldE{
 
 	public static Field drawFeld(Haus haus,int x,int y){
 
-		Field buffer = new Field(x,y,"E", null);
+		Field buffer = new Field(x,y,"E", (UnderworldK) null);
 		String haustyp = haus.getClass().getName();
 
 		switch(haustyp){
@@ -557,7 +574,7 @@ public class UnderworldE{
 
 	public static Field drawFeld(Zaun z,int x, int y){
 		System.out.println("DRAW Zaun");
-		Field buffer = new Field(x,y,"E", null);
+		Field buffer = new Field(x,y,"E", (UnderworldK) null);
 		String zauntyp = z.getClass().getName();
 
 		switch(zauntyp){
