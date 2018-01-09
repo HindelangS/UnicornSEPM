@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
+import control.UnderworldField;
+import view1.UnderworldK;
+
 
 public class DatenbankUnicorn {
 
@@ -29,6 +32,8 @@ public class DatenbankUnicorn {
 	static int level=35;
 	static int geld=924;
 	static int erfahrung=237;
+	
+	public static ArrayList <UnderworldField> UnderworldField;
 	
 
 	public static void main(String[] args) {
