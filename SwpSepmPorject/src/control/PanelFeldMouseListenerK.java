@@ -25,8 +25,10 @@ public class PanelFeldMouseListenerK extends MouseAdapter {
 	public void mouseClicked(MouseEvent arg0) {
 
 		if (Overworld.overworld == true) {
+			
 			int x = pf.getKoordX();
 			int y = pf.getKoordY();
+			
 			for(String[] s : Overworld.owliste) {
 				if(Integer.parseInt(s[1]) == x && Integer.parseInt(s[2]) == y) {
 					String user = s[0];
@@ -38,10 +40,12 @@ public class PanelFeldMouseListenerK extends MouseAdapter {
 			Overworld.overworld = false;
 
 			try {
-				UnderworldK window = new UnderworldK(8, 10);
+				
+				UnderworldK window = new UnderworldK(8, 10, pf.getKoordX(), pf.getKoordY());
 				window.frame.setVisible(true);
 				System.out.println("launch underworld k");
 				UnderworldK.underworldobj = window;
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

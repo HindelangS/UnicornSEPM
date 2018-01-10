@@ -28,8 +28,8 @@ public class DatenbankUnicorn {
 	static boolean wert=true;
 
 	//zum Testen
-	static String username="Kerber";
-	static String password="34678215";
+	static String username="sara";
+	static String password="66666666";
 	static int uwid=4;
 	static int level=35;
 	static int geld=924;
@@ -65,10 +65,11 @@ public class DatenbankUnicorn {
 //		test[0]="1";
 //		test[0]="1";
 //		test[0]="";
+		
 //		UnderworldinDB();
 //		writeFeldUW(test);
 		
-		UWerstellen("Verena");
+		//UWerstellen("Verena");
 		
 
 	}
@@ -114,48 +115,48 @@ public class DatenbankUnicorn {
 	}
 
 
-	public static ArrayList<String[]> OverworldinDBUpdate(int spieleranzahl)
-	{
-
-		int owid=1;
-		ArrayList<String[]> spielfeldOW = new ArrayList<String[]>();
-
-		String sql_OworldinDB="UPDATE overworld set anzahlSpieler =? WHERE owid = ?;";
-		try {
-			conn=DriverManager.getConnection(DB_URL);
-			pstmt = conn.prepareStatement(sql_OworldinDB);
-			pstmt.setInt(1, spieleranzahl);
-			pstmt.setInt(2, owid);
-			pstmt.executeUpdate();
-
-			rs=pstmt.executeQuery(sql_OworldinDB);
-
-			System.out.println("Overworld ausgeben:");
-			while(rs.next()){
-
-				String daten[]=new String[3];
-				System.out.print("Gelesen wurde: ");	
-				
-				String username = rs.getString("username"); 
-				System.out.println("U: "+ username);
-				int xKoord = rs.getInt("xKoordinaten");
-				int yKoord = rs.getInt("yKoordinaten");
-				System.out.println("X:"+ xKoord +" Y: "+ yKoord);
-				
-				daten[0] = username;
-				daten[1] = xKoord+""; 
-				daten[2] = yKoord+"";
-				
-
-				spielfeldOW.add(daten);
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return spielfeldOW;
-	}
+//	public static ArrayList<String[]> OverworldinDBUpdate(int spieleranzahl)
+//	{
+//
+//		int owid=1;
+//		ArrayList<String[]> spielfeldOW = new ArrayList<String[]>();
+//
+//		String sql_OworldinDB="UPDATE overworld set anzahlSpieler =? WHERE owid = ?;";
+//		try {
+//			conn=DriverManager.getConnection(DB_URL);
+//			pstmt = conn.prepareStatement(sql_OworldinDB);
+//			pstmt.setInt(1, spieleranzahl);
+//			pstmt.setInt(2, owid);
+//			pstmt.executeUpdate();
+//
+//			rs=pstmt.executeQuery(sql_OworldinDB);
+//
+//			System.out.println("Overworld ausgeben:");
+//			while(rs.next()){
+//
+//				String daten[]=new String[3];
+//				System.out.print("Gelesen wurde: ");	
+//				
+//				String username = rs.getString("username"); 
+//				System.out.println("Username:  "+ username);
+//				int xKoord = rs.getInt("xKoordinaten");
+//				int yKoord = rs.getInt("yKoordinaten");
+//				System.out.println("X:"+ xKoord +" Y: "+ yKoord);
+//				
+//				daten[0] = username;
+//				daten[1] = xKoord+""; 
+//				daten[2] = yKoord+"";
+//				
+//
+//				spielfeldOW.add(daten);
+//			}
+//
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//
+//		return spielfeldOW;
+//	}
 
 	public static ArrayList<String[]> OverworldinDB()
 	{
@@ -168,21 +169,13 @@ public class DatenbankUnicorn {
 			pstmt = conn.prepareStatement(sql_OworldinDB);
 			rs=pstmt.executeQuery(sql_OworldinDB);
 
-			System.out.println("Overworld ausgeben:");
+			System.out.println("Overworld ausgeben aus DB:");
 			while(rs.next()){
 
 				String daten[]=new String[3];
-				System.out.print("Gelesen wurde: ");
-				
-			/*
-				for (int i = 0; i < 10; i++) {
-					daten[i] = rs.getString(i+1);
-					System.out.print(" '" + daten[i] + "'");	//zur Kontrolle
-				}
-			*/
 				
 				String username = rs.getString("username"); 
-				System.out.println("U: "+ username);
+				System.out.println("Username: "+ username);
 				int xKoord = rs.getInt("xKoordinaten");
 				int yKoord = rs.getInt("yKoordinaten");
 				System.out.println("X:"+ xKoord +" Y: "+ yKoord);
@@ -387,7 +380,7 @@ public class DatenbankUnicorn {
 			return 1;
 		}
 
-		return 6;
+		return 0;
 	}
 
 	public static boolean SpielstandspeichernSpieler(String username, int erfahrungspunkte, int geldeinheiten, int level)

@@ -9,6 +9,7 @@ import java.awt.Image;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.MatteBorder;
 
 import control.ActionListenerQuitBtn;
 import control.Controller;
@@ -26,6 +27,7 @@ import net.miginfocom.swing.MigLayout;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 
+//Sie bekommen noch eine Schnitzelsemmel von der Sara.
 public class Overworld extends JFrame {
 
 	public JFrame frame;
@@ -50,32 +52,34 @@ public class Overworld extends JFrame {
 
 	private static int spalten = 7;
 	private static int reihen = 5;
+	private static String user= "";
 
 	// public static ArrayList <OverworldField> OverworldFieldtest;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Overworld window = new Overworld("sara", reihen, spalten);
-					window.frame.setVisible(true);
-					overworldobj = window;
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					Overworld window = new Overworld(user, reihen, spalten);
+//					window.frame.setVisible(true);
+//					overworldobj = window;
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
 	 */
 	public Overworld(String username, int reihen, int spalten) { // user mitgeben? 
-		setAnzReihen(reihen);
-		setAnzSpalten(spalten);
+		user = username;
+		reihen = this.reihen; 
+		spalten = this.spalten; 
 		owliste = DatenbankUnicorn.OverworldinDB();
 		uwliste = DatenbankUnicorn.UnderworldinDB();
 		initialize();
@@ -87,11 +91,12 @@ public class Overworld extends JFrame {
 	private void initialize() {
 
 
-		String usern = "sara";  //TODO change it nowwwwwwwwwwwww + uebr DB spieler
+//		String user = "sara";  //TODO change it nowwwwwwwwwwwww + uebr DB spieler
 
+		
 		int count = 0;
 		for (String[] s : owliste) {
-			if(s[0].equalsIgnoreCase(usern)) {
+			if(s[0].equalsIgnoreCase(user)) {
 				String[] ss = owliste.get(0);
 				String buf = s[0];
 				s[0] = ss[0]; //namen tauschen (user auf 0/0)
@@ -102,8 +107,12 @@ public class Overworld extends JFrame {
 				break;
 			}
 			count ++;
+			System.out.println("Count in Overworld: "+ count);
 		}
 
+		
+		
+		
 		frame = new JFrame();
 		ImageIcon img = new ImageIcon(Overworld.class.getResource("/pictures/rosa.jpg"));
 		Image im = img.getImage().getScaledInstance(1920, 1080, Image.SCALE_FAST);
@@ -125,7 +134,7 @@ public class Overworld extends JFrame {
 		frame.getContentPane().add(panelStatus, "cell 0 0,growx,aligny top");
 		panelStatus.setLayout(new MigLayout("", "[125px][60.00px][75][28px,grow][127px]", "[23px]"));
 
-		lblWelt = new JLabel("You are logged in as: "+ usern+" \t");
+		lblWelt = new JLabel("You are logged in as: "+ Login.getUser() +" \t");
 		lblWelt.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		panelStatus.add(lblWelt, "cell 0 0,alignx left,aligny center");
 
@@ -180,6 +189,7 @@ public class Overworld extends JFrame {
 				// if(zz != null){
 				// System.out.println("Zaun vorhanden");
 				// liste.get(i).add(drawFeld(haus, i, j));
+				
 				// panel.add(liste.get(i).get(j));
 				// }
 				// else{
@@ -190,25 +200,36 @@ public class Overworld extends JFrame {
 				boolean check = false;
 
 				for (String[] s : owliste) {
-					//System.out.println(s[1] + "   "  + s[2]);
+					
 					try {
 						if(Integer.parseInt(s[1]) == j && Integer.parseInt(s[2]) == i){
-							System.out.println("add");
-							if(s[0].equalsIgnoreCase(usern)) { //bitte auf usernamen prüfen von login 
-
-								liste.get(i).add(new Field(i, j, "E", (UnderworldE) null)); // bitte statt null undrworldE der angemeldeten spielers einügen 
-								liste.get(i).get(j).setBild("pictures/village3.png");
 							
+							System.out.println("add village: ");
+							
+							if(s[0].equalsIgnoreCase(Login.getUser())) { //bitte auf useramen prüfen von login 
+								
+								
+								Field buffer = new Field(i,j,"E",(UnderworldE) null);
+								buffer.setBorder(new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
+
+								liste.get(i).add(buffer); // bitte statt null undrworldE der angemeldeten spielers einügen 
+								liste.get(i).get(j).setBild("pictures/village1.png");
 								check = true;
+								
 							}else {
-								liste.get(i).add(new Field(i, j, "K", (UnderworldK) null)); //statt UnderworldK null bitte die underworld des gegner (anderer spieler einfügen)
+								Field buffer = new Field(i,j,"K",(UnderworldK) null);
+								buffer.setBorder(new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
+								
+								liste.get(i).add(buffer); //statt UnderworldK null bitte die underworld des gegner (anderer spieler einfügen)
 								liste.get(i).get(j).setBild("pictures/village2.png");
 								check = true;
 							}
 
 
 						}else { 
-							//liste.get(i).add(new Field(i, j, "E",(UnderworldK)  null));
+//							Field buffer = new Field(i,j,"E",(UnderworldE) null);
+//							buffer.setBorder(new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
+//							liste.get(i).add(buffer);
 						}
 					}catch(Exception e) {
 						e.printStackTrace();
@@ -216,7 +237,10 @@ public class Overworld extends JFrame {
 				}
 
 				if(check == false) {
-					liste.get(i).add(new Field(i, j, "E",(UnderworldK)  null));
+					Field buffer = new Field(i,j,"E",(UnderworldE) null);
+					buffer.setBorder(new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
+
+					liste.get(i).add(buffer);
 				}
 				panel.add(liste.get(i).get(j));
 				panel.repaint();
@@ -226,28 +250,11 @@ public class Overworld extends JFrame {
 
 
 		panel.repaint();
-		anmelden(false);
+//		anmelden(false);
 
 	}
 
 	public boolean isAngemeldet() {
 		return angemeldet;
 	}
-
-	public void anmelden(boolean anmelden) {
-
-		// TODO hier label setzten und
-
-		//		lblWelt.setText("Achtung du bist "+ username);
-
-	}
-
-	private void setAnzReihen(int anz) {
-		reihen = anz;
-	}
-
-	private void setAnzSpalten(int anz) {
-		spalten = anz;
-	}
-
 }

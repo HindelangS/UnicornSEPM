@@ -1,4 +1,5 @@
 package view1;
+
 /***
  * K Wie KÄMPFEN 
  */
@@ -24,7 +25,8 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import control.*;
-public class UnderworldK{
+
+public class UnderworldK {
 
 	public JFrame frame;
 	private JPanel panelStatus;
@@ -32,7 +34,7 @@ public class UnderworldK{
 	private JLabel lblWelt;
 	private JLabel lblLevel;
 	private JLabel lblGeld;
-//	private JPanel panelFelder;
+	// private JPanel panelFelder;
 	private JPanel panelEast;
 	private JButton btnKaempfer1;
 	private JButton btnKaempfer2;
@@ -41,8 +43,8 @@ public class UnderworldK{
 	private JPanel phPanel;
 	private JButton btnDelete;
 
-	//ArrayList vom Typ UnderworldField um Funktion zu Feld hinzuzufügen mit getX
-	public static ArrayList <UnderworldField> UnderworldFieldstest;
+	// ArrayList vom Typ UnderworldField um Funktion zu Feld hinzuzufügen mit getX
+	public static ArrayList<UnderworldField> UnderworldFieldstest;
 	public static ArrayList<String[]> FelderUW = new ArrayList<String[]>();
 
 	public static int x;
@@ -50,11 +52,12 @@ public class UnderworldK{
 	Field panelFelder;
 	Field[][] felder;
 	public static Field lastclicked;
-	
+
 	public static UnderworldK underworldobj;
 
-	private static int spalten = 10; 
+	private static int spalten = 10;
 	private static int reihen = 8;
+	private static String username = "";
 
 	/**
 	 * Launch the application.
@@ -63,7 +66,7 @@ public class UnderworldK{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UnderworldK window = new UnderworldK(reihen, spalten);
+					UnderworldK window = new UnderworldK(reihen, spalten, 0, 1);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -75,18 +78,27 @@ public class UnderworldK{
 	/**
 	 * Create the application.
 	 */
-	public UnderworldK(int reihen, int spalten) {
+	public UnderworldK(int reihen, int spalten, int callonX, int callonY) {
 		setAnzReihen(reihen);
 		setAnzSpalten(spalten);
-		initialize();
-		
-		
+		initialize(callonX, callonY);
+		drawUnderworld();
+	}
+
+	private void drawUnderworld() {
+
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(int callonX, int callonY) {
+		
+		for (String[] s : Overworld.owliste) {
+			if (s[1].equalsIgnoreCase(callonX + "") && s[2].equalsIgnoreCase(callonY + "")) {
+				username = s[0];
+			}
+		}
 
 		frame = new JFrame();
 		ImageIcon img = new ImageIcon(UnderworldK.class.getResource("/pictures/rosa.jpg"));
@@ -94,7 +106,8 @@ public class UnderworldK{
 		img = new ImageIcon(im);
 		frame.setContentPane(new JLabel(img));
 		frame.setTitle("Cute UnicornWarrior Fight to Death");
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(UnderworldK.class.getResource("/pictures/unicorn.PNG")));
+		frame.setIconImage(
+				Toolkit.getDefaultToolkit().getImage(UnderworldK.class.getResource("/pictures/unicorn.PNG")));
 		frame.setBounds(100, 100, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
@@ -110,7 +123,7 @@ public class UnderworldK{
 		frame.getContentPane().add(panelStatus, BorderLayout.NORTH);
 		panelStatus.setLayout(new MigLayout("", "[225][125][125][grow][][20]", "[25px,grow]"));
 
-		lblWelt = new JLabel("World from: ");
+		lblWelt = new JLabel("World from: " + username); // nicht eigener name, besitzer welt
 		lblWelt.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		panelStatus.add(lblWelt, "cell 0 0,alignx left,aligny top");
 
@@ -135,13 +148,13 @@ public class UnderworldK{
 
 		btnWeiterZurberwelt = new JButton("change to overworld");
 		btnWeiterZurberwelt.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				UnderworldK.underworldobj.frame.dispose();
 				Overworld.overworld = true;
 				try {
-					Overworld window = new Overworld("sara", reihen, spalten);
+					Overworld window = new Overworld(username, reihen, spalten);
 					window.frame.setVisible(true);
 					Overworld.overworldobj = window;
 				} catch (Exception ee) {
@@ -155,66 +168,104 @@ public class UnderworldK{
 		panelFelder = new Field();
 		panelFelder.setLayout(new GridLayout(reihen, spalten));
 		panelFelder.setBild("pictures/cloud.png");
-		frame.getContentPane().add(panelFelder, "cell 0 1,grow");	
-		
+		frame.getContentPane().add(panelFelder, "cell 0 1,grow");
+
 		ArrayList<ArrayList<Field>> liste = new ArrayList<ArrayList<Field>>();
 
 		Controller tester = new Controller();
-		UnderworldFieldstest =  tester.create();
+		UnderworldFieldstest = tester.create();
 
+		String username = "";
+		for (String[] s : Overworld.owliste) {
+			if (s[1].equalsIgnoreCase(callonX + "") && s[2].equalsIgnoreCase(callonY + "")) {
+				username = s[0];
+			}
+		}
 
-		for(int i = 0; i < reihen; i++) {
-			
-			//ArrayListe 
+		ArrayList<String[]> underworldliste = new ArrayList<String[]>();
+
+		for (String[] s : Overworld.uwliste) {
+			if (s[4].equalsIgnoreCase(username)) {
+				underworldliste.add(s);
+			}
+		}
+
+		for (String[] s : underworldliste) {
+			System.out.println(
+					"User: " + s[4] + "  X: " + s[0] + "  Y: " + s[1] + "   uwid: " + s[3] + "   geid: " + s[2]);
+		}
+
+		for (int i = 0; i < reihen; i++) {
+
+			// ArrayListe
 			liste.add(new ArrayList<Field>());
-				for(int j = 0; j < spalten; j++) {
-
+			for (int j = 0; j < spalten; j++) {
+				
+				
+				
 				int index = tester.getField(UnderworldFieldstest, i, j);
-				
-				//draw your stuff according to the Overworld.uwliste <- liste is created at DatenbankUnicorne
-				
+
+				// draw your stuff according to the Overworld.uwliste <- liste is created at
+				// DatenbankUnicorne
+
 				Einheit einheit = null;
 				einheit = UnderworldFieldstest.get(index).getEinheit();
 				Gebäude geb = UnderworldFieldstest.get(index).getGebäude();
 				Zaun zaun = UnderworldFieldstest.get(index).getZaun();
 				Haus haus = UnderworldFieldstest.get(index).getHaus();
 
-				System.out.println("Derzeitige Objekte auf Feld: "+geb +","+ zaun+ ","+ haus+" I: "+i+" J:"+j);
+			//	System.out.println(
+				//		"Derzeitige Objekte auf Feld: " + geb + "," + zaun + "," + haus + " I: " + i + " J:" + j);
+				
+
+				for (String[] s : underworldliste) {
+					if(Integer.parseInt(s[0]) == j && Integer.parseInt(s[1]) == i) {
+						switch(Integer.parseInt(s[2])) {
+						case 1:
+								geb = new GebEnergie1(1);
+							break;
+						case 2:
+								geb = new GebEnergie2(1);	//add more stuff
+							break;
+						}
+					}
+				}
 
 				
-				if(geb != null){
+
+				if (geb != null) {
 					System.out.println("Quelle vorhanden");
 					liste.get(i).add(UnderworldE.drawFeld(geb, i, j));
 					panelFelder.add(liste.get(i).get(j));
 				}
-				
-				if(zaun != null){
+
+				if (zaun != null) {
 					System.out.println("Zaun vorhanden");
 					liste.get(i).add(UnderworldE.drawFeld(zaun, i, j));
 					panelFelder.add(liste.get(i).get(j));
 				}
-				if(haus != null){
+				if (haus != null) {
 					System.out.println("Haus vorhanden");
 					liste.get(i).add(UnderworldE.drawFeld(haus, i, j));
 					panelFelder.add(liste.get(i).get(j));
 				}
-				if(einheit != null){
+				if (einheit != null) {
 
 					System.out.println("Einheit vorhanden");
 					liste.get(i).add(setWarrior(einheit, i, j));
 					panelFelder.add(liste.get(i).get(j));
 
-				}else{
+				} else {
 					System.out.println("Feld leer");
-					liste.get(i).add(new Field(i,j,"K", this));
+					liste.get(i).add(new Field(i, j, "K", this));
 					panelFelder.add(liste.get(i).get(j));
 				}
 
 				System.out.println("--------------------------");
 			}
 		}
-		
-		System.out.println("X X X X X X "+liste.size()+ " X X X X X X ");
+
+		System.out.println("X X X X X X " + liste.size() + " X X X X X X ");
 		panelFelder.repaint();
 
 		panelEast = new JPanel();
@@ -224,7 +275,7 @@ public class UnderworldK{
 		btnKaempfer1 = new JButton("Simple UnicornWarrior");
 		btnKaempfer1.addActionListener(new btnU1ActionListener());
 		btnKaempfer1.setToolTipText("Warrior who is strong but very vulnerable");
-		btnKaempfer1.setBackground(new Color(147,112,219));
+		btnKaempfer1.setBackground(new Color(147, 112, 219));
 		btnKaempfer1.setFont(new Font("Century Schoolbook", Font.PLAIN, 12));
 		panelEast.add(btnKaempfer1, "cell 0 4,growx,aligny top");
 
@@ -232,21 +283,21 @@ public class UnderworldK{
 		btnKaempfer2.addActionListener(new btnU2ActionListener());
 		btnKaempfer2.setFont(new Font("Century Schoolbook", Font.PLAIN, 12));
 		btnKaempfer2.setToolTipText("warrior who is neraly indestructibel but not very strong");
-		btnKaempfer2.setBackground(new Color(147,112,219));
+		btnKaempfer2.setBackground(new Color(147, 112, 219));
 		panelEast.add(btnKaempfer2, "cell 0 5,growx");
 
 		btnKaempfer3 = new JButton("Fight UnicornWarrior");
 		btnKaempfer3.setFont(new Font("Century Schoolbook", Font.PLAIN, 12));
 		btnKaempfer3.addActionListener(new btnU3ActionListener());
 		btnKaempfer3.setToolTipText("strong and neraly indestructible warrior");
-		btnKaempfer3.setBackground(new Color(147,112,219));
+		btnKaempfer3.setBackground(new Color(147, 112, 219));
 		panelEast.add(btnKaempfer3, "cell 0 6,growx");
 
 		btnDelete = new JButton("delete");
 		btnDelete.setFont(new Font("Century Schoolbook", Font.PLAIN, 12));
 		btnDelete.addActionListener(new btnDeleteActionListener());
 		btnDelete.setToolTipText("select a item you want to delete");
-		btnDelete.setBackground(new Color(147,112,219));
+		btnDelete.setBackground(new Color(147, 112, 219));
 		panelEast.add(btnDelete, "cell 0 9,growx");
 
 	}
@@ -254,7 +305,7 @@ public class UnderworldK{
 	private class CbBearbeitenActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 
-			if(cbBearbeiten.isSelected()){
+			if (cbBearbeiten.isSelected()) {
 
 				JOptionPane.showMessageDialog(null, " Klick on a field and then choose a warror to start the fight");
 				System.out.println("ok cool");
@@ -263,63 +314,61 @@ public class UnderworldK{
 				frame.getContentPane().validate();
 			}
 
-			if(cbBearbeiten.isSelected()==false){
+			if (cbBearbeiten.isSelected() == false) {
 
 				frame.getContentPane().remove(panelEast);
 				frame.getContentPane().validate();
 			}
 		}
 	}
-	
 
-	public void redraw(){
-	
-			//panelFelder = new JPanel();
-			panelFelder.removeAll();
-			System.out.println("REDRAW");
-			ArrayList<ArrayList<Field>> liste = new ArrayList<ArrayList<Field>>();
+	public void redraw() {
 
-			Controller tester = new Controller();
-			
-			for(int i = 0; i < reihen; i++) {
-				
-				liste.add(new ArrayList<Field>());
+		// panelFelder = new JPanel();
+		panelFelder.removeAll();
+		System.out.println("REDRAW");
+		ArrayList<ArrayList<Field>> liste = new ArrayList<ArrayList<Field>>();
 
-					for(int j = 0; j < spalten; j++) {
-						
-						int index = tester.getField(UnderworldFieldstest, j, i);
-						Einheit einheit = null;
-						einheit = UnderworldFieldstest.get(index).getEinheit();
-						Gebäude geb = UnderworldFieldstest.get(index).getGebäude();
-						Zaun zaun = UnderworldFieldstest.get(index).getZaun();
-						Haus haus = UnderworldFieldstest.get(index).getHaus();
+		Controller tester = new Controller();
 
-	//					System.out.println("Derzeitige Einheit: "+einheit+ "I: "+i+" J:"+j);
+		for (int i = 0; i < reihen; i++) {
 
-						if(geb != null){
-							System.out.println("Gebaude vorhanden");
-							liste.get(i).add(UnderworldE.drawFeld(geb, i, j));
-							panelFelder.add(liste.get(i).get(j));
-						}
-						if(einheit != null){
+			liste.add(new ArrayList<Field>());
 
-							System.out.println("Einheit vorhanden");
-							liste.get(i).add(setWarrior(einheit, i, j));
-							panelFelder.add(liste.get(i).get(j));
+			for (int j = 0; j < spalten; j++) {
 
-						}
-						if(geb == null && zaun == null && haus == null && einheit == null){
-							System.out.println("Feld leer");
-							liste.get(i).add(new Field(i,j,"K", this));
-							panelFelder.add(liste.get(i).get(j));
-						}			
-					}
+				int index = tester.getField(UnderworldFieldstest, j, i);
+				Einheit einheit = null;
+				einheit = UnderworldFieldstest.get(index).getEinheit();
+				Gebäude geb = UnderworldFieldstest.get(index).getGebäude();
+				Zaun zaun = UnderworldFieldstest.get(index).getZaun();
+				Haus haus = UnderworldFieldstest.get(index).getHaus();
+
+				// System.out.println("Derzeitige Einheit: "+einheit+ "I: "+i+" J:"+j);
+
+				if (geb != null) {
+					System.out.println("Gebaude vorhanden");
+					liste.get(i).add(UnderworldE.drawFeld(geb, i, j));
+					panelFelder.add(liste.get(i).get(j));
+				}
+				if (einheit != null) {
+
+					System.out.println("Einheit vorhanden");
+					liste.get(i).add(setWarrior(einheit, i, j));
+					panelFelder.add(liste.get(i).get(j));
+
+				}
+				if (geb == null && zaun == null && haus == null && einheit == null) {
+					System.out.println("Feld leer");
+					liste.get(i).add(new Field(i, j, "K", this));
+					panelFelder.add(liste.get(i).get(j));
+				}
 			}
-			
-			frame.getContentPane().repaint();
-			frame.getContentPane().validate();
 		}
-	
+
+		frame.getContentPane().repaint();
+		frame.getContentPane().validate();
+	}
 
 	private class btnU1ActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
@@ -334,17 +383,13 @@ public class UnderworldK{
 
 		}
 	}
-	
-	
-	
 
 	private class btnU2ActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			
+
 			Controller c1 = new Controller();
 			int index = c1.getField(UnderworldFieldstest, lastclicked.getKoordX(), lastclicked.getKoordY());
 
-			
 			Einheit einheit = new FightUnicorn(1);
 			UnderworldFieldstest.get(index).setEinheit(einheit);
 			UnderworldFieldstest.get(index).setBelegt(true);
@@ -367,18 +412,15 @@ public class UnderworldK{
 		}
 	}
 
-
 	private class btnDeleteActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-
 
 			Controller c1 = new Controller();
 			int index = c1.getField(UnderworldFieldstest, lastclicked.getKoordX(), lastclicked.getKoordY());
 
 			UnderworldFieldstest.get(index).deleteField();
 			UnderworldFieldstest.get(index).setBelegt(false);
-			redraw();	
-
+			redraw();
 
 		}
 	}
@@ -391,29 +433,28 @@ public class UnderworldK{
 		spalten = anz;
 	}
 
+	public Field setWarrior(Einheit einheit, int x, int y) {
 
-	public Field setWarrior(Einheit einheit,int x, int y){
-
-		Field buffer = new Field(x,y,"K", this);
+		Field buffer = new Field(x, y, "K", this);
 		String einheitstyp = einheit.getClass().getName();
 
-		switch(einheitstyp){
-		case "control.SimpleUnicorn":{
-			System.out.println("Unicorn wird auf"+x+"/"+y+" gezeichnet.");
+		switch (einheitstyp) {
+		case "control.SimpleUnicorn": {
+			System.out.println("Unicorn wird auf" + x + "/" + y + " gezeichnet.");
 			buffer.setBild("pictures/u1_klein.png");
 			break;
 		}
-		case "control.FightUnicorn":{
-			System.out.println("Unicorn wird auf"+x+"/"+y+" gezeichnet.");
+		case "control.FightUnicorn": {
+			System.out.println("Unicorn wird auf" + x + "/" + y + " gezeichnet.");
 			buffer.setBild("pictures/u3_klein.png");
 			break;
 		}
-		case "control.UnicornWarrior":{
-			System.out.println("Unicorn wird auf"+x+"/"+y+" gezeichnet.");
+		case "control.UnicornWarrior": {
+			System.out.println("Unicorn wird auf" + x + "/" + y + " gezeichnet.");
 			buffer.setBild("pictures/u2_klein.png");
 			break;
 		}
-		default:{
+		default: {
 			System.out.println("UNBEKANNTE KLASSE KÄMPFER; ERROR");
 		}
 		}
@@ -422,16 +463,14 @@ public class UnderworldK{
 
 	}
 
-	public void setArrayList()
-	{
-		String[]zeile=new String[3];
-		for(int i=0;i<=3;i++)
-		{
-			
+	public void setArrayList() {
+		String[] zeile = new String[3];
+		for (int i = 0; i <= 3; i++) {
+
 		}
-//		FelderUW.add
-//		UnderworldField=UnderworldK.UnderworldFieldstest;
-//		System.out.println(UnderworldField.get(index).);
+		// FelderUW.add
+		// UnderworldField=UnderworldK.UnderworldFieldstest;
+		// System.out.println(UnderworldField.get(index).);
 	}
 
 }

@@ -3,11 +3,9 @@ package view1;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -16,15 +14,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
-
-import com.sun.glass.events.MouseEvent;
-
-import control.ActionListernerContinueBtn;
 import control.ActionListernerRegisterBtn;
 import model.DatenbankUnicorn;
-
 import java.awt.Font;
 import java.awt.Image;
 
@@ -38,6 +30,8 @@ public class Login extends JFrame{
 	private JButton btnRegister;
 	private Overworld ow;
 	private static Login frame;
+	
+	public static String user;
 
 	private ArrayList<Component> focusComps;
 
@@ -135,12 +129,27 @@ public class Login extends JFrame{
 
 	public void anmelden() {
 
-		if(ow != null) {
+//		if(ow != null) {
 			// TODO: Mit Spieler Objekt verknuepfen
-			ow.anmelden(true);
-		}
+//			ow.anmelden(true);
+			System.out.println("anmelden wird ausgeführt als: "+user);
+//			aus main von OVerworld 
+			
+		
+			Overworld.overworld = true;
+			try {
+				Overworld window = new Overworld(user ,8, 10);
+				window.frame.setVisible(true);
+				Overworld.overworldobj = window;
+			} catch (Exception ee) {
+				ee.printStackTrace();
+			}
+			
+//		}
 		dispose();
 	}
+	
+	
 
 //	public static void main(String[] args) {
 //		EventQueue.invokeLater(new Runnable() {
@@ -160,9 +169,10 @@ public class Login extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			
+			user=txtName.getText();
 			int fehlercode;
 			try {
-				if((fehlercode = DatenbankUnicorn.spielerEinloggen(txtName.getText(), String.valueOf(txtPwd.getPassword()))) == 0) {
+				if((fehlercode = DatenbankUnicorn.spielerEinloggen(user, String.valueOf(txtPwd.getPassword()))) == 0) {
 					// erfolreich
 					anmelden();
 					
@@ -183,6 +193,10 @@ public class Login extends JFrame{
 
 	}
 	
+	public static String getUser() {
+		System.out.println("User in get: "+ user);
+		return user;
+	}
 
 	public JTextField getTxtName() {
 		return txtName;

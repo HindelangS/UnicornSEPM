@@ -45,9 +45,9 @@ public class Field extends JPanel {
 			addMouseListener(new PanelFeldMouseListenerK(this, underw));
 
 		}
-		if (Art == "E") {
-			addMouseListener(new PanelFeldMouseListener(this));
-		}
+//		if (Art == "E") {
+//			addMouseListener(new PanelFeldMouseListener(this));
+//		}
 
 	}
 

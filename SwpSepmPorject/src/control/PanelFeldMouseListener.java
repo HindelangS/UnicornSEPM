@@ -1,7 +1,6 @@
 package control;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -39,6 +38,7 @@ public class PanelFeldMouseListener extends MouseAdapter {
 			Controller c3 = new Controller();
 			int index = c3.getField(UnderworldE.UnderworldFieldstest, pf.getKoordX(), pf.getKoordY());
 			System.out.println(UnderworldE.UnderworldFieldstest.get(index).getGebäude());
+			
 		} else {
 			if(pf.getKoordX() == 0 && pf.getKoordY() == 0) {
 				//mein feld
@@ -57,7 +57,39 @@ public class PanelFeldMouseListener extends MouseAdapter {
 				}
 				
 			}else {
-				//Gegner
+				//gegner
+				if (Overworld.overworld == true) {
+					
+					if(pf.getBild().equals("")) {
+						return;
+					}
+					
+					int x = pf.getKoordX();
+					int y = pf.getKoordY();
+					
+					for(String[] s : Overworld.owliste) {
+						if(Integer.parseInt(s[1]) == x && Integer.parseInt(s[2]) == y) {
+							String user = s[0];
+							System.out.println("Attacker : " + user + " (clicked on   X: " + x + "  Y: " + y +" )");
+						}
+					}
+					
+					Overworld.overworldobj.frame.dispose();
+					Overworld.overworld = false;
+
+					try {
+						
+						UnderworldK window = new UnderworldK(8, 10, pf.getKoordX(), pf.getKoordY());
+						window.frame.setVisible(true);
+						System.out.println("launch underworld k");
+						UnderworldK.underworldobj = window;
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+
+					return;
+				}
 			}
 		}
 	}

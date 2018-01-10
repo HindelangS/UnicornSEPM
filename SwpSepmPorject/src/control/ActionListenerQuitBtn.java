@@ -18,6 +18,8 @@ public class ActionListenerQuitBtn implements ActionListener {
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		
+//		TODO: in DB alles übertragen
 		System.out.println("Goodbye, thanks for playing this superduper game! ");
 		Overworld.overworldobj.frame.dispose();
 	}
