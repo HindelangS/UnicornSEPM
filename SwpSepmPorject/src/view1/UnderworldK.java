@@ -169,7 +169,9 @@ public class UnderworldK{
 				for(int j = 0; j < spalten; j++) {
 
 				int index = tester.getField(UnderworldFieldstest, i, j);
+				
 				//draw your stuff according to the Overworld.uwliste <- liste is created at DatenbankUnicorne
+				
 				Einheit einheit = null;
 				einheit = UnderworldFieldstest.get(index).getEinheit();
 				Gebäude geb = UnderworldFieldstest.get(index).getGebäude();
