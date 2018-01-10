@@ -52,6 +52,7 @@ public class Register extends JFrame {
 	static final String DB_URL = "jdbc:mysql://localhost:3306/cuftd?user=root&password=&useSSL=false";
 
 	static private String username;
+	static private int uwid;
 
 	/**
 	 * Wie lange das Passwort mindestens sein muss
