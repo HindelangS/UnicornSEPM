@@ -119,14 +119,7 @@ public class DatenbankUnicorn {
 			while(rs.next()){
 
 				String daten[]=new String[3];
-				System.out.print("Gelesen wurde: ");
-				
-			/*
-				for (int i = 0; i < 10; i++) {
-					daten[i] = rs.getString(i+1);
-					System.out.print(" '" + daten[i] + "'");	//zur Kontrolle
-				}
-			*/
+				System.out.print("Gelesen wurde: ");	
 				
 				String username = rs.getString("username"); 
 				System.out.println("U: "+ username);

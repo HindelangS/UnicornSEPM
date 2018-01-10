@@ -10,6 +10,7 @@ import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import control.ActionListenerQuitBtn;
 import control.Controller;
 import control.Gebäude;
 import control.Haus;
@@ -29,16 +30,16 @@ public class Overworld extends JFrame {
 
 	public JFrame frame;
 	private JPanel panelStatus;
-	private JButton btnWeiterZurberwelt;
+	private JButton btnQuit;
 	private JLabel lblWelt;
 	private JLabel lblLevel;
 	private JLabel lblGeld;
 
 	private boolean angemeldet;
-	
+
 	public static boolean overworld = true;
 	public static Overworld overworldobj = null;
-	
+
 
 	public static ArrayList<String[]> owliste;
 	public static ArrayList<String[]> uwliste;
@@ -59,7 +60,7 @@ public class Overworld extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Overworld window = new Overworld(reihen, spalten);
+					Overworld window = new Overworld("sara", reihen, spalten);
 					window.frame.setVisible(true);
 					overworldobj = window;
 				} catch (Exception e) {
@@ -72,7 +73,7 @@ public class Overworld extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public Overworld(int reihen, int spalten) {
+	public Overworld(String username, int reihen, int spalten) { // user mitgeben? 
 		setAnzReihen(reihen);
 		setAnzSpalten(spalten);
 		owliste = DatenbankUnicorn.OverworldinDB();
@@ -84,18 +85,18 @@ public class Overworld extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
-		
-		String username = "sara";  //TODO change it nowwwwwwwwwwwww
-		
+
+
+		String usern = "sara";  //TODO change it nowwwwwwwwwwwww + uebr DB spieler
+
 		int count = 0;
 		for (String[] s : owliste) {
-			if(s[0].equalsIgnoreCase(username)) {
+			if(s[0].equalsIgnoreCase(usern)) {
 				String[] ss = owliste.get(0);
 				String buf = s[0];
 				s[0] = ss[0]; //namen tauschen (user auf 0/0)
 				ss[0] = buf;
-				
+
 				owliste.set(0, ss);
 				owliste.set(count, s);
 				break;
@@ -124,21 +125,22 @@ public class Overworld extends JFrame {
 		frame.getContentPane().add(panelStatus, "cell 0 0,growx,aligny top");
 		panelStatus.setLayout(new MigLayout("", "[125px][60.00px][75][28px,grow][127px]", "[23px]"));
 
-		lblWelt = new JLabel("SpielerXs Welt: ");
+		lblWelt = new JLabel("You are logged in as: "+ usern+" \t");
 		lblWelt.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		panelStatus.add(lblWelt, "cell 0 0,alignx left,aligny center");
 
-		lblLevel = new JLabel("Level: ");
+		lblLevel = new JLabel("\t Level: ");
 		lblLevel.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		panelStatus.add(lblLevel, "cell 1 0,alignx left,aligny center");
 
-		lblGeld = new JLabel("Geld: ");
+		lblGeld = new JLabel("\t Money: ");
 		lblGeld.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		panelStatus.add(lblGeld, "cell 2 0,alignx left,aligny center");
 
-		btnWeiterZurberwelt = new JButton("go to choosen world");
-		btnWeiterZurberwelt.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
-		panelStatus.add(btnWeiterZurberwelt, "cell 4 0,alignx right,aligny top");
+		btnQuit = new JButton("quit game");
+		btnQuit.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
+		btnQuit.addActionListener(new ActionListenerQuitBtn(ow));
+		panelStatus.add(btnQuit, "cell 4 0,alignx right,aligny top");
 
 		panel = new Field();
 		panel.setBild("pictures/rainbow.png");
@@ -151,11 +153,9 @@ public class Overworld extends JFrame {
 		// UnderworldFieldstest = tester.create();
 
 		for (int i = 0; i < reihen; i++) {
-			//
+
 			liste.add(new ArrayList<Field>());
-			//
-			//
-			//
+
 			for (int j = 0; j < spalten; j++) {
 				//
 				// int index = tester.getField(UnderworldFieldstest, i, j);
@@ -186,51 +186,45 @@ public class Overworld extends JFrame {
 				// System.out.println("nix auf dem Feld");
 
 				
-				
+				//Feld ist besetzt
 				boolean check = false;
-				
+
 				for (String[] s : owliste) {
 					//System.out.println(s[1] + "   "  + s[2]);
-					
-					
-					
 					try {
-					if(Integer.parseInt(s[1]) == j && Integer.parseInt(s[2]) == i){
-						System.out.println("add");
-						if(s[0].equalsIgnoreCase(username)) { //bitte auf usernamen prüfen von login 
+						if(Integer.parseInt(s[1]) == j && Integer.parseInt(s[2]) == i){
+							System.out.println("add");
+							if(s[0].equalsIgnoreCase(usern)) { //bitte auf usernamen prüfen von login 
+
+								liste.get(i).add(new Field(i, j, "E", (UnderworldE) null)); // bitte statt null undrworldE der angemeldeten spielers einügen 
+								liste.get(i).get(j).setBild("pictures/village3.png");
 							
-							liste.get(i).add(new Field(i, j, "E", (UnderworldE) null)); // bitte statt null undrworldE der angemeldeten spielers einügen 
-							liste.get(i).get(j).setBild("pictures/haus1_klein.png");
-							
-							check = true;
-						}else {
-							liste.get(i).add(new Field(i, j, "K", (UnderworldK) null)); //statt UnderworldK null bitte die underworld des gegner (anderer spieler einfügen)
-							liste.get(i).get(j).setBild("pictures/haus2_klein.png");
-							check = true;
+								check = true;
+							}else {
+								liste.get(i).add(new Field(i, j, "K", (UnderworldK) null)); //statt UnderworldK null bitte die underworld des gegner (anderer spieler einfügen)
+								liste.get(i).get(j).setBild("pictures/village2.png");
+								check = true;
+							}
+
+
+						}else { 
+							//liste.get(i).add(new Field(i, j, "E",(UnderworldK)  null));
 						}
-						
-						
-					}else {
-						//liste.get(i).add(new Field(i, j, "E",(UnderworldK)  null));
-					}
 					}catch(Exception e) {
 						e.printStackTrace();
 					}
 				}
-				
+
 				if(check == false) {
 					liste.get(i).add(new Field(i, j, "E",(UnderworldK)  null));
 				}
 				panel.add(liste.get(i).get(j));
-				//// }
-				//
-				// System.out.println("--------------------------");
-				// System.out.println("X X X X X X "+liste.size()+ " X X X X X X ");
-				// panel.repaint();
+				panel.repaint();
+				panel.validate();
 			}
 		}
 
-		
+
 		panel.repaint();
 		anmelden(false);
 
@@ -244,7 +238,7 @@ public class Overworld extends JFrame {
 
 		// TODO hier label setzten und
 
-		lblWelt.setText("Achtung du bist ");
+		//		lblWelt.setText("Achtung du bist "+ username);
 
 	}
 

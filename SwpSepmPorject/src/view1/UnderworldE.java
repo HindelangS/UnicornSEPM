@@ -117,7 +117,7 @@ public class UnderworldE{
 		frame.getContentPane().add(panelStatus, BorderLayout.NORTH);
 		panelStatus.setLayout(new MigLayout("", "[225][125][125][grow][][20]", "[25px,grow]"));
 
-		lblWelt = new JLabel("SpielerXs Welt: ");
+		lblWelt = new JLabel("World from: ");
 		lblWelt.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		panelStatus.add(lblWelt, "cell 0 0,alignx left,aligny top");
 
@@ -125,7 +125,7 @@ public class UnderworldE{
 		lblLevel.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		panelStatus.add(lblLevel, "cell 1 0,alignx left,aligny top");
 
-		lblGeld = new JLabel("Geld: ");
+		lblGeld = new JLabel("Money: ");
 		lblGeld.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		panelStatus.add(lblGeld, "cell 2 0,alignx left,aligny top");
 
@@ -140,7 +140,7 @@ public class UnderworldE{
 		cbBearbeiten.setOpaque(false);
 		cbBearbeiten.addActionListener(new CbBearbeitenActionListener());
 
-		btnWeiterZurberwelt = new JButton("weiter zur Ueberwelt");
+		btnWeiterZurberwelt = new JButton("change to overworld");
 		btnWeiterZurberwelt.setBackground(new Color(173,216,230));
 		btnWeiterZurberwelt.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		btnWeiterZurberwelt.addActionListener(new ActionListener() {
@@ -150,7 +150,7 @@ public class UnderworldE{
 				UnderworldE.underworlde.frame.dispose();
 				Overworld.overworld = true;
 				try {
-					Overworld window = new Overworld(reihen, spalten);
+					Overworld window = new Overworld("sara" ,reihen, spalten);
 					window.frame.setVisible(true);
 					Overworld.overworldobj = window;
 				} catch (Exception ee) {
@@ -296,7 +296,7 @@ public class UnderworldE{
 
 			if(cbBearbeiten.isSelected()){
 
-				JOptionPane.showMessageDialog(null, "Um Gegenstand auf Feld zu setzen bitte zuerst Panel auswählen");
+				JOptionPane.showMessageDialog(null, "To add an object to a field, choose first the exact field and afterwards the item");
 				System.out.println("ok cool");
 				frame.getContentPane().add(panelEast, BorderLayout.EAST);
 				panelEast.validate();
