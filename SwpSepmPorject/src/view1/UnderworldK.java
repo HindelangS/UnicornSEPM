@@ -43,6 +43,7 @@ public class UnderworldK{
 
 	//ArrayList vom Typ UnderworldField um Funktion zu Feld hinzuzufügen mit getX
 	public static ArrayList <UnderworldField> UnderworldFieldstest;
+	public static ArrayList<String[]> FelderUW = new ArrayList<String[]>();
 
 	public static int x;
 
@@ -421,6 +422,16 @@ public class UnderworldK{
 
 	}
 
-
+	public void setArrayList()
+	{
+		String[]zeile=new String[3];
+		for(int i=0;i<=3;i++)
+		{
+			
+		}
+//		FelderUW.add
+//		UnderworldField=UnderworldK.UnderworldFieldstest;
+//		System.out.println(UnderworldField.get(index).);
+	}
 
 }
