@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import control.*;
 public class UnderworldK{
 
-	private JFrame frame;
+	public JFrame frame;
 	private JPanel panelStatus;
 	private JButton btnWeiterZurberwelt;
 	private JLabel lblWelt;
@@ -50,6 +50,8 @@ public class UnderworldK{
 	Field panelFelder;
 	Field[][] felder;
 	public static Field lastclicked;
+	
+	public static UnderworldK underworldobj;
 
 	private static int spalten = 10; 
 	private static int reihen = 8;
@@ -77,6 +79,8 @@ public class UnderworldK{
 		setAnzReihen(reihen);
 		setAnzSpalten(spalten);
 		initialize();
+		
+		
 	}
 
 	/**
@@ -130,6 +134,21 @@ public class UnderworldK{
 		cbBearbeiten.addActionListener(new CbBearbeitenActionListener());
 
 		btnWeiterZurberwelt = new JButton("weiter zur Ueberwelt");
+		btnWeiterZurberwelt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				UnderworldK.underworldobj.frame.dispose();
+				Overworld.overworld = true;
+				try {
+					Overworld window = new Overworld(reihen, spalten);
+					window.frame.setVisible(true);
+					Overworld.overworldobj = window;
+				} catch (Exception ee) {
+					ee.printStackTrace();
+				}
+			}
+		});
 		btnWeiterZurberwelt.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		panelStatus.add(btnWeiterZurberwelt, "cell 4 0,alignx center,aligny center");
 
@@ -152,6 +171,8 @@ public class UnderworldK{
 
 				int index = tester.getField(UnderworldFieldstest, i, j);
 				
+				//draw your stuff according to the Overworld.uwliste <- liste is created at DatenbankUnicorne
+				
 				Einheit einheit = null;
 				einheit = UnderworldFieldstest.get(index).getEinheit();
 				Gebäude geb = UnderworldFieldstest.get(index).getGebäude();
@@ -160,7 +181,7 @@ public class UnderworldK{
 
 				System.out.println("Derzeitige Objekte auf Feld: "+geb +","+ zaun+ ","+ haus+" I: "+i+" J:"+j);
 
-
+				
 				if(geb != null){
 					System.out.println("Quelle vorhanden");
 					liste.get(i).add(UnderworldE.drawFeld(geb, i, j));

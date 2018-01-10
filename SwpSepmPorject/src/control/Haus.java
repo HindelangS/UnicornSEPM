@@ -5,6 +5,7 @@ public abstract class Haus extends Gebäude {
 	private int level;
 	private int kosten;
 	private int robustheit; 
+	
 
 	public Haus(int level, int kosten, int robustheit) {
 		super(level, kosten, robustheit);

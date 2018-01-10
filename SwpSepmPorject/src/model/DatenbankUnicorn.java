@@ -128,6 +128,35 @@ public class DatenbankUnicorn {
 			pstmt.setInt(2, owid);
 			pstmt.executeUpdate();
 
+			rs=pstmt.executeQuery(sql_OworldinDB);
+
+			System.out.println("Overworld ausgeben:");
+			while(rs.next()){
+
+				String daten[]=new String[3];
+				System.out.print("Gelesen wurde: ");
+				
+			/*
+				for (int i = 0; i < 10; i++) {
+					daten[i] = rs.getString(i+1);
+					System.out.print(" '" + daten[i] + "'");	//zur Kontrolle
+				}
+			*/
+				
+				String username = rs.getString("username"); 
+				System.out.println("U: "+ username);
+				int xKoord = rs.getInt("xKoordinaten");
+				int yKoord = rs.getInt("yKoordinaten");
+				System.out.println("X:"+ xKoord +" Y: "+ yKoord);
+				
+				daten[0] = username;
+				daten[1] = xKoord+""; 
+				daten[2] = yKoord+"";
+				
+
+				spielfeldOW.add(daten);
+			}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -151,13 +180,38 @@ public class DatenbankUnicorn {
 			System.out.println("Underworld ausgeben:");
 			while(rs.next()){
 
-				String daten[]=new String[5];
-				System.out.print("Gelesen wurde: ");
-				for (int i = 0; i < 5; i++) {
-					daten[i] = rs.getString(i+1);
-					System.out.print(" '" + daten[i] + "'");	//zur Kontrolle
-				}
+//				String daten[]=new String[5];
+//				System.out.print("Gelesen wurde: ");
+//				for (int i = 0; i < 5; i++) {
+//					daten[i] = rs.getString(i+1);
+//					System.out.print(" '" + daten[i] + "'");	//zur Kontrolle
+//				}
+//				String daten[]=new String[5];
+//				System.out.print("Gelesen wurde: ");
+//				for (int i = 0; i < 10; i++) {
+//					daten[i] = rs.getString(i+1);
+//					System.out.print(" '" + daten[i] + "'");	//zur Kontrolle
+//				}
+//				spielfeldUW.add(daten);
+				
+				int xKoor = rs.getInt("xKoordinaten");
+				int yKoor = rs.getInt("yKoordinaten");
+				int gebid = rs.getInt("gebaeudeid");
+				int uwid = rs.getInt("uwid");
+				String user = rs.getString("username");
+				
+				String daten[] = new String[5];
+				
+				
+				//uwlist!!!!
+				daten[0] = xKoor + "";
+				daten[1] = yKoor + "";
+				daten[2] = gebid + "";//welches haus	
+				daten[3] = uwid + ""; //welche unterwelt !!! deine fremde1 fremde2 usw.. .......
+				daten[4] = user; // inhaber der welt 
+				
 				spielfeldUW.add(daten);
+				
 			}
 
 
