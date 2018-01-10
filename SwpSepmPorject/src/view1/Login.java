@@ -5,6 +5,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
 
@@ -21,6 +23,7 @@ import com.sun.glass.events.MouseEvent;
 
 import control.ActionListernerContinueBtn;
 import control.ActionListernerRegisterBtn;
+import model.DatenbankUnicorn;
 
 import java.awt.Font;
 import java.awt.Image;
@@ -38,11 +41,11 @@ public class Login extends JFrame{
 
 	private ArrayList<Component> focusComps;
 
-//	public Login(Overworld ovw) {
-//		this();
-//		ow = ovw;
-//		ow.setEnabled(false);
-//	}
+	public Login(Overworld ovw) {
+		this();
+		ow = ovw;
+		ow.setEnabled(false);
+	}
 
 	public Login() {
 		initialize();
@@ -101,7 +104,7 @@ public class Login extends JFrame{
 		btnContinue.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		btnContinue.setBounds(455, 325, 102, 37);
 		btnContinue.setForeground(Color.WHITE);
-		btnContinue.addActionListener(new ActionListernerContinueBtn(this));
+		btnContinue.addActionListener(new btnLogInActionListener());
 		getContentPane().add(btnContinue);
 
 		focusComps = new ArrayList<Component>();
@@ -120,24 +123,24 @@ public class Login extends JFrame{
 		validate();
 	}
 
-//	@Override
-//	public void dispose() {
-//
-//		if(ow != null) {
-//			ow.setEnabled(true);
-//			ow = null;
-//		}
-//		super.dispose();
-//	}
-//
-//	public void anmelden() {
-//
-//		if(ow != null) {
-//			// TODO: Mit Spieler Objekt verknuepfen
-//			ow.anmelden(true);
-//		}
-//		dispose();
-//	}
+	@Override
+	public void dispose() {
+
+		if(ow != null) {
+			ow.setEnabled(true);
+			ow = null;
+		}
+		super.dispose();
+	}
+
+	public void anmelden() {
+
+		if(ow != null) {
+			// TODO: Mit Spieler Objekt verknuepfen
+			ow.anmelden(true);
+		}
+		dispose();
+	}
 
 //	public static void main(String[] args) {
 //		EventQueue.invokeLater(new Runnable() {
@@ -151,6 +154,35 @@ public class Login extends JFrame{
 //			}
 //		});
 //	}
+	
+	private class btnLogInActionListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			
+			int fehlercode;
+			try {
+				if((fehlercode = DatenbankUnicorn.spielerEinloggen(txtName.getText(), String.valueOf(txtPwd.getPassword()))) == 0) {
+					// erfolreich
+					anmelden();
+					
+				}
+				else {
+					// Fehlernachricht anzeigen
+					//lblError.setText(DatenbankUnicorn.fehlercodeAufloesen(fehlercode));
+					System.out.println(DatenbankUnicorn.fehlercodeAufloesen(fehlercode));
+				}
+			} catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+		}
+
+	}
+	
 
 	public JTextField getTxtName() {
 		return txtName;
