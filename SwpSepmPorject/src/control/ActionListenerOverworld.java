@@ -20,7 +20,7 @@ public class ActionListenerOverworld implements ActionListener {
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		Overworld frame = new Overworld(spalten, reihen);
+		Overworld frame = new Overworld("sara" , spalten, reihen);
 		frame.setVisible(true);
 //		uwe.dispose();
 	}

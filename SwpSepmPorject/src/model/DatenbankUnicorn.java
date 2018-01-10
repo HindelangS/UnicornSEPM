@@ -157,6 +157,53 @@ public class DatenbankUnicorn {
 		return spielfeldOW;
 	}
 
+	public static ArrayList<String[]> OverworldinDB()
+	{
+
+		ArrayList<String[]> spielfeldOW = new ArrayList<String[]>();
+
+		String sql_OworldinDB="Select owfid, xKoordinaten, yKoordinaten, username, owid from overworldField Full Join overworld USING (owid)";
+		try {
+			conn=DriverManager.getConnection(DB_URL);
+			pstmt = conn.prepareStatement(sql_OworldinDB);
+			rs=pstmt.executeQuery(sql_OworldinDB);
+
+			System.out.println("Overworld ausgeben:");
+			while(rs.next()){
+
+				String daten[]=new String[3];
+				System.out.print("Gelesen wurde: ");
+				
+			/*
+				for (int i = 0; i < 10; i++) {
+					daten[i] = rs.getString(i+1);
+					System.out.print(" '" + daten[i] + "'");	//zur Kontrolle
+				}
+			*/
+				
+				String username = rs.getString("username"); 
+				System.out.println("U: "+ username);
+				int xKoord = rs.getInt("xKoordinaten");
+				int yKoord = rs.getInt("yKoordinaten");
+				System.out.println("X:"+ xKoord +" Y: "+ yKoord);
+				
+				daten[0] = username;
+				daten[1] = xKoord+""; 
+				daten[2] = yKoord+"";
+				
+
+				spielfeldOW.add(daten);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		//return null;
+
+		return spielfeldOW;
+	}
+	
+	
 	// TODO Fehlermeldung: Column 'username' in field list is ambiguous
 	public static ArrayList<String[]> UnderworldinDB()
 	{

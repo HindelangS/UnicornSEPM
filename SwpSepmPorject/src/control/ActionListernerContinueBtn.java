@@ -24,7 +24,7 @@ public class ActionListernerContinueBtn implements ActionListener {
 		//		int fehlercode;
 		//		if((fehlercode = Datenbank.spielerEinloggen(Namefield.getText(), String.valueOf(Passfield.getPassword()))) == 0) {
 		// erfolreich
-		Overworld frame = new Overworld(10, 15);
+		Overworld frame = new Overworld("sara" ,10, 15);
 		frame.setVisible(true);
 		System.out.println("Overworld sollte erstellt werden");
 		log.dispose();
