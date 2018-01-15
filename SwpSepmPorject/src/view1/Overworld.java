@@ -77,7 +77,7 @@ public class Overworld extends JFrame {
 	 * Create the application.
 	 */
 	public Overworld(String username, int reihen, int spalten) { // user mitgeben? 
-		user = username;
+		username = user; 
 		reihen = this.reihen; 
 		spalten = this.spalten; 
 		owliste = DatenbankUnicorn.OverworldinDB();
@@ -89,10 +89,6 @@ public class Overworld extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-
-
-//		String user = "sara";  //TODO change it nowwwwwwwwwwwww + uebr DB spieler
-
 		
 		int count = 0;
 		for (String[] s : owliste) {
@@ -109,9 +105,6 @@ public class Overworld extends JFrame {
 			count ++;
 			System.out.println("Count in Overworld: "+ count);
 		}
-
-		
-		
 		
 		frame = new JFrame();
 		ImageIcon img = new ImageIcon(Overworld.class.getResource("/pictures/rosa.jpg"));
@@ -138,11 +131,11 @@ public class Overworld extends JFrame {
 		lblWelt.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		panelStatus.add(lblWelt, "cell 0 0,alignx left,aligny center");
 
-		lblLevel = new JLabel("\t Level: ");
+		lblLevel = new JLabel("\t Level: "+ Login.getLevel()+" \t" );
 		lblLevel.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		panelStatus.add(lblLevel, "cell 1 0,alignx left,aligny center");
 
-		lblGeld = new JLabel("\t Money: ");
+		lblGeld = new JLabel("\t Money: "+ Login.getMoney()+" \t" );
 		lblGeld.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		panelStatus.add(lblGeld, "cell 2 0,alignx left,aligny center");
 
@@ -159,16 +152,15 @@ public class Overworld extends JFrame {
 		ArrayList<ArrayList<Field>> liste = new ArrayList<ArrayList<Field>>();
 
 		Controller tester = new Controller();
-		// UnderworldFieldstest = tester.create();
-
+	
 		for (int i = 0; i < reihen; i++) {
 
 			liste.add(new ArrayList<Field>());
 
 			for (int j = 0; j < spalten; j++) {
-				//
+
 				// int index = tester.getField(UnderworldFieldstest, i, j);
-				//
+
 				// Gebäude geb = UnderworldFieldstest.get(index).getGebäude();
 				// Haus haus = UnderworldFieldstest.get(index).getHaus();
 				// Zaun zz = UnderworldFieldstest.get(index).getZaun();
@@ -212,24 +204,24 @@ public class Overworld extends JFrame {
 								Field buffer = new Field(i,j,"E",(UnderworldE) null);
 								buffer.setBorder(new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
 
-								liste.get(i).add(buffer); // bitte statt null undrworldE der angemeldeten spielers einügen 
-								liste.get(i).get(j).setBild("pictures/village1.png");
+								liste.get(i).add(buffer); // TODO bitte statt null undrworldE der angemeldeten spielers einfuegen 
+								liste.get(i).get(j).setBild("pictures/village3.png");
 								check = true;
 								
 							}else {
 								Field buffer = new Field(i,j,"K",(UnderworldK) null);
 								buffer.setBorder(new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
 								
-								liste.get(i).add(buffer); //statt UnderworldK null bitte die underworld des gegner (anderer spieler einfügen)
+								liste.get(i).add(buffer); // TODO: statt UnderworldK null bitte die underworld des gegner (anderer spieler einfügen)
 								liste.get(i).get(j).setBild("pictures/village2.png");
 								check = true;
 							}
 
 
 						}else { 
-//							Field buffer = new Field(i,j,"E",(UnderworldE) null);
-//							buffer.setBorder(new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
-//							liste.get(i).add(buffer);
+							Field buffer = new Field(i,j,"E",(UnderworldE) null);
+							buffer.setBorder(new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
+							liste.get(i).add(buffer);
 						}
 					}catch(Exception e) {
 						e.printStackTrace();
@@ -237,7 +229,7 @@ public class Overworld extends JFrame {
 				}
 
 				if(check == false) {
-					Field buffer = new Field(i,j,"E",(UnderworldE) null);
+					Field buffer = new Field(i,j,"E",( UnderworldE) null);
 					buffer.setBorder(new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
 
 					liste.get(i).add(buffer);

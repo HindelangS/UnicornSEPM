@@ -91,7 +91,7 @@ public class UnderworldE {
 	}
 
 	private void drawUnderworld() {
-		
+
 	}
 
 	/**
@@ -175,8 +175,8 @@ public class UnderworldE {
 		// 2D ArrayListe die Spalten mit ihren jeweiligen Feldern speichert.
 
 		ArrayList<ArrayList<Field>> liste = new ArrayList<ArrayList<Field>>();
-		
-		
+
+
 		ArrayList<String[]> underworldliste = new ArrayList<String[]>();
 
 		for (String[] s : Overworld.uwliste) {
@@ -189,7 +189,7 @@ public class UnderworldE {
 			System.out.println(
 					"User: " + s[4] + "  X: " + s[0] + "  Y: " + s[1] + "   uwid: " + s[3] + "   geid: " + s[2]);
 		}
-		
+
 
 		Controller tester = new Controller();
 		UnderworldFieldstest = tester.create();
@@ -205,48 +205,78 @@ public class UnderworldE {
 				Haus haus = UnderworldFieldstest.get(index).getHaus();
 				Zaun zz = UnderworldFieldstest.get(index).getZaun();
 
-				
+
 				for (String[] s : underworldliste) {
+					
 					if(Integer.parseInt(s[0]) == j && Integer.parseInt(s[1]) == i) {
+
 						switch(Integer.parseInt(s[2])) {
 						case 1:
-								geb = new GebEnergie1(1);
+							haus = new HausEinheiten1(1);
 							break;
 						case 2:
-								geb = new GebEnergie2(1);	//add more stuff
+							haus = new HausEinheiten2(1);	
+							break;
+
+						case 3:
+							haus = new HausEinheiten3(1);
+							break;
+						case 4:
+							zz = new ZaunEnergie1(1);	
+							break;
+							
+						case 5:
+							zz = new ZaunEnergie2(1);	
+							break;
+							
+						case 6:
+							zz = new ZaunEnergie3(1);
+							break;
+							
+						case 7:
+							geb = new GebEnergie1(1);	
+							break;
+							
+						case 8:
+							geb = new GebEnergie2(1);
+							break;
+							
+						case 9:
+							geb = new GebEnergie3(1);	
 							break;
 						}
+						
 					}
 				}
 
-				
-//				System.out.println("Derzeitig bestetzt durch: " + geb + "," + haus + " I: " + i + " J:" + j);
+
+				//				System.out.println("Derzeitig bestetzt durch: " + geb + "," + haus + " I: " + i + " J:" + j);
 
 				if (geb != null) {
-					System.out.println("Gebaude vorhanden");
+					System.out.println("Gebaude vorhanden" + i +","+j);
 					liste.get(i).add(drawFeld(geb, i, j));
 					panelFelder.add(liste.get(i).get(j));
 				}
 				if (haus != null) {
-					System.out.println("Haus vorhanden");
+					System.out.println("Haus vorhanden"  + i +","+j);
 					liste.get(i).add(drawFeld(haus, i, j));
 					panelFelder.add(liste.get(i).get(j));
 				}
 				if (zz != null) {
-					System.out.println("Zaun vorhanden");
+					System.out.println("Zaun vorhanden" + i +","+j);
 					liste.get(i).add(drawFeld(haus, i, j));
 					panelFelder.add(liste.get(i).get(j));
 				} else {
-					System.out.println("nix auf dem Feld");
+					System.out.println("nix auf dem Feld"  + i +","+j);
 					liste.get(i).add(new Field(i, j, "E", (UnderworldK) null));
 					panelFelder.add(liste.get(i).get(j));
 				}
 
-				System.out.println("--------------------------");
+				//				System.out.println("--------------------------");
 			}
 		}
 
-		System.out.println("X X X X X X " + liste.size() + " X X X X X X ");
+		//		System.out.println("X X X X X X " + liste.size() + " X X X X X X ");
 		panelFelder.repaint();
 
 		panelEast = new JPanel();
@@ -354,7 +384,7 @@ public class UnderworldE {
 		ArrayList<ArrayList<Field>> liste = new ArrayList<ArrayList<Field>>();
 
 		Controller tester = new Controller();
-		
+
 
 		for (int i = 0; i < reihen; i++) {
 
@@ -367,12 +397,12 @@ public class UnderworldE {
 				Gebäude geb = UnderworldFieldstest.get(index).getGebäude();
 				Zaun zaun = UnderworldFieldstest.get(index).getZaun();
 				Haus haus = UnderworldFieldstest.get(index).getHaus();
-				
-				
-				
+
+
+
 
 				//System.out.println(
-					//	"Derzeitige Objekte auf Feld: " + geb + "," + zaun + "," + haus + " I: " + i + " J:" + j);
+				//	"Derzeitige Objekte auf Feld: " + geb + "," + zaun + "," + haus + " I: " + i + " J:" + j);
 
 				if (geb != null) {
 					System.out.println("Quelle vorhanden");
@@ -529,7 +559,6 @@ public class UnderworldE {
 
 			Controller c1 = new Controller();
 			int index = c1.getField(UnderworldFieldstest, lastclicked.getKoordX(), lastclicked.getKoordY());
-
 			UnderworldFieldstest.get(index).deleteField();
 			UnderworldFieldstest.get(index).setBelegt(false);
 			redraw();

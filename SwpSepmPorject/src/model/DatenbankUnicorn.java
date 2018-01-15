@@ -9,6 +9,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
+
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 import control.UnderworldField;
@@ -506,13 +509,25 @@ public class DatenbankUnicorn {
 	public static String fehlercodeAufloesen(int fehlercode) {
 
 		switch(fehlercode) {
-		case 0: return "Kein Fehler aufgetreten";
-		case 1: return "Es konnte keine Verbindung zur Datenbank aufgebaut werden";
-		case 2: return "Es liegen keine Zugriffsrechte fuer die Datenbank vor";
-		case 3: return "Dieser Nickname ist bereits vergeben!";
-		case 4: return "Dieser Nickname ist nicht vorhanden. Moechten Sie sich registrieren?";
-		case 5: return "Das Passwort fuer diesen Nickname ist falsch";
-		default: return "Ein unbekannter Fehler ist aufgetreten";
+		case 0: return "Anmeldung OK, Kein Fehler aufgetreten";
+		case 1: 
+			JOptionPane.showMessageDialog(null, "Fehler: Es konnte keine Verbindung zur Datenbank aufgebaut werden");
+			return "Es konnte keine Verbindung zur Datenbank aufgebaut werden";
+		case 2:
+			JOptionPane.showMessageDialog(null, "Es liegen keine Zugriffsrechte fuer die Datenbank vor");
+			return "Es liegen keine Zugriffsrechte fuer die Datenbank vor";
+		case 3: 
+			JOptionPane.showMessageDialog(null, "Dieser Nickname ist bereits vergeben!");
+			return "Dieser Nickname ist bereits vergeben!";
+		case 4:
+			JOptionPane.showMessageDialog(null, "Dieser Nickname ist nicht vorhanden. Moechten Sie sich registrieren?");
+			return "Dieser Nickname ist nicht vorhanden. Moechten Sie sich registrieren?";
+		case 5: 
+			JOptionPane.showMessageDialog(null, "Das Passwort fuer diesen Nickname ist falsch");
+			return "Das Passwort fuer diesen Nickname ist falsch";
+		default:
+			JOptionPane.showMessageDialog(null, "Ein unbekannter Fehler ist aufgetreten");
+			return "Ein unbekannter Fehler ist aufgetreten";
 		}
 	}
 
@@ -524,9 +539,6 @@ public class DatenbankUnicorn {
 		try {
 			conn = DriverManager.getConnection(DB_URL);
 			pstmt = conn.prepareStatement(SQL);
-
-			//System.out.println("HIIIIIII"); //zur Kontrolle
-
 			pstmt.setString(1, username);
 			pstmt.executeUpdate();
 

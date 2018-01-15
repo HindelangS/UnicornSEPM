@@ -32,7 +32,7 @@ public class Startingpage extends JFrame{
 		setContentPane(new JLabel(img));
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage("pictures/unicorn.png"));
-		setTitle("Cute UnicornWarrior Fight To Death");
+		setTitle("Cute Unicorn Fight To Death");
 		setFont(new Font("Century Schoolbook", Font.ITALIC, 14));
 		setBounds(100, 100, 700, 437);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,7 +52,7 @@ public class Startingpage extends JFrame{
 		getContentPane().add(btnLogin);
 
 		lblStartbild = new JLabel("");
-		lblStartbild.setIcon(new ImageIcon("C:\\Users\\Sara\\Documents\\SWP-SEPM 5 Kl\\UnicornLogo.png"));
+		lblStartbild.setIcon(new ImageIcon("C:\\Users\\Sara\\Documents\\SWP-SEPM 5 Kl\\UnicornLogo.png")); //TODO
 		lblStartbild.setBounds(0, 0, 695, 400);
 		getContentPane().add(lblStartbild);
 

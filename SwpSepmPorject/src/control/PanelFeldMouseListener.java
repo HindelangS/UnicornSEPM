@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JOptionPane;
 import javax.swing.border.MatteBorder;
 
 import view1.Field;
@@ -24,8 +25,7 @@ public class PanelFeldMouseListener extends MouseAdapter {
 
 	public void mouseClicked(MouseEvent arg0) {
 
-		System.out.println("geklickt");
-		System.out.println(pf.getKoordX() + " / " + pf.getKoordY() + " " + pf.getBild());
+		System.out.println("geklickt: "+ pf.getKoordX() + " / " + pf.getKoordY() + " " + pf.getBild());
 		if (Overworld.overworld == false) {
 
 			pf.setBorder(new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
@@ -40,13 +40,13 @@ public class PanelFeldMouseListener extends MouseAdapter {
 			System.out.println(UnderworldE.UnderworldFieldstest.get(index).getGebäude());
 			
 		} else {
-			if(pf.getKoordX() == 0 && pf.getKoordY() == 0) {
+			if(pf.getKoordX() == 0 && pf.getKoordY() == 0) { //TODO fix in DB 0,0 andere user andere felder? 
 				//mein feld
 				Overworld.overworldobj.frame.dispose();
 				Overworld.overworld = false;
 				
 				String user = Overworld.owliste.get(0)[0];
-				System.out.println("Username:" + user);
+				System.out.println("Username: " + user);
 				
 				try {
 					UnderworldE window = new UnderworldE(8, 10);
@@ -61,6 +61,7 @@ public class PanelFeldMouseListener extends MouseAdapter {
 				if (Overworld.overworld == true) {
 					
 					if(pf.getBild().equals("")) {
+						JOptionPane.showMessageDialog(null, "Emty field, please choose a different one");
 						return;
 					}
 					

@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -138,9 +139,11 @@ public class Login extends JFrame{
 		
 			Overworld.overworld = true;
 			try {
+				JOptionPane.showMessageDialog(null, "Choose either your own world to rebuild it, or fight  with your troops");
 				Overworld window = new Overworld(user ,8, 10);
 				window.frame.setVisible(true);
 				Overworld.overworldobj = window;
+				
 			} catch (Exception ee) {
 				ee.printStackTrace();
 			}
@@ -169,7 +172,8 @@ public class Login extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			
-			user=txtName.getText();
+			user = txtName.getText();
+			
 			int fehlercode;
 			try {
 				if((fehlercode = DatenbankUnicorn.spielerEinloggen(user, String.valueOf(txtPwd.getPassword()))) == 0) {
@@ -194,9 +198,20 @@ public class Login extends JFrame{
 	}
 	
 	public static String getUser() {
-		System.out.println("User in get: "+ user);
+//		System.out.println("User in get: "+ user);
 		return user;
 	}
+	
+	public static String getLevel() {
+//		System.out.println("User in get: "+ user);
+		return user; //TODO from DB
+	}
+	
+	public static String getMoney() {
+//		System.out.println("User in get: "+ user);
+		return user; //TODO from DB
+	}
+	
 
 	public JTextField getTxtName() {
 		return txtName;
