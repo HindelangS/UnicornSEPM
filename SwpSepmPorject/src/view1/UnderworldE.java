@@ -209,7 +209,7 @@ public class UnderworldE {
 				for (String[] s : underworldliste) {
 					
 					if(Integer.parseInt(s[0]) == j && Integer.parseInt(s[1]) == i) {
-
+//
 						switch(Integer.parseInt(s[2])) {
 						case 1:
 							haus = new HausEinheiten1(1);
