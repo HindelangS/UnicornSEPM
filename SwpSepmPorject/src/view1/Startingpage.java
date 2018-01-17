@@ -26,8 +26,8 @@ public class Startingpage extends JFrame{
 
 	
 		ImageIcon img = new ImageIcon(UnderworldE.class.getResource("/pictures/UnicornStart.png"));
-		Image im = img.getImage().getScaledInstance(1920, 1080, Image.SCALE_FAST);
-		img = new ImageIcon(im);
+//		Image im = img.getImage().getScaledInstance(1920, 1080, Image.SCALE_FAST);
+//		img = new ImageIcon(im);
 		
 		setContentPane(new JLabel(img));
 		
@@ -52,7 +52,7 @@ public class Startingpage extends JFrame{
 		getContentPane().add(btnLogin);
 
 		lblStartbild = new JLabel("");
-		lblStartbild.setIcon(new ImageIcon("C:\\Users\\Sara\\Documents\\SWP-SEPM 5 Kl\\UnicornLogo.png")); //TODO
+		lblStartbild.setIcon(new ImageIcon("pictures/lOGO.PNG"));
 		lblStartbild.setBounds(0, 0, 695, 400);
 		getContentPane().add(lblStartbild);
 

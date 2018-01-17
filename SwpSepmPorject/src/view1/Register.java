@@ -26,6 +26,8 @@ import java.util.ArrayList;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
@@ -57,7 +59,7 @@ public class Register extends JFrame {
 	/**
 	 * Wie lange das Passwort mindestens sein muss
 	 */
-	private final int pwMinLaenge = 8;
+	private final int pwMinLaenge = 3;
 
 	/**
 	 * Launch the application.
@@ -189,6 +191,7 @@ public class Register extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
+			username=textField.getText();
 			// Error-Text resetten
 			lblError.setText("");
 
@@ -201,10 +204,13 @@ public class Register extends JFrame {
 					int fehlercode;
 					if((fehlercode = DatenbankUnicorn.spielerRegistrieren(textField.getText(), String.valueOf(passwordField_1.getPassword()))) == 0) {
 						// erfolgreich
-
+						DatenbankUnicorn.UWSPielerzuteilen(username);
+						
+//						login.anmelden();
 						// Falls Registrierungsfenster durch Login Fenster aufgerufen wurde, dort auch anmelden TODO
 						if(login != null) {
-//							login.anmelden();
+							System.out.println("ok cool");
+							login.anmelden();
 						}
 						dispose();
 					}
@@ -215,13 +221,18 @@ public class Register extends JFrame {
 				}
 				else {
 					// Passwoerter stimmen nicht ueberein
-					lblError.setText("Die beiden Passwoerter stimmen nicht ueberein!");
+					//JOptionPane.showMessageDialog(null, "The passwords do not match!");
+					lblError.setText("The passwords do not match!");
 				}
 			}
 			else {
 				// PW nicht lang genug
-				lblError.setText("Das Passwort muss mindestens 8 Zeichen lang sein!");
-			}	
+				//JOptionPane.showMessageDialog(null, "The passwords must have at least 8 characters");
+				lblError.setText("The passwords must have at least 8 characters!");
+			}
+			
+			
+			
 		}
 
 	}

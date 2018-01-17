@@ -61,7 +61,7 @@ public class PanelFeldMouseListener extends MouseAdapter {
 				if (Overworld.overworld == true) {
 					
 					if(pf.getBild().equals("")) {
-						JOptionPane.showMessageDialog(null, "Emty field, please choose a different one");
+						JOptionPane.showMessageDialog(null, "Empty field, please choose a different one");
 						return;
 					}
 					

@@ -26,6 +26,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import control.*;
+import model.DatenbankUnicorn;
 
 public class UnderworldE {
 
@@ -63,6 +64,9 @@ public class UnderworldE {
 	private static int spalten = 10;
 	private static int reihen = 8;
 	private static String username = Login.getUser();
+	
+	
+	String[] daten=DatenbankUnicorn.SpielerSachen(username);
 
 	/**
 	 * Launch the application.
@@ -127,11 +131,11 @@ public class UnderworldE {
 		lblWelt.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		panelStatus.add(lblWelt, "cell 0 0,alignx left,aligny top");
 
-		lblLevel = new JLabel("Level: ");
+		lblLevel = new JLabel("Level: "+ daten[2]);
 		lblLevel.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		panelStatus.add(lblLevel, "cell 1 0,alignx left,aligny top");
 
-		lblGeld = new JLabel("Money: ");
+		lblGeld = new JLabel("Money: "+daten[0]);
 		lblGeld.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		panelStatus.add(lblGeld, "cell 2 0,alignx left,aligny top");
 
@@ -156,9 +160,13 @@ public class UnderworldE {
 				UnderworldE.underworlde.frame.dispose();
 				Overworld.overworld = true;
 				try {
+					//TODO in DB speichern
+					DatenbankUnicorn.writeFeldUW(username,UnderworldFieldstest);
+					
 					Overworld window = new Overworld(username, reihen, spalten);
 					window.frame.setVisible(true);
 					Overworld.overworldobj = window;
+					
 				} catch (Exception ee) {
 					ee.printStackTrace();
 				}
@@ -178,10 +186,14 @@ public class UnderworldE {
 
 
 		ArrayList<String[]> underworldliste = new ArrayList<String[]>();
+		
 
 		for (String[] s : Overworld.uwliste) {
+			
+			System.out.println("Bitch"+s[4]+" "+Login.getUser());
 			if (s[4].equalsIgnoreCase(Login.getUser())) {
 				underworldliste.add(s);
+				System.out.print("nices");
 			}
 		}
 
@@ -221,27 +233,27 @@ public class UnderworldE {
 						case 3:
 							haus = new HausEinheiten3(1);
 							break;
-						case 4:
+						case 7:
 							zz = new ZaunEnergie1(1);	
 							break;
 							
-						case 5:
+						case 8:
 							zz = new ZaunEnergie2(1);	
 							break;
 							
-						case 6:
+						case 9:
 							zz = new ZaunEnergie3(1);
 							break;
 							
-						case 7:
+						case 4:
 							geb = new GebEnergie1(1);	
 							break;
 							
-						case 8:
+						case 5:
 							geb = new GebEnergie2(1);
 							break;
 							
-						case 9:
+						case 6:
 							geb = new GebEnergie3(1);	
 							break;
 						}
@@ -264,11 +276,11 @@ public class UnderworldE {
 				}
 				if (zz != null) {
 					System.out.println("Zaun vorhanden" + i +","+j);
-					liste.get(i).add(drawFeld(haus, i, j));
+					liste.get(i).add(drawFeld(zz, i, j));
 					panelFelder.add(liste.get(i).get(j));
 				} else {
 					System.out.println("nix auf dem Feld"  + i +","+j);
-					liste.get(i).add(new Field(i, j, "E", (UnderworldK) null));
+					liste.get(i).add(new Field(i, j, "E", (UnderworldE) null));
 					panelFelder.add(liste.get(i).get(j));
 				}
 
@@ -426,7 +438,7 @@ public class UnderworldE {
 				}
 				if (geb == null && zaun == null && haus == null) {
 					System.out.println("Feld leer");
-					liste.get(i).add(new Field(i, j, "E", (UnderworldK) null));
+					liste.get(i).add(new Field(i, j, "E", (UnderworldE) null));
 					panelFelder.add(liste.get(i).get(j));
 				}
 			}
@@ -576,7 +588,7 @@ public class UnderworldE {
 
 	public static Field drawFeld(Gebäude geb, int x, int y) {
 
-		Field buffer = new Field(x, y, "E", (UnderworldK) null);
+		Field buffer = new Field(x, y, "E", (UnderworldE) null);
 		String gebtyp = geb.getClass().getName();
 
 		switch (gebtyp) {
@@ -607,7 +619,7 @@ public class UnderworldE {
 
 	public static Field drawFeld(Haus haus, int x, int y) {
 
-		Field buffer = new Field(x, y, "E", (UnderworldK) null);
+		Field buffer = new Field(x, y, "E", (UnderworldE) null);
 		String haustyp = haus.getClass().getName();
 
 		switch (haustyp) {
@@ -638,7 +650,7 @@ public class UnderworldE {
 
 	public static Field drawFeld(Zaun z, int x, int y) {
 		System.out.println("DRAW Zaun");
-		Field buffer = new Field(x, y, "E", (UnderworldK) null);
+		Field buffer = new Field(x, y, "E", (UnderworldE) null);
 		String zauntyp = z.getClass().getName();
 
 		switch (zauntyp) {

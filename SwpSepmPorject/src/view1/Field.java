@@ -42,7 +42,7 @@ public class Field extends JPanel {
 		setOpaque(false);
 		setBackground(new Color((int) (Math.random() * 255), (int) (Math.random() * 255), (int) (Math.random() * 255)));
 		if (Art == "K") {
-			addMouseListener(new PanelFeldMouseListenerK(this, underw));
+			addMouseListener(new PanelFeldMouseListenerK(this));
 
 		}
 //		if (Art == "E") {
@@ -67,6 +67,28 @@ public class Field extends JPanel {
 		}
 
 	}
+	
+	public Field(int y, int x, String Art, String user) {
+
+		this.x = x;
+		this.y = y;
+		setLayout(new BorderLayout());
+		lblId = new JLabel("|" + x + " / " + y + "|");
+		lblId.setFont(new Font("Century Schoolbook", Font.PLAIN, 10));
+		// add(lblId);
+		setOpaque(false);
+		setBackground(new Color((int) (Math.random() * 255), (int) (Math.random() * 255), (int) (Math.random() * 255)));
+
+		if (Art == "E") {
+			addMouseListener(new PanelFeldMouseListener(this));
+		}
+		if (Art == "K") {
+			addMouseListener(new PanelFeldMouseListenerK(this)); 
+
+		}
+
+	}
+	
 
 	public Field(int y, int x, Overworld uw) {
 		// TODO Auto-generated constructor stub

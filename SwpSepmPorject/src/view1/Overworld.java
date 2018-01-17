@@ -80,8 +80,8 @@ public class Overworld extends JFrame {
 		username = user; 
 		reihen = this.reihen; 
 		spalten = this.spalten; 
-		owliste = DatenbankUnicorn.OverworldinDB();
-		uwliste = DatenbankUnicorn.UnderworldinDB();
+		owliste = DatenbankUnicorn.OverworldausDB();
+		uwliste = DatenbankUnicorn.UnderworldausDB();
 		initialize();
 	}
 
@@ -90,21 +90,21 @@ public class Overworld extends JFrame {
 	 */
 	private void initialize() {
 		
-		int count = 0;
-		for (String[] s : owliste) {
-			if(s[0].equalsIgnoreCase(user)) {
-				String[] ss = owliste.get(0);
-				String buf = s[0];
-				s[0] = ss[0]; //namen tauschen (user auf 0/0)
-				ss[0] = buf;
-
-				owliste.set(0, ss);
-				owliste.set(count, s);
-				break;
-			}
-			count ++;
-			System.out.println("Count in Overworld: "+ count);
-		}
+//		int count = 0;
+//		for (String[] s : owliste) {
+//			if(s[0].equalsIgnoreCase(user)) {
+//				String[] ss = owliste.get(0);
+//				String buf = s[0];
+//				s[0] = ss[0]; //namen tauschen (user auf 0/0)
+//				ss[0] = buf;
+//
+//				owliste.set(0, ss);
+//				owliste.set(count, s);
+//				break;
+//			}
+//			count ++;
+//			System.out.println("Count in Overworld: "+ count);
+//		}
 		
 		frame = new JFrame();
 		ImageIcon img = new ImageIcon(Overworld.class.getResource("/pictures/rosa.jpg"));
@@ -131,13 +131,13 @@ public class Overworld extends JFrame {
 		lblWelt.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		panelStatus.add(lblWelt, "cell 0 0,alignx left,aligny center");
 
-		lblLevel = new JLabel("\t Level: "+ Login.getLevel()+" \t" );
-		lblLevel.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
-		panelStatus.add(lblLevel, "cell 1 0,alignx left,aligny center");
-
-		lblGeld = new JLabel("\t Money: "+ Login.getMoney()+" \t" );
-		lblGeld.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
-		panelStatus.add(lblGeld, "cell 2 0,alignx left,aligny center");
+//		lblLevel = new JLabel("\t Level: "+ Login.getLevel()+" \t" );
+//		lblLevel.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
+//		panelStatus.add(lblLevel, "cell 1 0,alignx left,aligny center");
+//
+//		lblGeld = new JLabel("\t Money: "+ Login.getMoney()+" \t" );
+//		lblGeld.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
+//		panelStatus.add(lblGeld, "cell 2 0,alignx left,aligny center");
 
 		btnQuit = new JButton("quit game");
 		btnQuit.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
@@ -196,12 +196,12 @@ public class Overworld extends JFrame {
 					try {
 						if(Integer.parseInt(s[1]) == j && Integer.parseInt(s[2]) == i){
 							
-							System.out.println("add village: ");
+						
 							
 							if(s[0].equalsIgnoreCase(Login.getUser())) { //bitte auf useramen prüfen von login 
 								
 								
-								Field buffer = new Field(i,j,"E",(UnderworldE) null);
+								Field buffer = new Field(i,j,"E",Login.getUser());
 								buffer.setBorder(new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
 
 								liste.get(i).add(buffer); // TODO bitte statt null undrworldE der angemeldeten spielers einfuegen 
@@ -209,7 +209,10 @@ public class Overworld extends JFrame {
 								check = true;
 								
 							}else {
-								Field buffer = new Field(i,j,"K",(UnderworldK) null);
+								Controller test = new Controller();
+								System.out.println(s[0]+"sdfdsfd");
+								
+								Field buffer = new Field(i,j,"K",s[0]);
 								buffer.setBorder(new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
 								
 								liste.get(i).add(buffer); // TODO: statt UnderworldK null bitte die underworld des gegner (anderer spieler einfügen)
@@ -219,7 +222,7 @@ public class Overworld extends JFrame {
 
 
 						}else { 
-							Field buffer = new Field(i,j,"E",(UnderworldE) null);
+							Field buffer = new Field(i,j,"E", (UnderworldE)null);
 							buffer.setBorder(new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
 							liste.get(i).add(buffer);
 						}

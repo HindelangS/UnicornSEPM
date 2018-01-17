@@ -15,10 +15,10 @@ public class PanelFeldMouseListenerK extends MouseAdapter {
 	UnderworldK under;
 	Field pf;
 
-	public PanelFeldMouseListenerK(Field field, UnderworldK underw) {
+	public PanelFeldMouseListenerK(Field field) {
 
 		pf = field;
-		under = underw;
+//		under = underw;
 
 	}
 
@@ -79,6 +79,7 @@ public class PanelFeldMouseListenerK extends MouseAdapter {
 			int index = c3.getField(UnderworldK.UnderworldFieldstest, pf.getKoordX(), pf.getKoordY());
 			System.out.println(UnderworldK.UnderworldFieldstest.get(index).getEinheit());
 		}
+		
 		UnderworldK.lastclicked = pf;
 		under.redraw();
 
