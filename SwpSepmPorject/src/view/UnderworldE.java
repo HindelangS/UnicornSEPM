@@ -64,8 +64,8 @@ public class UnderworldE {
 	private static int spalten = 10;
 	private static int reihen = 8;
 	private static String username = Login.getUser();
-	
-	
+
+
 	String[] daten=DatenbankUnicorn.SpielerSachen(username);
 
 	/**
@@ -162,11 +162,11 @@ public class UnderworldE {
 				try {
 					//TODO in DB speichern
 					DatenbankUnicorn.writeFeldUW(username,UnderworldFieldstest);
-					
+
 					Overworld window = new Overworld(username, 5, 7);
 					window.frame.setVisible(true);
 					Overworld.overworldobj = window;
-					
+
 				} catch (Exception ee) {
 					ee.printStackTrace();
 				}
@@ -186,10 +186,11 @@ public class UnderworldE {
 
 
 		ArrayList<String[]> underworldliste = new ArrayList<String[]>();
-		
+
 
 		for (String[] s : Overworld.uwliste) {
-			
+			System.out.println("Bitch"+s[4]+" "+Login.getUser());
+
 			System.out.println("nette Person"+s[4]+" "+Login.getUser());
 			if (s[4].equalsIgnoreCase(Login.getUser())) {
 				underworldliste.add(s);
@@ -219,7 +220,7 @@ public class UnderworldE {
 
 
 				for (String[] s : underworldliste) {
-					
+
 					if(Integer.parseInt(s[0]) == j && Integer.parseInt(s[1]) == i) {
 						
 						switch(Integer.parseInt(s[2])) {
@@ -244,38 +245,38 @@ public class UnderworldE {
 							UnderworldFieldstest.get(index).setZaun(zz);
 							UnderworldFieldstest.get(index).setBelegt(true);
 							break;
-							
+
 						case 8:
 							zz = new ZaunEnergie2(1);	
 							UnderworldFieldstest.get(index).setZaun(zz);
 							UnderworldFieldstest.get(index).setBelegt(true);
 							break;
-							
+
 						case 9:
 							zz = new ZaunEnergie3(1);
 							UnderworldFieldstest.get(index).setZaun(zz);
 							UnderworldFieldstest.get(index).setBelegt(true);
 							break;
-							
+
 						case 4:
 							geb = new GebEnergie1(1);
 							UnderworldFieldstest.get(index).setGebäude(geb);
 							UnderworldFieldstest.get(index).setBelegt(true);
 							break;
-							
+
 						case 5:
 							geb = new GebEnergie2(1);
 							UnderworldFieldstest.get(index).setGebäude(geb);
 							UnderworldFieldstest.get(index).setBelegt(true);
 							break;
-							
+
 						case 6:
 							geb = new GebEnergie3(1);
 							UnderworldFieldstest.get(index).setGebäude(geb);
 							UnderworldFieldstest.get(index).setBelegt(true);
 							break;
 						}
-						
+
 					}
 				}
 
@@ -294,16 +295,12 @@ public class UnderworldE {
 					liste.get(i).add(drawFeld(zz, i, j));
 					panelFelder.add(liste.get(i).get(j));
 				} else {
-					System.out.println("nix auf dem Feld"  + i +","+j);
-					liste.get(i).add(new Field(i, j, "E", (UnderworldE) null));
+					liste.get(i).add(new Field(i, j));
 					panelFelder.add(liste.get(i).get(j));
 				}
-
-				//				System.out.println("--------------------------");
 			}
 		}
 
-		//		System.out.println("X X X X X X " + liste.size() + " X X X X X X ");
 		panelFelder.repaint();
 		redraw();
 		panelEast = new JPanel();
@@ -387,8 +384,7 @@ public class UnderworldE {
 
 			if (cbBearbeiten.isSelected()) {
 
-				JOptionPane.showMessageDialog(null,
-						"To add an object to a field, choose first the exact field and afterwards the item");
+				JOptionPane.showMessageDialog(null,"To add an object to a field, choose first the exact field and afterwards the item");
 				frame.getContentPane().add(panelEast, BorderLayout.EAST);
 				panelEast.validate();
 				frame.getContentPane().validate();
@@ -424,9 +420,6 @@ public class UnderworldE {
 				Zaun zaun = UnderworldFieldstest.get(index).getZaun();
 				Haus haus = UnderworldFieldstest.get(index).getHaus();
 				
-				//System.out.println(
-				//	"Derzeitige Objekte auf Feld: " + geb + "," + zaun + "," + haus + " I: " + i + " J:" + j);
-
 				if (geb != null) {
 					System.out.println("Quelle vorhanden");
 					liste.get(i).add(drawFeld(geb, i, j));
@@ -448,7 +441,7 @@ public class UnderworldE {
 
 				}
 				if (geb == null && zaun == null && haus == null) {
-					System.out.println("Feld leer");
+//					System.out.println("Feld leer");
 					liste.get(i).add(new Field(i, j, "E", (UnderworldE) null));
 					panelFelder.add(liste.get(i).get(j));
 				}
