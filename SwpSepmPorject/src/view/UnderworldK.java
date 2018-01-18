@@ -282,12 +282,12 @@ public class UnderworldK {
 					panelFelder.add(liste.get(i).get(j));
 
 				} else {
-					System.out.println("Feld leer");
+//					System.out.println("Feld leer");
 					liste.get(i).add(new Field(i, j, "K", this));
 					panelFelder.add(liste.get(i).get(j));
 				}
 
-				System.out.println("--------------------------");
+//				System.out.println("--------------------------");
 			}
 		}
 
@@ -349,7 +349,7 @@ public class UnderworldK {
 	public void redraw() {
 
 		// panelFelder = new JPanel();
-//		panelFelder.removeAll();
+		panelFelder.removeAll();
 		System.out.println("REDRAW");
 		ArrayList<ArrayList<Field>> liste = new ArrayList<ArrayList<Field>>();
 

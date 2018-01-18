@@ -56,7 +56,7 @@ public class PanelFeldMouseListenerK extends MouseAdapter {
 		System.out.println("geklickt");
 		// System.out.println(pf.getKoordX()+" / "+pf.getKoordY()+" "+pf.getBild());
 		Color farbe = new Color(120, 0, 0);
-		pf.setBorder(new MatteBorder(5, 5, 5, 5, farbe));
+		pf.setBorder(new MatteBorder(2, 2, 2, 2, farbe));
 		if (UnderworldK.lastclicked != null) {
 			UnderworldK.lastclicked.setBorder(null);
 		}

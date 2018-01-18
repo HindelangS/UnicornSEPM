@@ -205,35 +205,24 @@ public class Register extends JFrame {
 					if((fehlercode = DatenbankUnicorn.spielerRegistrieren(textField.getText(), String.valueOf(passwordField_1.getPassword()))) == 0) {
 						// erfolgreich
 						DatenbankUnicorn.UWSPielerzuteilen(username);
-						
-//						login.anmelden();
+
+						login.anmelden();
 						// Falls Registrierungsfenster durch Login Fenster aufgerufen wurde, dort auch anmelden TODO
 						if(login != null) {
-							System.out.println("ok cool");
-							login.anmelden();
+
+							//							login.anmelden();
+
 						}
 						dispose();
 					}
-					else {
-						// Fehlgeschlagen (Grund wurde in Fehlercode definiert)
+					else {					 
 						lblError.setText(DatenbankUnicorn.fehlercodeAufloesen(fehlercode));
 					}
 				}
-				else {
-					// Passwoerter stimmen nicht ueberein
-					//JOptionPane.showMessageDialog(null, "The passwords do not match!");
-					lblError.setText("The passwords do not match!");
-				}
+				else {lblError.setText("The passwords do not match!");				}
 			}
-			else {
-				// PW nicht lang genug
-				//JOptionPane.showMessageDialog(null, "The passwords must have at least 8 characters");
-				lblError.setText("The passwords must have at least 8 characters!");
-			}
-			
-			
-			
+			else lblError.setText("The passwords must have at least 8 characters!");
 		}
-
 	}
+
 }
