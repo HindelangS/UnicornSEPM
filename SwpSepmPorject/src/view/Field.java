@@ -23,10 +23,13 @@ public class Field extends JPanel {
 	public String toString() {
 		return "Field [x=" + x + ", y=" + y + "]";
 	}
-
+public String getUser() {
+	return user;
+}
 	private JLabel lblId; // dient ‹bergangsm‰ﬂig als Hilfe zur Orientierung
 	private final int x;
 	private final int y;
+	private String user;
 
 	BufferedImage bild;
 	URL bildURL;
@@ -72,6 +75,7 @@ public class Field extends JPanel {
 
 		this.x = x;
 		this.y = y;
+		this.user = user;
 		setLayout(new BorderLayout());
 		lblId = new JLabel("|" + x + " / " + y + "|");
 		lblId.setFont(new Font("Century Schoolbook", Font.PLAIN, 10));

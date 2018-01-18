@@ -56,6 +56,7 @@ public class Overworld extends JFrame {
 		this.reihen = reihen; 
 		this.spalten = spalten; 
 		owliste = DatenbankUnicorn.OverworldausDB();
+		
 		uwliste = DatenbankUnicorn.UnderworldausDB();
 		initialize();
 	}
@@ -132,7 +133,7 @@ public class Overworld extends JFrame {
 					
 					try {
 						if(Integer.parseInt(s[1]) == j && Integer.parseInt(s[2]) == i){
-							
+							System.out.println(s[0]+s[1]+s[2]);		
 							if(s[0].equalsIgnoreCase(Login.getUser())) { //bitte auf useramen prüfen von login 
 								
 								
@@ -156,9 +157,9 @@ public class Overworld extends JFrame {
 
 
 						}else { 
-							Field buffer = new Field(i,j,"E", (UnderworldE) null);  //TODO statt underworld e garkein feld? 
-							buffer.setBorder(new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
-							liste.get(i).add(buffer);
+//							Field buffer = new Field(i,j,"E", (UnderworldE) null);  //TODO statt underworld e garkein feld? 
+//							buffer.setBorder(new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
+//							liste.get(i).add(buffer);
 						}
 					}catch(Exception e) {
 						e.printStackTrace();
