@@ -29,6 +29,7 @@ public class DatenbankUnicorn {
 	static ResultSet rs = null;
 
 	static boolean wert=true;
+	static private int anzahl;
 
 	//zum Testen
 	static String username="";
@@ -50,7 +51,6 @@ public class DatenbankUnicorn {
 		liste[2]="4";
 		liste[3]="0";
 
-		OverworldinDBUpdate(3);
 
 		//writeFeldUW();
 
@@ -127,42 +127,39 @@ public class DatenbankUnicorn {
 	}
 
 
-	// TODO
+	public static int AnzahlEinträge(Connection conn)
+	{
+		String SQL="select count(username) from spieler";
+
+		try {
+			conn=DriverManager.getConnection(DB_URL);
+			pstmt=conn.prepareStatement(SQL);
+			rs=pstmt.executeQuery();
+			while(rs.next())
+			{
+				anzahl=rs.getInt(1);
+				System.out.println(anzahl);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return anzahl;
+	}
+
+	
 	public static ArrayList<String[]> OverworldinDBUpdate(int spieleranzahl)
 	{
-
 		int owid=1;
 		ArrayList<String[]> spielfeldOW = new ArrayList<String[]>();
 
-		String sql_OworldinDB="UPDATE overworld set anzahlSpieler =? WHERE owid = ?;";
+		String sql_OworldinDB="UPDATE overworld set anzahlSpieler ='"+spieleranzahl+"' WHERE owid = '1';";
 		try {
 			conn=DriverManager.getConnection(DB_URL);
 			pstmt = conn.prepareStatement(sql_OworldinDB);
-			pstmt.setInt(1, spieleranzahl);
-			pstmt.setInt(2, owid);
 			pstmt.executeUpdate();
 
-			rs=pstmt.executeQuery(sql_OworldinDB);
-
-			System.out.println("Overworld ausgeben:");
-			while(rs.next()){
-
-				String daten[]=new String[3];
-				System.out.print("Gelesen wurde: ");	
-
-				String username = rs.getString("username"); 
-				System.out.println("Username:  "+ username);
-				int xKoord = rs.getInt("xKoordinaten");
-				int yKoord = rs.getInt("yKoordinaten");
-				System.out.println("X:"+ xKoord +" Y: "+ yKoord);
-
-				daten[0] = username;
-				daten[1] = xKoord+""; 
-				daten[2] = yKoord+"";
-
-
-				spielfeldOW.add(daten);
-			}
+	
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -171,8 +168,6 @@ public class DatenbankUnicorn {
 		return spielfeldOW;
 	}
 
-
-	//TODO
 	public static boolean UWSPielerzuteilen(String username)
 	{
 		
@@ -327,20 +322,6 @@ public class DatenbankUnicorn {
 			System.out.println("Underworld ausgeben:");
 			while(rs.next()){
 
-				//				String daten[]=new String[5];
-				//				System.out.print("Gelesen wurde: ");
-				//				for (int i = 0; i < 5; i++) {
-				//					daten[i] = rs.getString(i+1);
-				//					System.out.print(" '" + daten[i] + "'");	//zur Kontrolle
-				//				}
-				//				String daten[]=new String[5];
-				//				System.out.print("Gelesen wurde: ");
-				//				for (int i = 0; i < 10; i++) {
-				//					daten[i] = rs.getString(i+1);
-				//					System.out.print(" '" + daten[i] + "'");	//zur Kontrolle
-				//				}
-				//				spielfeldUW.add(daten);
-
 				int xKoor = rs.getInt("xKoordinaten");
 				int yKoor = rs.getInt("yKoordinaten");
 				int gebid = rs.getInt("gebaeudeid");
@@ -370,49 +351,49 @@ public class DatenbankUnicorn {
 		return spielfeldUW;
 	}
 	
-	public static ArrayList<String[]> UnderworldausDBSpieler()
-	{
-		System.out.println("Test");
-		ArrayList<String[]> spielfeldUW = new ArrayList<String[]>();
-
-		String sql_UworldinDB="Select xKoordinaten, yKoordinaten, gebaeudeid, uwid, username from underworld Join underworldfield using(uwid) JOIN spieler USING(uwid) WHERE username='"+username+"';";
-		try{
-
-			conn=DriverManager.getConnection(DB_URL);
-			pstmt = conn.prepareStatement(sql_UworldinDB);
-			rs=pstmt.executeQuery();
-
-			System.out.println("Underworld ausgeben:");
-			while(rs.next()){
-
-				int xKoor = rs.getInt("xKoordinaten");
-				int yKoor = rs.getInt("yKoordinaten");
-				int gebid = rs.getInt("gebaeudeid");
-				int uwid = rs.getInt("uwid");
-				String user = rs.getString("username");
-
-				String daten[] = new String[5];
-
-
-				//uwlist!!!!
-				daten[0] = xKoor + "";
-				daten[1] = yKoor + "";
-				daten[2] = gebid + "";//welches haus	
-				daten[3] = uwid + ""; //welche unterwelt !!! deine fremde1 fremde2 usw.. .......
-				daten[4] = user;
-				
-				spielfeldUW.add(daten);
-
-			}
-
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		//return null;
-
-		return spielfeldUW;
-	}
+//	public static ArrayList<String[]> UnderworldausDBSpieler()
+//	{
+//		System.out.println("Test");
+//		ArrayList<String[]> spielfeldUW = new ArrayList<String[]>();
+//
+//		String sql_UworldinDB="Select xKoordinaten, yKoordinaten, gebaeudeid, uwid, username from underworld Join underworldfield using(uwid) JOIN spieler USING(uwid) WHERE username='"+username+"';";
+//		try{
+//
+//			conn=DriverManager.getConnection(DB_URL);
+//			pstmt = conn.prepareStatement(sql_UworldinDB);
+//			rs=pstmt.executeQuery();
+//
+//			System.out.println("Underworld ausgeben:");
+//			while(rs.next()){
+//
+//				int xKoor = rs.getInt("xKoordinaten");
+//				int yKoor = rs.getInt("yKoordinaten");
+//				int gebid = rs.getInt("gebaeudeid");
+//				int uwid = rs.getInt("uwid");
+//				String user = rs.getString("username");
+//
+//				String daten[] = new String[5];
+//
+//
+//				//uwlist!!!!
+//				daten[0] = xKoor + "";
+//				daten[1] = yKoor + "";
+//				daten[2] = gebid + "";//welches haus	
+//				daten[3] = uwid + ""; //welche unterwelt !!! deine fremde1 fremde2 usw.. .......
+//				daten[4] = user;
+//				
+//				spielfeldUW.add(daten);
+//
+//			}
+//
+//
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		//return null;
+//
+//		return spielfeldUW;
+//	}
 	
 	
 	public static String[] SpielerSachen(String username) {
@@ -675,65 +656,6 @@ public class DatenbankUnicorn {
 			pstmt.executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-			wert=false;
-		}
-
-		return wert;
-
-	}
-	// TODO
-	public static boolean SpielstandspeichernOW(ArrayList<String[]> daten)
-	{
-		String SQL="UPDATE overworldfield set xKoordinaten =?, yKoordinaten= ?, username= ? WHERE owid = ?;";
-
-		try {
-
-			conn = DriverManager.getConnection(DB_URL);
-			pstmt = conn.prepareStatement(SQL);
-
-			for(int i=1;i<=4;i++)
-			{
-				for(int j=1;j<=4;j++)
-				{
-					pstmt.setString(i, daten.get(i)[j]);	
-				}
-			}
-
-			pstmt.executeUpdate();
-
-			System.out.println(wert);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			wert=false;
-		}
-
-		return wert;
-
-	}
-	// TODO
-	public static boolean SpielstandspeichernUW(ArrayList<String[]> daten)
-	{
-		String SQL="UPDATE underworldfield set xKoordinaten =?, yKoordinaten= ?, gebaeudeid= ? WHERE uwid = ?;";
-
-		try {
-
-			conn = DriverManager.getConnection(DB_URL);
-			pstmt = conn.prepareStatement(SQL);
-
-			for(int i=1;i<=4;i++)
-			{
-				for(int j=1;j<=4;j++)
-				{
-					pstmt.setString(i, daten.get(i)[j]);	
-				}
-			}
-
-			pstmt.executeUpdate();
-
-			System.out.println(wert);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			wert=false;
 		}
