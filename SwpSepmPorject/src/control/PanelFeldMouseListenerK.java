@@ -6,9 +6,9 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.border.MatteBorder;
 
-import view1.Field;
-import view1.Overworld;
-import view1.UnderworldK;
+import view.Field;
+import view.Overworld;
+import view.UnderworldK;
 
 public class PanelFeldMouseListenerK extends MouseAdapter {
 

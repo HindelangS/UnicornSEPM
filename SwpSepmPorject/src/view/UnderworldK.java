@@ -1,4 +1,4 @@
-package view1;
+package view;
 
 /***
  * K Wie KÄMPFEN 
@@ -25,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import control.*;
+import model.DatenbankUnicorn;
 
 public class UnderworldK {
 
@@ -42,6 +43,8 @@ public class UnderworldK {
 	private JCheckBox cbBearbeiten;
 	private JPanel phPanel;
 	private JButton btnDelete;
+
+	String[] daten=DatenbankUnicorn.SpielerSachen(username);
 
 	// ArrayList vom Typ UnderworldField um Funktion zu Feld hinzuzufügen mit getX
 	public static ArrayList<UnderworldField> UnderworldFieldstest;
@@ -93,7 +96,7 @@ public class UnderworldK {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(int callonX, int callonY) {
-		
+
 		for (String[] s : Overworld.owliste) {
 			if (s[1].equalsIgnoreCase(callonX + "") && s[2].equalsIgnoreCase(callonY + "")) {
 				username = s[0];
@@ -105,7 +108,7 @@ public class UnderworldK {
 		Image im = img.getImage().getScaledInstance(1920, 1080, Image.SCALE_FAST);
 		img = new ImageIcon(im);
 		frame.setContentPane(new JLabel(img));
-		frame.setTitle("Cute UnicornWarrior Fight to Death");
+		frame.setTitle("Cute Unicorn Fight to Death");
 		frame.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(UnderworldK.class.getResource("/pictures/unicorn.PNG")));
 		frame.setBounds(100, 100, 800, 600);
@@ -127,11 +130,11 @@ public class UnderworldK {
 		lblWelt.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		panelStatus.add(lblWelt, "cell 0 0,alignx left,aligny top");
 
-		lblLevel = new JLabel("Level: ");
+		lblLevel = new JLabel("Level: "+ daten[2]);
 		lblLevel.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		panelStatus.add(lblLevel, "cell 1 0,alignx left,aligny top");
 
-		lblGeld = new JLabel("Money: ");
+		lblGeld = new JLabel("Money: "+ daten[0]);
 		lblGeld.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		panelStatus.add(lblGeld, "cell 2 0,alignx left,aligny top");
 
@@ -139,7 +142,7 @@ public class UnderworldK {
 		phPanel.setOpaque(false);
 		panelStatus.add(phPanel, "cell 3 0,growx");
 
-		cbBearbeiten = new JCheckBox("edit");
+		cbBearbeiten = new JCheckBox("figth");
 		cbBearbeiten.setToolTipText("show opitons to start the battle");
 		panelStatus.add(cbBearbeiten, "cell 5 0,alignx right,aligny center");
 		cbBearbeiten.setSelected(false);
@@ -154,7 +157,7 @@ public class UnderworldK {
 				UnderworldK.underworldobj.frame.dispose();
 				Overworld.overworld = true;
 				try {
-					Overworld window = new Overworld(username, reihen, spalten);
+					Overworld window = new Overworld(username, 5, 7);
 					window.frame.setVisible(true);
 					Overworld.overworldobj = window;
 				} catch (Exception ee) {
@@ -197,41 +200,64 @@ public class UnderworldK {
 
 		for (int i = 0; i < reihen; i++) {
 
-			// ArrayListe
 			liste.add(new ArrayList<Field>());
 			for (int j = 0; j < spalten; j++) {
-				
-				
-				
+
 				int index = tester.getField(UnderworldFieldstest, i, j);
 
-				// draw your stuff according to the Overworld.uwliste <- liste is created at
-				// DatenbankUnicorne
+				// draw your stuff according to the Overworld.uwliste <- liste is created at TODO
+				// DatenbankUnicorn
 
 				Einheit einheit = null;
 				einheit = UnderworldFieldstest.get(index).getEinheit();
 				Gebäude geb = UnderworldFieldstest.get(index).getGebäude();
-				Zaun zaun = UnderworldFieldstest.get(index).getZaun();
+				Zaun zz = UnderworldFieldstest.get(index).getZaun();
 				Haus haus = UnderworldFieldstest.get(index).getHaus();
 
-			//	System.out.println(
+				//	System.out.println(
 				//		"Derzeitige Objekte auf Feld: " + geb + "," + zaun + "," + haus + " I: " + i + " J:" + j);
-				
+
 
 				for (String[] s : underworldliste) {
 					if(Integer.parseInt(s[0]) == j && Integer.parseInt(s[1]) == i) {
 						switch(Integer.parseInt(s[2])) {
 						case 1:
-								geb = new GebEnergie1(1);
+							haus = new HausEinheiten1(1);
 							break;
 						case 2:
-								geb = new GebEnergie2(1);	//add more stuff
+							haus = new HausEinheiten2(1);	
+							break;
+						case 3:
+							haus = new HausEinheiten3(1);
+							break;
+						case 4:
+							zz = new ZaunEnergie1(1);	
+							break;
+
+						case 5:
+							zz = new ZaunEnergie2(1);	
+							break;
+
+						case 6:
+							zz = new ZaunEnergie3(1);
+							break;
+
+						case 7:
+							geb = new GebEnergie1(1);	
+							break;
+
+						case 8:
+							geb = new GebEnergie2(1);
+							break;
+
+						case 9:
+							geb = new GebEnergie3(1);	
 							break;
 						}
 					}
 				}
 
-				
+
 
 				if (geb != null) {
 					System.out.println("Quelle vorhanden");
@@ -239,9 +265,9 @@ public class UnderworldK {
 					panelFelder.add(liste.get(i).get(j));
 				}
 
-				if (zaun != null) {
+				if (zz != null) {
 					System.out.println("Zaun vorhanden");
-					liste.get(i).add(UnderworldE.drawFeld(zaun, i, j));
+					liste.get(i).add(UnderworldE.drawFeld(zz, i, j));
 					panelFelder.add(liste.get(i).get(j));
 				}
 				if (haus != null) {
@@ -265,28 +291,27 @@ public class UnderworldK {
 			}
 		}
 
-		System.out.println("X X X X X X " + liste.size() + " X X X X X X ");
 		panelFelder.repaint();
 
 		panelEast = new JPanel();
 		panelEast.setLayout(new MigLayout("", "[89px]", "[23px][][][][][][][][][][][]"));
 		panelEast.setOpaque(false);
 
-		btnKaempfer1 = new JButton("Simple UnicornWarrior");
+		btnKaempfer1 = new JButton("Simple Unicorn");
 		btnKaempfer1.addActionListener(new btnU1ActionListener());
 		btnKaempfer1.setToolTipText("Warrior who is strong but very vulnerable");
 		btnKaempfer1.setBackground(new Color(147, 112, 219));
 		btnKaempfer1.setFont(new Font("Century Schoolbook", Font.PLAIN, 12));
 		panelEast.add(btnKaempfer1, "cell 0 4,growx,aligny top");
 
-		btnKaempfer2 = new JButton("UnicornWarrior Warrior");
+		btnKaempfer2 = new JButton("Unicorn Warrior");
 		btnKaempfer2.addActionListener(new btnU2ActionListener());
 		btnKaempfer2.setFont(new Font("Century Schoolbook", Font.PLAIN, 12));
 		btnKaempfer2.setToolTipText("warrior who is neraly indestructibel but not very strong");
 		btnKaempfer2.setBackground(new Color(147, 112, 219));
 		panelEast.add(btnKaempfer2, "cell 0 5,growx");
 
-		btnKaempfer3 = new JButton("Fight UnicornWarrior");
+		btnKaempfer3 = new JButton("Fight Unicorn");
 		btnKaempfer3.setFont(new Font("Century Schoolbook", Font.PLAIN, 12));
 		btnKaempfer3.addActionListener(new btnU3ActionListener());
 		btnKaempfer3.setToolTipText("strong and neraly indestructible warrior");
@@ -308,7 +333,6 @@ public class UnderworldK {
 			if (cbBearbeiten.isSelected()) {
 
 				JOptionPane.showMessageDialog(null, " Klick on a field and then choose a warror to start the fight");
-				System.out.println("ok cool");
 				frame.getContentPane().add(panelEast, BorderLayout.EAST);
 				panelEast.validate();
 				frame.getContentPane().validate();
@@ -325,7 +349,7 @@ public class UnderworldK {
 	public void redraw() {
 
 		// panelFelder = new JPanel();
-		panelFelder.removeAll();
+//		panelFelder.removeAll();
 		System.out.println("REDRAW");
 		ArrayList<ArrayList<Field>> liste = new ArrayList<ArrayList<Field>>();
 

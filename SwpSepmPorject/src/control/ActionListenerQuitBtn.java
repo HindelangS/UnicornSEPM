@@ -3,10 +3,10 @@ package control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import view1.Login;
-import view1.Overworld;
-import view1.Startingpage;
-import view1.UnderworldE;
+import view.Login;
+import view.Overworld;
+import view.Startingpage;
+import view.UnderworldE;
 /**
  * ActionListener der ersten Seite, ruft das Login - Fenster auf 
  */

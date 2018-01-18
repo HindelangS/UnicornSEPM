@@ -3,9 +3,9 @@ package control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import view1.Login;
-import view1.Overworld;
-import view1.Register;
+import view.Login;
+import view.Overworld;
+import view.Register;
 
 public class ActionListernerRegisterBtn implements ActionListener {
 	Login log;

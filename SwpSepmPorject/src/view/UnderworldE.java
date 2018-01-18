@@ -1,4 +1,4 @@
-package view1;
+package view;
 
 /***
  * E Wie ERSTELLEN 
@@ -109,7 +109,7 @@ public class UnderworldE {
 		img = new ImageIcon(im);
 
 		frame.setContentPane(new JLabel(img));
-		frame.setTitle("Cute UnicornWarrior Fight to Death");
+		frame.setTitle("Cute Unicorn Fight to Death");
 		frame.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(UnderworldE.class.getResource("/pictures/unicorn.PNG")));
 		frame.setBounds(100, 100, 800, 600);
@@ -163,7 +163,7 @@ public class UnderworldE {
 					//TODO in DB speichern
 					DatenbankUnicorn.writeFeldUW(username,UnderworldFieldstest);
 					
-					Overworld window = new Overworld(username, reihen, spalten);
+					Overworld window = new Overworld(username, 5, 7);
 					window.frame.setVisible(true);
 					Overworld.overworldobj = window;
 					
@@ -221,7 +221,7 @@ public class UnderworldE {
 				for (String[] s : underworldliste) {
 					
 					if(Integer.parseInt(s[0]) == j && Integer.parseInt(s[1]) == i) {
-//
+
 						switch(Integer.parseInt(s[2])) {
 						case 1:
 							haus = new HausEinheiten1(1);
@@ -260,9 +260,6 @@ public class UnderworldE {
 						
 					}
 				}
-
-
-				//				System.out.println("Derzeitig bestetzt durch: " + geb + "," + haus + " I: " + i + " J:" + j);
 
 				if (geb != null) {
 					System.out.println("Gebaude vorhanden" + i +","+j);
@@ -374,7 +371,6 @@ public class UnderworldE {
 
 				JOptionPane.showMessageDialog(null,
 						"To add an object to a field, choose first the exact field and afterwards the item");
-				System.out.println("ok cool");
 				frame.getContentPane().add(panelEast, BorderLayout.EAST);
 				panelEast.validate();
 				frame.getContentPane().validate();
@@ -409,10 +405,7 @@ public class UnderworldE {
 				Gebäude geb = UnderworldFieldstest.get(index).getGebäude();
 				Zaun zaun = UnderworldFieldstest.get(index).getZaun();
 				Haus haus = UnderworldFieldstest.get(index).getHaus();
-
-
-
-
+				
 				//System.out.println(
 				//	"Derzeitige Objekte auf Feld: " + geb + "," + zaun + "," + haus + " I: " + i + " J:" + j);
 

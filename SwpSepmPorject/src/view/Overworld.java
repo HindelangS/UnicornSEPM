@@ -1,8 +1,7 @@
-package view1;
+package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -13,11 +12,6 @@ import javax.swing.border.MatteBorder;
 
 import control.ActionListenerQuitBtn;
 import control.Controller;
-import control.Gebäude;
-import control.Haus;
-import control.HausEinheiten1;
-import control.UnderworldField;
-import control.Zaun;
 import model.DatenbankUnicorn;
 
 import javax.swing.ImageIcon;
@@ -54,32 +48,13 @@ public class Overworld extends JFrame {
 	private static int reihen = 5;
 	private static String user= "";
 
-	// public static ArrayList <OverworldField> OverworldFieldtest;
-
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					Overworld window = new Overworld(user, reihen, spalten);
-//					window.frame.setVisible(true);
-//					overworldobj = window;
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
 	/**
 	 * Create the application.
 	 */
 	public Overworld(String username, int reihen, int spalten) { // user mitgeben? 
-		username = user; 
-		reihen = this.reihen; 
-		spalten = this.spalten; 
+		user = username; 
+		this.reihen = reihen; 
+		this.spalten = spalten; 
 		owliste = DatenbankUnicorn.OverworldausDB();
 		uwliste = DatenbankUnicorn.UnderworldausDB();
 		initialize();
@@ -131,14 +106,6 @@ public class Overworld extends JFrame {
 		lblWelt.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		panelStatus.add(lblWelt, "cell 0 0,alignx left,aligny center");
 
-//		lblLevel = new JLabel("\t Level: "+ Login.getLevel()+" \t" );
-//		lblLevel.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
-//		panelStatus.add(lblLevel, "cell 1 0,alignx left,aligny center");
-//
-//		lblGeld = new JLabel("\t Money: "+ Login.getMoney()+" \t" );
-//		lblGeld.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
-//		panelStatus.add(lblGeld, "cell 2 0,alignx left,aligny center");
-
 		btnQuit = new JButton("quit game");
 		btnQuit.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		btnQuit.addActionListener(new ActionListenerQuitBtn(ow));
@@ -149,7 +116,7 @@ public class Overworld extends JFrame {
 		panel.setLayout(new GridLayout(reihen, spalten));
 		frame.getContentPane().add(panel, "cell 0 1,grow");
 
-		ArrayList<ArrayList<Field>> liste = new ArrayList<ArrayList<Field>>();
+		ArrayList<ArrayList<Field>> liste = new ArrayList<ArrayList<Field>>(); //TODO is des nit sowas wie die owliste?
 
 		Controller tester = new Controller();
 	
@@ -159,36 +126,6 @@ public class Overworld extends JFrame {
 
 			for (int j = 0; j < spalten; j++) {
 
-				// int index = tester.getField(UnderworldFieldstest, i, j);
-
-				// Gebäude geb = UnderworldFieldstest.get(index).getGebäude();
-				// Haus haus = UnderworldFieldstest.get(index).getHaus();
-				// Zaun zz = UnderworldFieldstest.get(index).getZaun();
-				//
-				// System.out.println("Feld +" I: "+i+" J:"+j" derzeitig bestetzt durch:
-				// "+geb+","+ haus");
-				//
-				// if(geb != null){
-				// System.out.println("Gebaude vorhanden");
-				// liste.get(i).add(drawFeld(geb, i, j));
-				// panel.add(liste.get(i).get(j));
-				// }
-				// if(haus != null){
-				// System.out.println("Haus vorhanden");
-				// liste.get(i).add(drawFeld(haus, i, j));
-				// panel.add(liste.get(i).get(j));
-				// }
-				// if(zz != null){
-				// System.out.println("Zaun vorhanden");
-				// liste.get(i).add(drawFeld(haus, i, j));
-				
-				// panel.add(liste.get(i).get(j));
-				// }
-				// else{
-				// System.out.println("nix auf dem Feld");
-
-				
-				//Feld ist besetzt
 				boolean check = false;
 
 				for (String[] s : owliste) {
@@ -196,33 +133,30 @@ public class Overworld extends JFrame {
 					try {
 						if(Integer.parseInt(s[1]) == j && Integer.parseInt(s[2]) == i){
 							
-						
-							
 							if(s[0].equalsIgnoreCase(Login.getUser())) { //bitte auf useramen prüfen von login 
 								
 								
-								Field buffer = new Field(i,j,"E",Login.getUser());
+								Field buffer = new Field(i,j,"E",s[0]);
 								buffer.setBorder(new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
-
-								liste.get(i).add(buffer); // TODO bitte statt null undrworldE der angemeldeten spielers einfuegen 
+								liste.get(i).add(buffer);
 								liste.get(i).get(j).setBild("pictures/village3.png");
 								check = true;
 								
-							}else {
+							}else { 
 								Controller test = new Controller();
-								System.out.println(s[0]+"sdfdsfd");
+								System.out.println(s[0]+" - Feld fremder User");
 								
 								Field buffer = new Field(i,j,"K",s[0]);
 								buffer.setBorder(new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
 								
 								liste.get(i).add(buffer); // TODO: statt UnderworldK null bitte die underworld des gegner (anderer spieler einfügen)
-								liste.get(i).get(j).setBild("pictures/village2.png");
+								liste.get(i).get(j).setBild("pictures/village1.png");
 								check = true;
 							}
 
 
 						}else { 
-							Field buffer = new Field(i,j,"E", (UnderworldE)null);
+							Field buffer = new Field(i,j,"E", (UnderworldE) null);  //TODO statt underworld e garkein feld? 
 							buffer.setBorder(new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
 							liste.get(i).add(buffer);
 						}
@@ -232,20 +166,20 @@ public class Overworld extends JFrame {
 				}
 
 				if(check == false) {
-					Field buffer = new Field(i,j,"E",( UnderworldE) null);
+					
+					Field buffer = new Field(i,j,"E", (UnderworldE) null); //TODO statt underworld e garkein feld? 
 					buffer.setBorder(new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
-
 					liste.get(i).add(buffer);
+					
 				}
 				panel.add(liste.get(i).get(j));
-				panel.repaint();
-				panel.validate();
+
 			}
 		}
 
 
 		panel.repaint();
-//		anmelden(false);
+		panel.validate();
 
 	}
 

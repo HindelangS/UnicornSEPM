@@ -1,4 +1,4 @@
-package view1;
+package view;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -83,7 +83,7 @@ public class Login extends JFrame{
 
 		txtPwd = new JPasswordField();
 		txtPwd.setHorizontalAlignment(SwingConstants.CENTER);
-		txtPwd.setText("*****");
+		txtPwd.setText("101");
 		txtPwd.setBounds(268, 262, 117, 21);
 		getContentPane().add(txtPwd);
 		txtPwd.setColumns(10);
@@ -140,7 +140,7 @@ public class Login extends JFrame{
 			Overworld.overworld = true;
 			try {
 				JOptionPane.showMessageDialog(null, "Choose either your own world to rebuild it, or fight  with your troops");
-				Overworld window = new Overworld(user ,8, 10);
+				Overworld window = new Overworld(user ,5, 7);
 				window.frame.setVisible(true);
 				Overworld.overworldobj = window;
 				
@@ -151,21 +151,6 @@ public class Login extends JFrame{
 //		}
 		dispose();
 	}
-	
-	
-
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					Login frame = new Login();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 	
 	private class btnLogInActionListener implements ActionListener {
 

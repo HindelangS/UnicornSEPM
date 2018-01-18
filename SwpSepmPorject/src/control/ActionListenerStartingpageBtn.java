@@ -3,8 +3,8 @@ package control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import view1.Login;
-import view1.Startingpage;
+import view.Login;
+import view.Startingpage;
 /**
  * ActionListener der ersten Seite, ruft das Login - Fenster auf 
  */

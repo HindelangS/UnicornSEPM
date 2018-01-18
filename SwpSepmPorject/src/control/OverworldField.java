@@ -1,7 +1,7 @@
 package control;
 
-import view1.UnderworldE;
-import view1.UnderworldK;
+import view.UnderworldE;
+import view.UnderworldK;
 
 public class OverworldField{
 

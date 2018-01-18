@@ -1,4 +1,4 @@
-package view1;
+package view;
 import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;

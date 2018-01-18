@@ -1,4 +1,4 @@
-package view1;
+package view;
 
 import java.awt.EventQueue;
 import java.awt.FocusTraversalPolicy;
