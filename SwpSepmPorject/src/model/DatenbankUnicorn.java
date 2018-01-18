@@ -517,7 +517,13 @@ public class DatenbankUnicorn {
 						gid=5;
 						break;
 					
-					}case "control.HausEinheiten1":{
+					}
+					case "control.GebEnergie3":{
+						gid=6;
+						break;
+					
+					}
+					case "control.HausEinheiten1":{
 						gid=1;
 						break;
 					}case "control.HausEinheiten2":{
@@ -764,7 +770,7 @@ public class DatenbankUnicorn {
 			//			stm.setInt(3,uwid );
 			stm.setInt(3,0);
 			stm.setInt(4,1);
-			stm.setInt(5,0);
+			stm.setInt(5,500);
 			stm.execute();
 
 			// TODO Hier das objektorientierte Spieler-Objekt veraendern
