@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.border.MatteBorder;
 
 import view.Field;
+import view.Login;
 import view.Overworld;
 import view.UnderworldE;
 import view.UnderworldK;
@@ -40,7 +41,9 @@ public class PanelFeldMouseListener extends MouseAdapter {
 			System.out.println(UnderworldE.UnderworldFieldstest.get(index).getGebäude());
 			
 		} else {
-			if(pf.getKoordX() == 0 && pf.getKoordY() == 0) { //TODO fix in DB 0,0 andere user andere felder? 
+		System.out.println("user: "+	Login.getUser()+ pf.getUser());
+			
+			if(pf.getUser().equalsIgnoreCase(Login.getUser())){ //TODO fix in DB 0,0 andere user andere felder? 
 				//mein feld
 				Overworld.overworldobj.frame.dispose();
 				Overworld.overworld = false;
