@@ -312,10 +312,9 @@ public class DatenbankUnicorn {
 	}
 
 
-	// TODO Fehlermeldung: Column 'username' in field list is ambiguous
 	public static ArrayList<String[]> UnderworldausDB()
 	{
-		System.out.println("Test");
+
 		ArrayList<String[]> spielfeldUW = new ArrayList<String[]>();
 
 		String sql_UworldinDB="Select xKoordinaten, yKoordinaten, gebaeudeid, uwid, username from underworld Join underworldfield using(uwid) JOIN spieler USING(uwid)";

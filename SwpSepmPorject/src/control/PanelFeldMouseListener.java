@@ -26,7 +26,7 @@ public class PanelFeldMouseListener extends MouseAdapter {
 
 	public void mouseClicked(MouseEvent arg0) {
 
-		System.out.println("geklickt: "+ pf.getKoordX() + " / " + pf.getKoordY() + " " + pf.getBild());
+		System.out.println("geklickt: "+ pf.getKoordX() + " / " + pf.getKoordY());
 		if (Overworld.overworld == false) {
 
 			pf.setBorder(new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
