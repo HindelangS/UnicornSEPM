@@ -48,7 +48,6 @@ public class Login extends JFrame{
 	}
 	
 	private void initialize() {
-
 		
 		ImageIcon img = new ImageIcon(UnderworldE.class.getResource("/pictures/Login.png"));
 		Image im = img.getImage().getScaledInstance(1920, 1080, Image.SCALE_FAST);
@@ -130,13 +129,6 @@ public class Login extends JFrame{
 
 	public void anmelden() {
 
-//		if(ow != null) {
-			// TODO: Mit Spieler Objekt verknuepfen
-//			ow.anmelden(true);
-			System.out.println("anmelden wird ausgeführt als: "+user);
-//			aus main von OVerworld 
-			
-		
 			Overworld.overworld = true;
 			try {
 				JOptionPane.showMessageDialog(null, "Choose either your own world to rebuild it, or fight  with your troops");
@@ -147,8 +139,7 @@ public class Login extends JFrame{
 			} catch (Exception ee) {
 				ee.printStackTrace();
 			}
-			
-//		}
+		
 		dispose();
 	}
 	
@@ -162,13 +153,10 @@ public class Login extends JFrame{
 			int fehlercode;
 			try {
 				if((fehlercode = DatenbankUnicorn.spielerEinloggen(user, String.valueOf(txtPwd.getPassword()))) == 0) {
-					// erfolreich
 					anmelden();
 					
 				}
 				else {
-					// Fehlernachricht anzeigen
-					//lblError.setText(DatenbankUnicorn.fehlercodeAufloesen(fehlercode));
 					System.out.println(DatenbankUnicorn.fehlercodeAufloesen(fehlercode));
 				}
 			} catch (InstantiationException e) {
@@ -183,21 +171,8 @@ public class Login extends JFrame{
 	}
 	
 	public static String getUser() {
-//		System.out.println("User in get: "+ user);
 		return user;
 	}
-	
-	public static String getLevel() {
-//		System.out.println("User in get: "+ user);
-		return user; //TODO from DB
-	}
-	
-	public static String getMoney() {
-//		System.out.println("User in get: "+ user);
-		return user; //TODO from DB
-	}
-	
-
 	public JTextField getTxtName() {
 		return txtName;
 	}

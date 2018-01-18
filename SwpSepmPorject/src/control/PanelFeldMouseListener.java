@@ -41,9 +41,9 @@ public class PanelFeldMouseListener extends MouseAdapter {
 			System.out.println(UnderworldE.UnderworldFieldstest.get(index).getGebäude());
 			
 		} else {
-		System.out.println("user: "+	Login.getUser()+ pf.getUser());
+		System.out.println("user: "+	Login.getUser() +"  "+ pf.getUser());
 			
-			if(pf.getUser().equalsIgnoreCase(Login.getUser())){ //TODO fix in DB 0,0 andere user andere felder? 
+			if(pf.getUser().equalsIgnoreCase(Login.getUser())){
 				//mein feld
 				Overworld.overworldobj.frame.dispose();
 				Overworld.overworld = false;
@@ -63,7 +63,9 @@ public class PanelFeldMouseListener extends MouseAdapter {
 				//gegner
 				if (Overworld.overworld == true) {
 					
-					if(pf.getBild().equals("")) {
+//					if(pf.getBild().equals("")) {
+					if(pf.getUser().equals("")) {
+						System.out.println("leeres Feld");
 						JOptionPane.showMessageDialog(null, "Empty field, please choose a different one");
 						return;
 					}
