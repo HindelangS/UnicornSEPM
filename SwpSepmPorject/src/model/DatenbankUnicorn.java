@@ -395,7 +395,11 @@ public class DatenbankUnicorn {
 //		return spielfeldUW;
 //	}
 	
-	
+	/**
+	 * 
+	 * @param username
+	 * @return geld, erfahrung, level
+	 */
 	public static String[] SpielerSachen(String username) {
 
 		String[] SpielStand = new String[3];
@@ -657,6 +661,14 @@ public class DatenbankUnicorn {
 		return 0;
 	}
 
+	/**
+	 * 
+	 * @param username
+	 * @param erfahrungspunkte
+	 * @param geldeinheiten
+	 * @param level
+	 * @return
+	 */
 	public static boolean SpielstandspeichernSpieler(String username, int erfahrungspunkte, int geldeinheiten, int level)
 	{
 

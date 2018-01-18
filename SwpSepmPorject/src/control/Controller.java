@@ -210,8 +210,8 @@ public class Controller {
 
 	}
 	public static void main(String[] args) {
-		
-		
+		GebEnergie3 g3 = new GebEnergie3(1);
+		System.out.println(g3.berechneKosten());
 		System.out.println("Starten");
 		Controller c1 = new Controller();
 		ArrayList <UnderworldField> Underworld2 = c1.create();		
