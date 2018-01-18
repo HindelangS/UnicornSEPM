@@ -102,7 +102,7 @@ public class UnderworldE {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-
+		System.out.println("init");
 		frame = new JFrame();
 		ImageIcon img = new ImageIcon(UnderworldE.class.getResource("/pictures/rosa.jpg"));
 		Image im = img.getImage().getScaledInstance(1920, 1080, Image.SCALE_FAST);
@@ -190,7 +190,7 @@ public class UnderworldE {
 
 		for (String[] s : Overworld.uwliste) {
 			
-			System.out.println("Bitch"+s[4]+" "+Login.getUser());
+			System.out.println("nette Person"+s[4]+" "+Login.getUser());
 			if (s[4].equalsIgnoreCase(Login.getUser())) {
 				underworldliste.add(s);
 				System.out.print("nices");
@@ -211,7 +211,7 @@ public class UnderworldE {
 			liste.add(new ArrayList<Field>());
 			for (int j = 0; j < spalten; j++) {
 
-				int index = tester.getField(UnderworldFieldstest, i, j);
+				int index = tester.getField(UnderworldFieldstest, j, i);
 
 				Gebäude geb = UnderworldFieldstest.get(index).getGebäude();
 				Haus haus = UnderworldFieldstest.get(index).getHaus();
@@ -221,40 +221,58 @@ public class UnderworldE {
 				for (String[] s : underworldliste) {
 					
 					if(Integer.parseInt(s[0]) == j && Integer.parseInt(s[1]) == i) {
-
+						
 						switch(Integer.parseInt(s[2])) {
 						case 1:
 							haus = new HausEinheiten1(1);
+							UnderworldFieldstest.get(index).setHaus(haus);
+							UnderworldFieldstest.get(index).setBelegt(true);
 							break;
 						case 2:
 							haus = new HausEinheiten2(1);	
+							UnderworldFieldstest.get(index).setHaus(haus);
+							UnderworldFieldstest.get(index).setBelegt(true);
 							break;
 
 						case 3:
 							haus = new HausEinheiten3(1);
+							UnderworldFieldstest.get(index).setHaus(haus);
+							UnderworldFieldstest.get(index).setBelegt(true);
 							break;
 						case 7:
-							zz = new ZaunEnergie1(1);	
+							zz = new ZaunEnergie1(1);
+							UnderworldFieldstest.get(index).setZaun(zz);
+							UnderworldFieldstest.get(index).setBelegt(true);
 							break;
 							
 						case 8:
 							zz = new ZaunEnergie2(1);	
+							UnderworldFieldstest.get(index).setZaun(zz);
+							UnderworldFieldstest.get(index).setBelegt(true);
 							break;
 							
 						case 9:
 							zz = new ZaunEnergie3(1);
+							UnderworldFieldstest.get(index).setZaun(zz);
+							UnderworldFieldstest.get(index).setBelegt(true);
 							break;
 							
 						case 4:
-							geb = new GebEnergie1(1);	
+							geb = new GebEnergie1(1);
+							UnderworldFieldstest.get(index).setGebäude(geb);
+							UnderworldFieldstest.get(index).setBelegt(true);
 							break;
 							
 						case 5:
 							geb = new GebEnergie2(1);
+							UnderworldFieldstest.get(index).setGebäude(geb);
+							UnderworldFieldstest.get(index).setBelegt(true);
 							break;
 							
 						case 6:
-							geb = new GebEnergie3(1);	
+							geb = new GebEnergie3(1);
+							UnderworldFieldstest.get(index).setGebäude(geb);
+							UnderworldFieldstest.get(index).setBelegt(true);
 							break;
 						}
 						
@@ -287,7 +305,7 @@ public class UnderworldE {
 
 		//		System.out.println("X X X X X X " + liste.size() + " X X X X X X ");
 		panelFelder.repaint();
-
+		redraw();
 		panelEast = new JPanel();
 		panelEast.setLayout(new MigLayout("", "[89px]", "[23px][][][][][][][][][][][]"));
 		panelEast.setOpaque(false);
@@ -439,7 +457,7 @@ public class UnderworldE {
 
 		frame.getContentPane().repaint();
 		frame.getContentPane().validate();
-
+	
 	}
 
 	private class btnH1ActionListener implements ActionListener {

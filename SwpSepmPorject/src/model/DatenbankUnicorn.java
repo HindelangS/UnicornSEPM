@@ -432,6 +432,17 @@ public class DatenbankUnicorn {
 
 		int uwid=0;
 		
+		String SQLDelete="Delete uw From underworldField uw JOIN Spieler s USING(uwid) WHERE username='"+username+"';";
+		
+		try{
+			conn = DriverManager.getConnection(DB_URL);
+			pstmt = conn.prepareStatement(SQLDelete);
+			pstmt.executeUpdate();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		String SQLinsert="select uwid from underworld JOIN Spieler USING(uwid) WHERE username = '"+username+"';";
 		try {
 			conn = DriverManager.getConnection(DB_URL);
