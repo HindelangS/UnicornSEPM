@@ -49,6 +49,7 @@ public class Register extends JFrame {
 	private JPasswordField passwordField_2;
 
 	private Login login;
+	private Register reg;
 	private ArrayList<Component> focusComps;
 
 	static final String DB_URL = "jdbc:mysql://localhost:3306/cuftd?user=root&password=&useSSL=false";
@@ -179,11 +180,27 @@ public class Register extends JFrame {
 	@Override
 	public void dispose() {
 
-		if(login != null) {
-			login.setEnabled(true);
-			login = null;
+		if(reg != null) {
+			reg.setEnabled(true);
+			reg = null;
 		}
 		super.dispose();
+	}
+
+	public void anmelden() {
+		System.out.println("Overworld wird gebaut..... ");
+		username = textField.getText();
+		Overworld.overworld = true;
+		try {
+			JOptionPane.showMessageDialog(null, "Choose either your own world to rebuild it, or fight  with your troops");
+			Overworld window = new Overworld(username ,5, 7);
+			window.frame.setVisible(true);
+			Overworld.overworldobj = window;
+
+		} catch (Exception ee) {
+			ee.printStackTrace();
+		}
+		dispose();
 	}
 
 	private class btnRegistrierenActionListener implements ActionListener {
@@ -192,27 +209,19 @@ public class Register extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 
 			username=textField.getText();
-			// Error-Text resetten
+			
 			lblError.setText("");
-
-			// Mindestlaenge
 			if(passwordField_1.getPassword().length >= pwMinLaenge) {
-				// Beide Passwortfelder gleich
+	
 				if(String.valueOf(passwordField_1.getPassword()).equals(String.valueOf(passwordField_2.getPassword()))) {
-
-					// In der DB neuen Spieler anlegen
 					int fehlercode;
 					if((fehlercode = DatenbankUnicorn.spielerRegistrieren(textField.getText(), String.valueOf(passwordField_1.getPassword()))) == 0) {
-						// erfolgreich
+	
 						DatenbankUnicorn.UWSPielerzuteilen(username);
 
-						login.anmelden();
-						// Falls Registrierungsfenster durch Login Fenster aufgerufen wurde, dort auch anmelden TODO
-						if(login != null) {
-
-							//							login.anmelden();
-
-						}
+						Login frame = new Login();
+						frame.setVisible(true);
+						
 						dispose();
 					}
 					else {					 

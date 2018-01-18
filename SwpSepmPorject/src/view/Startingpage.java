@@ -26,9 +26,6 @@ public class Startingpage extends JFrame{
 
 	
 		ImageIcon img = new ImageIcon(UnderworldE.class.getResource("/pictures/UnicornStart.png"));
-//		Image im = img.getImage().getScaledInstance(1920, 1080, Image.SCALE_FAST);
-//		img = new ImageIcon(im);
-		
 		setContentPane(new JLabel(img));
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage("pictures/unicorn.png"));

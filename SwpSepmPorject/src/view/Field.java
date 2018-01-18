@@ -23,9 +23,10 @@ public class Field extends JPanel {
 	public String toString() {
 		return "Field [x=" + x + ", y=" + y + "]";
 	}
-public String getUser() {
-	return user;
-}
+	public String getUser() {
+	
+		return user;
+	}
 	private JLabel lblId; // dient ‹bergangsm‰ﬂig als Hilfe zur Orientierung
 	private final int x;
 	private final int y;
@@ -48,9 +49,6 @@ public String getUser() {
 			addMouseListener(new PanelFeldMouseListenerK(this));
 
 		}
-//		if (Art == "E") {
-//			addMouseListener(new PanelFeldMouseListener(this));
-//		}
 
 	}
 
@@ -70,7 +68,7 @@ public String getUser() {
 		}
 
 	}
-	
+
 	public Field(int y, int x, String Art, String user) {
 
 		this.x = x;
@@ -92,7 +90,7 @@ public String getUser() {
 		}
 
 	}
-	
+
 
 	public Field(int y, int x, Overworld uw) {
 		// TODO Auto-generated constructor stub
@@ -108,6 +106,21 @@ public String getUser() {
 
 		this.x = x;
 		this.y = y;
+	}
+
+	public Field(int y, int x) {
+		// TODO Auto-generated constructor stub
+		this.x = x;
+		this.y = y;
+
+		setLayout(new BorderLayout());
+		lblId = new JLabel("|" + x + " / " + y + "|");
+		lblId.setFont(new Font("Century Schoolbook", Font.PLAIN, 10));
+		// add(lblId);
+		setOpaque(false);
+		setBackground(new Color((int) (Math.random() * 255), (int) (Math.random() * 255), (int) (Math.random() * 255)));
+		addMouseListener(new PanelFeldMouseListener(this));
+
 	}
 
 	public Field() {

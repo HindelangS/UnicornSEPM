@@ -157,7 +157,7 @@ public class Overworld extends JFrame {
 
 
 						}else { 
-//							Field buffer = new Field(i,j,"E", (UnderworldE) null);  //TODO statt underworld e garkein feld? 
+//							Field buffer = new Field(i,j);  //TODO statt underworld e garkein feld? 
 //							buffer.setBorder(new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
 //							liste.get(i).add(buffer);
 						}
@@ -168,7 +168,7 @@ public class Overworld extends JFrame {
 
 				if(check == false) {
 					
-					Field buffer = new Field(i,j,"E", (UnderworldE) null); //TODO statt underworld e garkein feld? 
+					Field buffer = new Field(i,j); //TODO statt underworld e garkein feld? 
 					buffer.setBorder(new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
 					liste.get(i).add(buffer);
 					
