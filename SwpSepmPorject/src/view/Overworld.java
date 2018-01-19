@@ -138,7 +138,7 @@ public class Overworld extends JFrame {
 								
 								
 								Field buffer = new Field(i,j,"E",s[0]);
-								buffer.setBorder(new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
+								buffer.setBorder(new MatteBorder(1, 1, 1, 1, new Color(0, 150, 0)));
 								liste.get(i).add(buffer);
 								liste.get(i).get(j).setBild("pictures/village3.png");
 								check = true;

@@ -35,21 +35,21 @@ public class DatenbankUnicorn {
 	static String username="";
 	static String password="";
 	//static int uwid=4;
-	static int level=35;
-	static int geld=924;
-	static int erfahrung=237;
+	static int level=2;
+	static int geld=600;
+	static int erfahrung=50;
 
 	public static ArrayList <UnderworldField> UnderworldField;
 	public static String[] test=new String[4];
 
 
 	public static void main(String[] args) {
-		//SpielstandspeichernSpieler(username,level,geld,erfahrung);
-		String[]liste=new String[4];
-		liste[0]="0";
-		liste[1]="0";
-		liste[2]="4";
-		liste[3]="0";
+		SpielstandspeichernSpieler(username,erfahrung,geld,level);
+//		String[]liste=new String[4];
+//		liste[0]="0";
+//		liste[1]="0";
+//		liste[2]="4";
+//		liste[3]="0";
 
 
 		//writeFeldUW();
@@ -701,7 +701,7 @@ public class DatenbankUnicorn {
 			PreparedStatement stm = getConnection().prepareStatement(sql);
 			stm.setString(1, username);
 			stm.setString(2, password2);
-			//			stm.setInt(3,uwid );
+			//stm.setInt(3,uwid );
 			stm.setInt(3,0);
 			stm.setInt(4,1);
 			stm.setInt(5,500);
@@ -755,21 +755,29 @@ public class DatenbankUnicorn {
 		}
 	}
 
-	//TODO
-	public static boolean UWerstellen(String username)
-	{
-		String SQL="Insert into underworld (gebaeudeanzahl, username) VALUES (gebaeudeanzahl='0',username= ?";
 
+	public static void Geldgenerieren()
+	{
+		
+		String SQL ="INSERT INTO spieler (id, thomas, datum, timestamp) VALUES ('', '$thomas', '$current_date', UNIX_TIMESTAMP());";
+		String SQL2="DELETE FROM spieler WHERE datum < UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL 1 hour));";
+		
+		
+		
+		//TODO Geld durch Differenz von timestamp und aktueller Zeit ausrechnen
+		String SQL3="update spieler set geldeinheiten='"+geld+"' where username='"+username+"'";
+		
 		try {
-			conn = DriverManager.getConnection(DB_URL);
-			pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1, username);
+			conn=DriverManager.getConnection(DB_URL);
+			pstmt = conn.prepareStatement(SQL3);
 			pstmt.executeUpdate();
 
-		} catch (SQLException e1) {
-			e1.printStackTrace();
+	
+
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		return wert;
-	}
+		
+	}	
 
 }
