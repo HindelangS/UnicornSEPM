@@ -395,7 +395,11 @@ public class DatenbankUnicorn {
 //		return spielfeldUW;
 //	}
 	
-	
+	/**
+	 * 
+	 * @param username
+	 * @return geld, erfahrung, level
+	 */
 	public static String[] SpielerSachen(String username) {
 
 		String[] SpielStand = new String[3];
@@ -498,7 +502,13 @@ public class DatenbankUnicorn {
 						gid=5;
 						break;
 					
-					}case "control.HausEinheiten1":{
+					}
+					case "control.GebEnergie3":{
+						gid=6;
+						break;
+					
+					}
+					case "control.HausEinheiten1":{
 						gid=1;
 						break;
 					}case "control.HausEinheiten2":{
@@ -651,6 +661,14 @@ public class DatenbankUnicorn {
 		return 0;
 	}
 
+	/**
+	 * 
+	 * @param username
+	 * @param erfahrungspunkte
+	 * @param geldeinheiten
+	 * @param level
+	 * @return
+	 */
 	public static boolean SpielstandspeichernSpieler(String username, int erfahrungspunkte, int geldeinheiten, int level)
 	{
 
@@ -686,7 +704,7 @@ public class DatenbankUnicorn {
 			//stm.setInt(3,uwid );
 			stm.setInt(3,0);
 			stm.setInt(4,1);
-			stm.setInt(5,0);
+			stm.setInt(5,500);
 			stm.execute();
 
 			// TODO Hier das objektorientierte Spieler-Objekt veraendern
