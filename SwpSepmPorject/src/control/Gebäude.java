@@ -14,7 +14,6 @@ public abstract class Gebäude {
 		this.kosten = kosten;
 		this.bonikosten = bonikosten;
 		this.robustheit = robustheit; 
-		// TODO Auto-generated constructor stub
 	}
 	
 
