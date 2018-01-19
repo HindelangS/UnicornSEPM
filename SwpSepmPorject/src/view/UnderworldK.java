@@ -203,7 +203,7 @@ public class UnderworldK {
 			liste.add(new ArrayList<Field>());
 			for (int j = 0; j < spalten; j++) {
 
-				int index = tester.getField(UnderworldFieldstest, i, j);
+				int index = tester.getField(UnderworldFieldstest, j, i);
 
 				// draw your stuff according to the Overworld.uwliste <- liste is created at TODO
 				// DatenbankUnicorn
