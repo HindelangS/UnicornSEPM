@@ -467,6 +467,9 @@ public class UnderworldE {
 				int wert = money- new HausEinheiten1(1).berechneKosten();
 				System.out.println("cash: "+wert+new HausEinheiten1(1).berechneKosten());
 				DatenbankUnicorn.SpielstandspeichernSpieler(Login.getUser(), 0, wert, 1);
+				
+				lblGeld.setText("Money: "+wert+"");
+				daten[0] = wert+"";
 				redraw();
 			}
 			else{
@@ -491,6 +494,8 @@ public class UnderworldE {
 				int wert = money- new HausEinheiten2(1).berechneKosten();
 				System.out.println("cash: "+wert);
 				DatenbankUnicorn.SpielstandspeichernSpieler(Login.getUser(), 0, wert, 1);
+				lblGeld.setText("Money: "+wert+"");
+				daten[0] = wert+"";
 				redraw();
 			}
 			else{
@@ -515,6 +520,8 @@ public class UnderworldE {
 				int wert = money- new HausEinheiten3(1).berechneKosten();
 				System.out.println("cash: "+wert);
 				DatenbankUnicorn.SpielstandspeichernSpieler(Login.getUser(), 0, wert, 1);
+				lblGeld.setText("Money: "+wert+"");
+				daten[0] = wert+"";
 				redraw();
 			}
 			else{
@@ -539,6 +546,8 @@ public class UnderworldE {
 				int wert = money- new ZaunEnergie1(1).berechneKosten();
 				System.out.println("cash: "+wert);
 				DatenbankUnicorn.SpielstandspeichernSpieler(Login.getUser(), 0, wert, 1);
+				lblGeld.setText("Money: "+wert+"");
+				daten[0] = wert+"";
 				redraw();
 			}
 			else{
@@ -562,6 +571,8 @@ public class UnderworldE {
 				int wert = money- new ZaunEnergie2(1).berechneKosten();
 				System.out.println("cash: "+wert);
 				DatenbankUnicorn.SpielstandspeichernSpieler(Login.getUser(), 0, wert, 1);
+				lblGeld.setText("Money: "+wert+"");
+				daten[0] = wert+"";
 				redraw();
 			}
 			else{
@@ -586,6 +597,8 @@ public class UnderworldE {
 				int wert = money- new ZaunEnergie3(1).berechneKosten();
 				System.out.println("cash: "+wert);
 				DatenbankUnicorn.SpielstandspeichernSpieler(Login.getUser(), 0, wert, 1);
+				lblGeld.setText("Money: "+wert+"");
+				daten[0] = wert+"";
 				redraw();
 			}
 			else{
@@ -610,6 +623,8 @@ public class UnderworldE {
 				int wert = money- new GebEnergie1(1).berechneKosten();
 				System.out.println("cash: "+wert);
 				DatenbankUnicorn.SpielstandspeichernSpieler(Login.getUser(), 0, wert, 1);
+				lblGeld.setText("Money: "+wert+"");
+				daten[0] = wert+"";
 				redraw();
 			}
 			else{
@@ -634,6 +649,8 @@ public class UnderworldE {
 				int wert = money- new GebEnergie2(1).berechneKosten();
 				System.out.println("cash: "+wert);
 				DatenbankUnicorn.SpielstandspeichernSpieler(Login.getUser(), 0, wert, 1);
+				lblGeld.setText("Money: "+wert+"");
+				daten[0] = wert+"";
 				redraw();
 			}
 			else{
@@ -658,6 +675,8 @@ public class UnderworldE {
 				int wert = money- new GebEnergie3(1).berechneKosten();
 				System.out.println("cash: "+wert);
 				DatenbankUnicorn.SpielstandspeichernSpieler(Login.getUser(), 0, wert, 1);
+				lblGeld.setText("Money: "+wert+"");
+				daten[0] = wert+"";
 				redraw();
 			}
 			else{

@@ -210,64 +210,67 @@ public class Controller {
 
 	}
 	public static void main(String[] args) {
-		GebEnergie3 g3 = new GebEnergie3(1);
+		HausEinheiten1 g3 = new HausEinheiten1(1);
 		System.out.println(g3.berechneKosten());
-		System.out.println("Starten");
-		Controller c1 = new Controller();
-		ArrayList <UnderworldField> Underworld2 = c1.create();		
-		UnderworldField startField = new UnderworldField(false,5,4);
-		SimpleUnicorn einheit = new SimpleUnicorn(3);
-		startField.setEinheit(einheit);
-		int h = c1.getField(Underworld2, 5, 4);
-		Underworld2.set(h, startField);
-		System.out.println("Startfeld: "+Underworld2.get(h));
-		UnderworldField zielField = new UnderworldField(false,5,3);
+		
+		
 //		
-		c1.move(startField, zielField, Underworld2);
-		int e = c1.getField(Underworld2, 5, 3);
-		int u = c1.getField(Underworld2, 5, 4);
-		System.out.println(Underworld2.get(e));
-		System.out.println(Underworld2.get(u));
-
-		
-		for(int i = 1;i<= 8;i++){
-			System.out.println("Level: "+i);
-			GebEnergie1 geb1 = new GebEnergie1(i);
-			GebEnergie2 geb2 = new GebEnergie2(i);
-			GebEnergie3 geb3 = new GebEnergie3(i);
-			int kosten1 = geb1.berechneKosten();
-			int kosten2 = geb2.berechneKosten(); 
-			int kosten3 = geb3.berechneKosten();
-			int leben = geb1.getLeben();
-			int prodrate1 = geb1.getProduktion();
-			int prodrate2 = geb2.getProduktion();
-			int prodrate3 = geb3.getProduktion();
-			
-			System.out.println("Geb1: Kosten: "+kosten1+", Produktion: "+prodrate1+", Leben: "+leben);
-			System.out.println("Geb2: Kosten: "+kosten2+", Produktion: "+prodrate2+", Leben: "+leben);
-			System.out.println("Geb3: Kosten: "+kosten3+", Produktion: "+prodrate3+", Leben: "+leben);
-			System.out.println("------------------------------------------------------");
-			
-			System.out.println("---------------------ZAUN-------------------------");
-			
-			ZaunEnergie1 z1 = new ZaunEnergie1(i);
-			ZaunEnergie2 z2 = new ZaunEnergie2(i);
-			ZaunEnergie3 z3 = new ZaunEnergie3(i);
-			int zaunl1 = z1.getLeben();
-			int zaunl2 = z2.berechneKosten(); 
-			int zaunl3= z3.berechneKosten();
-			int lebenZ = z1.getLeben();
-			int robustheit1 = z1.getRobustheit();
-			int robustheit2 = z2.getRobustheit();
-			int robustheit3 = z3.getRobustheit();
-			
-			System.out.println("Zaun1: Kosten: "+zaunl1+", Robustheit: "+robustheit1+", Leben: "+lebenZ);
-			System.out.println("Zaun2: Kosten: "+zaunl2+", Robustheit: "+robustheit2+", Leben: "+lebenZ);
-			System.out.println("Zaun3: Kosten: "+zaunl3+", Robustheit: "+robustheit3+", Leben: "+lebenZ);
-			System.out.println("------------------------------------------------------");
-		}
-		
-		
+//		System.out.println("Starten");
+//		Controller c1 = new Controller();
+//		ArrayList <UnderworldField> Underworld2 = c1.create();		
+//		UnderworldField startField = new UnderworldField(false,5,4);
+//		SimpleUnicorn einheit = new SimpleUnicorn(3);
+//		startField.setEinheit(einheit);
+//		int h = c1.getField(Underworld2, 5, 4);
+//		Underworld2.set(h, startField);
+//		System.out.println("Startfeld: "+Underworld2.get(h));
+//		UnderworldField zielField = new UnderworldField(false,5,3);
+////		
+//		c1.move(startField, zielField, Underworld2);
+//		int e = c1.getField(Underworld2, 5, 3);
+//		int u = c1.getField(Underworld2, 5, 4);
+//		System.out.println(Underworld2.get(e));
+//		System.out.println(Underworld2.get(u));
+//
+//		
+//		for(int i = 1;i<= 8;i++){
+//			System.out.println("Level: "+i);
+//			GebEnergie1 geb1 = new GebEnergie1(i);
+//			GebEnergie2 geb2 = new GebEnergie2(i);
+//			GebEnergie3 geb3 = new GebEnergie3(i);
+//			int kosten1 = geb1.berechneKosten();
+//			int kosten2 = geb2.berechneKosten(); 
+//			int kosten3 = geb3.berechneKosten();
+//			int leben = geb1.getLeben();
+//			int prodrate1 = geb1.getProduktion();
+//			int prodrate2 = geb2.getProduktion();
+//			int prodrate3 = geb3.getProduktion();
+//			
+//			System.out.println("Geb1: Kosten: "+kosten1+", Produktion: "+prodrate1+", Leben: "+leben);
+//			System.out.println("Geb2: Kosten: "+kosten2+", Produktion: "+prodrate2+", Leben: "+leben);
+//			System.out.println("Geb3: Kosten: "+kosten3+", Produktion: "+prodrate3+", Leben: "+leben);
+//			System.out.println("------------------------------------------------------");
+//			
+//			System.out.println("---------------------ZAUN-------------------------");
+//			
+//			ZaunEnergie1 z1 = new ZaunEnergie1(i);
+//			ZaunEnergie2 z2 = new ZaunEnergie2(i);
+//			ZaunEnergie3 z3 = new ZaunEnergie3(i);
+//			int zaunl1 = z1.getLeben();
+//			int zaunl2 = z2.berechneKosten(); 
+//			int zaunl3= z3.berechneKosten();
+//			int lebenZ = z1.getLeben();
+//			int robustheit1 = z1.getRobustheit();
+//			int robustheit2 = z2.getRobustheit();
+//			int robustheit3 = z3.getRobustheit();
+//			
+//			System.out.println("Zaun1: Kosten: "+zaunl1+", Robustheit: "+robustheit1+", Leben: "+lebenZ);
+//			System.out.println("Zaun2: Kosten: "+zaunl2+", Robustheit: "+robustheit2+", Leben: "+lebenZ);
+//			System.out.println("Zaun3: Kosten: "+zaunl3+", Robustheit: "+robustheit3+", Leben: "+lebenZ);
+//			System.out.println("------------------------------------------------------");
+//		}
+//		
+//		
 		
 	}
 
