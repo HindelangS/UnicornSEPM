@@ -7,7 +7,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -32,19 +37,21 @@ public class DatenbankUnicorn {
 	static private int anzahl;
 
 	//zum Testen
-	static String username="";
+	static String username="Sara";
 	static String password="";
 	//static int uwid=4;
-	static int level=2;
+	static int level=7;
 	static int geld=600;
-	static int erfahrung=50;
+	static int erfahrung=68;
 
 	public static ArrayList <UnderworldField> UnderworldField;
 	public static String[] test=new String[4];
 
 
 	public static void main(String[] args) {
-		SpielstandspeichernSpieler(username,erfahrung,geld,level);
+		Geldgenerieren("sara");
+		
+		//SpielstandspeichernSpieler(username,erfahrung,geld,level);
 //		String[]liste=new String[4];
 //		liste[0]="0";
 //		liste[1]="0";
@@ -672,7 +679,7 @@ public class DatenbankUnicorn {
 	public static boolean SpielstandspeichernSpieler(String username, int erfahrungspunkte, int geldeinheiten, int level)
 	{
 
-		String SQL="UPDATE spieler set erfahrungspunkte =?, geldeinheiten= ?, level= ? WHERE username = ?;";
+		String SQL="UPDATE spieler set erfahrungspunkte =?, geldeinheiten= ?, level= ?, datum= CURDATE() WHERE username = ?;";
 
 		try {
 
@@ -756,12 +763,45 @@ public class DatenbankUnicorn {
 	}
 
 
-	public static void Geldgenerieren()
+	public static void Geldgenerieren(String username)
 	{
+		String datumDB=null;
+		//Date datumDB = null;
+		Time zeit=null;
+		Date datum=new Date();
 		
+		//Internet Query:
 		String SQL ="INSERT INTO spieler (id, thomas, datum, timestamp) VALUES ('', '$thomas', '$current_date', UNIX_TIMESTAMP());";
 		String SQL2="DELETE FROM spieler WHERE datum < UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL 1 hour));";
 		
+		
+		String SQLtime = "select timestamp from spieler where username='"+username+"';";
+		try {
+			conn=DriverManager.getConnection(DB_URL);
+			pstmt=conn.prepareStatement(SQLtime);
+			rs=pstmt.executeQuery();
+			while(rs.next())
+			{
+				datumDB=rs.getString(1);
+				//datumDB=rs.getDate(1);
+				//rs.getTime(1);
+				System.out.println(anzahl);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("Datum aus DB:");
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:sss");
+//   	String d2 = formatter.format(datumDB);
+		
+		System.out.println(datumDB);
+		
+		System.out.println("Datum aus Java mit Format:");
+		String d = formatter.format(datum);
+		System.out.println(d);
+		
+		int geldfaktor=0;
 		
 		
 		//TODO Geld durch Differenz von timestamp und aktueller Zeit ausrechnen
