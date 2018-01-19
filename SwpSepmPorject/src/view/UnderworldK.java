@@ -223,35 +223,54 @@ public class UnderworldK {
 						switch(Integer.parseInt(s[2])) {
 						case 1:
 							haus = new HausEinheiten1(1);
+							UnderworldFieldstest.get(index).setHaus(haus);
+							UnderworldFieldstest.get(index).setBelegt(true);
 							break;
 						case 2:
 							haus = new HausEinheiten2(1);	
+							UnderworldFieldstest.get(index).setHaus(haus);
+							UnderworldFieldstest.get(index).setBelegt(true);
 							break;
+
 						case 3:
 							haus = new HausEinheiten3(1);
+							UnderworldFieldstest.get(index).setHaus(haus);
+							UnderworldFieldstest.get(index).setBelegt(true);
 							break;
-						case 4:
-							zz = new ZaunEnergie1(1);	
-							break;
-
-						case 5:
-							zz = new ZaunEnergie2(1);	
-							break;
-
-						case 6:
-							zz = new ZaunEnergie3(1);
-							break;
-
 						case 7:
-							geb = new GebEnergie1(1);	
+							zz = new ZaunEnergie1(1);
+							UnderworldFieldstest.get(index).setZaun(zz);
+							UnderworldFieldstest.get(index).setBelegt(true);
 							break;
 
 						case 8:
-							geb = new GebEnergie2(1);
+							zz = new ZaunEnergie2(1);	
+							UnderworldFieldstest.get(index).setZaun(zz);
+							UnderworldFieldstest.get(index).setBelegt(true);
 							break;
 
 						case 9:
-							geb = new GebEnergie3(1);	
+							zz = new ZaunEnergie3(1);
+							UnderworldFieldstest.get(index).setZaun(zz);
+							UnderworldFieldstest.get(index).setBelegt(true);
+							break;
+
+						case 4:
+							geb = new GebEnergie1(1);
+							UnderworldFieldstest.get(index).setGebäude(geb);
+							UnderworldFieldstest.get(index).setBelegt(true);
+							break;
+
+						case 5:
+							geb = new GebEnergie2(1);
+							UnderworldFieldstest.get(index).setGebäude(geb);
+							UnderworldFieldstest.get(index).setBelegt(true);
+							break;
+
+						case 6:
+							geb = new GebEnergie3(1);
+							UnderworldFieldstest.get(index).setGebäude(geb);
+							UnderworldFieldstest.get(index).setBelegt(true);
 							break;
 						}
 					}
@@ -292,7 +311,7 @@ public class UnderworldK {
 		}
 
 		panelFelder.repaint();
-
+		redraw();
 		panelEast = new JPanel();
 		panelEast.setLayout(new MigLayout("", "[89px]", "[23px][][][][][][][][][][][]"));
 		panelEast.setOpaque(false);
@@ -355,6 +374,7 @@ public class UnderworldK {
 
 		Controller tester = new Controller();
 
+
 		for (int i = 0; i < reihen; i++) {
 
 			liste.add(new ArrayList<Field>());
@@ -362,29 +382,34 @@ public class UnderworldK {
 			for (int j = 0; j < spalten; j++) {
 
 				int index = tester.getField(UnderworldFieldstest, j, i);
-				Einheit einheit = null;
-				einheit = UnderworldFieldstest.get(index).getEinheit();
+
 				Gebäude geb = UnderworldFieldstest.get(index).getGebäude();
 				Zaun zaun = UnderworldFieldstest.get(index).getZaun();
 				Haus haus = UnderworldFieldstest.get(index).getHaus();
-
-				// System.out.println("Derzeitige Einheit: "+einheit+ "I: "+i+" J:"+j);
-
+				
 				if (geb != null) {
-					System.out.println("Gebaude vorhanden");
-					liste.get(i).add(UnderworldE.drawFeld(geb, i, j));
+					System.out.println("Quelle vorhanden");
+					liste.get(i).add(drawFeld(geb, i, j));
 					panelFelder.add(liste.get(i).get(j));
 				}
-				if (einheit != null) {
 
-					System.out.println("Einheit vorhanden");
-					liste.get(i).add(setWarrior(einheit, i, j));
+				if (zaun != null) {
+
+					System.out.println("Zaun vorhanden");
+					liste.get(i).add(drawFeld(zaun, i, j));
 					panelFelder.add(liste.get(i).get(j));
 
 				}
-				if (geb == null && zaun == null && haus == null && einheit == null) {
-					System.out.println("Feld leer");
-					liste.get(i).add(new Field(i, j, "K", this));
+				if (haus != null) {
+
+					System.out.println("Haus vorhanden");
+					liste.get(i).add(drawFeld(haus, i, j));
+					panelFelder.add(liste.get(i).get(j));
+
+				}
+				if (geb == null && zaun == null && haus == null) {
+//					System.out.println("Feld leer");
+					liste.get(i).add(new Field(i, j, "E", (UnderworldE) null));
 					panelFelder.add(liste.get(i).get(j));
 				}
 			}
@@ -392,6 +417,7 @@ public class UnderworldK {
 
 		frame.getContentPane().repaint();
 		frame.getContentPane().validate();
+	
 	}
 
 	private class btnU1ActionListener implements ActionListener {
@@ -495,6 +521,98 @@ public class UnderworldK {
 		// FelderUW.add
 		// UnderworldField=UnderworldK.UnderworldFieldstest;
 		// System.out.println(UnderworldField.get(index).);
+	}
+	
+	public static Field drawFeld(Gebäude geb, int x, int y) {
+
+		Field buffer = new Field(x, y, "E", (UnderworldE) null);
+		String gebtyp = geb.getClass().getName();
+
+		switch (gebtyp) {
+
+		case "control.GebEnergie1": {
+			System.out.println("GebEnergie1 wird auf" + x + "/" + y + " gezeichnet.");
+			buffer.setBild("pictures/e3.png");
+			break;
+		}
+		case "control.GebEnergie2": {
+			System.out.println("GebEnergie2 wird auf" + x + "/" + y + " gezeichnet.");
+			buffer.setBild("pictures/e2.png");
+			break;
+		}
+		case "control.GebEnergie3": {
+			System.out.println("GebEnergie3 wird auf" + x + "/" + y + " gezeichnet.");
+			buffer.setBild("pictures/e1.png");
+			break;
+		}
+
+		default: {
+			System.out.println("UNBEKANNTE KLASSE GEBÄUDE ERROR");
+		}
+		}
+
+		return buffer;
+	}
+
+	public static Field drawFeld(Haus haus, int x, int y) {
+
+		Field buffer = new Field(x, y, "E", (UnderworldE) null);
+		String haustyp = haus.getClass().getName();
+
+		switch (haustyp) {
+
+		case "control.HausEinheiten1": {
+			System.out.println("Haus1 wird auf" + x + "/" + y + " gezeichnet.");
+			buffer.setBild("pictures/haus1_klein.png");
+			break;
+		}
+		case "control.HausEinheiten2": {
+			System.out.println("Haus2 wird auf" + x + "/" + y + " gezeichnet.");
+			buffer.setBild("pictures/haus2_klein.png");
+			break;
+		}
+		case "control.HausEinheiten3": {
+			System.out.println("Haus3 wird auf" + x + "/" + y + " gezeichnet.");
+			buffer.setBild("pictures/haus3_klein.png");
+			break;
+		}
+
+		default: {
+			System.out.println("UNBEKANNTE KLASSE Haus ERROR");
+		}
+		}
+
+		return buffer;
+	}
+
+	public static Field drawFeld(Zaun z, int x, int y) {
+		System.out.println("DRAW Zaun");
+		Field buffer = new Field(x, y, "E", (UnderworldE) null);
+		String zauntyp = z.getClass().getName();
+
+		switch (zauntyp) {
+		case "control.ZaunEnergie1": {
+			System.out.println("Zaun wird auf" + x + "/" + y + " gezeichnet.");
+			buffer.setBild("pictures/zaun3_klein.png");
+			break;
+		}
+		case "control.ZaunEnergie2": {
+			System.out.println("Zaun wird auf" + x + "/" + y + " gezeichnet.");
+			buffer.setBild("pictures/zaun1_klein.png");
+			break;
+		}
+		case "control.ZaunEnergie3": {
+			System.out.println("Zaun wird auf" + x + "/" + y + " gezeichnet.");
+			buffer.setBild("pictures/zaun2_klein.png");
+			break;
+		}
+		default: {
+			System.out.println("UNBEKANNTE KLASSE Zaun; ERROR");
+		}
+		}
+
+		return buffer;
+
 	}
 
 }
