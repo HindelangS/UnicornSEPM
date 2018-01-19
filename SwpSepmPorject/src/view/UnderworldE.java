@@ -138,7 +138,7 @@ public class UnderworldE {
 		lblGeld = new JLabel("Money: "+daten[0]);
 		lblGeld.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		panelStatus.add(lblGeld, "cell 2 0,alignx left,aligny top");
-
+		
 		phPanel = new JPanel();
 		phPanel.setOpaque(false);
 		panelStatus.add(phPanel, "cell 3 0,growx");
@@ -459,9 +459,23 @@ public class UnderworldE {
 			Controller c1 = new Controller();
 			int index = c1.getField(UnderworldFieldstest, lastclicked.getKoordX(), lastclicked.getKoordY());
 
-			UnderworldFieldstest.get(index).setHaus(new HausEinheiten1(1));
-			UnderworldFieldstest.get(index).setBelegt(true);
-			redraw();
+			int money = Integer.parseInt(daten[0]);
+			
+			if(money >= new HausEinheiten1(1).berechneKosten()){
+				UnderworldFieldstest.get(index).setHaus(new HausEinheiten1(1));
+				UnderworldFieldstest.get(index).setBelegt(true);
+				int wert = money- new HausEinheiten1(1).berechneKosten();
+				System.out.println("cash: "+wert+new HausEinheiten1(1).berechneKosten());
+				DatenbankUnicorn.SpielstandspeichernSpieler(Login.getUser(), 0, wert, 1);
+				
+				lblGeld.setText("Money: "+wert+"");
+				daten[0] = wert+"";
+				redraw();
+			}
+			else{
+				JOptionPane.showMessageDialog(null,"Sorry, but you don't have enough money!");
+
+			}
 
 		}
 	}
@@ -472,9 +486,22 @@ public class UnderworldE {
 			Controller c1 = new Controller();
 			int index = c1.getField(UnderworldFieldstest, lastclicked.getKoordX(), lastclicked.getKoordY());
 
-			UnderworldFieldstest.get(index).setHaus(new HausEinheiten2(1));
-			UnderworldFieldstest.get(index).setBelegt(true);
-			redraw();
+			int money = Integer.parseInt(daten[0]);
+			
+			if(money >= new HausEinheiten2(1).berechneKosten()){
+				UnderworldFieldstest.get(index).setHaus(new HausEinheiten2(1));
+				UnderworldFieldstest.get(index).setBelegt(true);
+				int wert = money- new HausEinheiten2(1).berechneKosten();
+				System.out.println("cash: "+wert);
+				DatenbankUnicorn.SpielstandspeichernSpieler(Login.getUser(), 0, wert, 1);
+				lblGeld.setText("Money: "+wert+"");
+				daten[0] = wert+"";
+				redraw();
+			}
+			else{
+				JOptionPane.showMessageDialog(null,"Sorry, but you don't have enough money!");
+
+			}
 
 		}
 	}
@@ -485,9 +512,22 @@ public class UnderworldE {
 			Controller c1 = new Controller();
 			int index = c1.getField(UnderworldFieldstest, lastclicked.getKoordX(), lastclicked.getKoordY());
 
-			UnderworldFieldstest.get(index).setHaus(new HausEinheiten3(1));
-			UnderworldFieldstest.get(index).setBelegt(true);
-			redraw();
+			int money = Integer.parseInt(daten[0]);
+			
+			if(money >= new HausEinheiten3(1).berechneKosten()){
+				UnderworldFieldstest.get(index).setHaus(new HausEinheiten3(1));
+				UnderworldFieldstest.get(index).setBelegt(true);
+				int wert = money- new HausEinheiten3(1).berechneKosten();
+				System.out.println("cash: "+wert);
+				DatenbankUnicorn.SpielstandspeichernSpieler(Login.getUser(), 0, wert, 1);
+				lblGeld.setText("Money: "+wert+"");
+				daten[0] = wert+"";
+				redraw();
+			}
+			else{
+				JOptionPane.showMessageDialog(null,"Sorry, but you don't have enough money!");
+
+			}
 
 		}
 	}
@@ -498,10 +538,22 @@ public class UnderworldE {
 			Controller c1 = new Controller();
 			int index = c1.getField(UnderworldFieldstest, lastclicked.getKoordX(), lastclicked.getKoordY());
 
-			UnderworldFieldstest.get(index).setZaun(new ZaunEnergie1(1));
-			UnderworldFieldstest.get(index).setBelegt(true);
-			redraw();
+			int money = Integer.parseInt(daten[0]);
+			
+			if(money >= new ZaunEnergie1(1).berechneKosten()){
+				UnderworldFieldstest.get(index).setZaun(new ZaunEnergie1(1));
+				UnderworldFieldstest.get(index).setBelegt(true);
+				int wert = money- new ZaunEnergie1(1).berechneKosten();
+				System.out.println("cash: "+wert);
+				DatenbankUnicorn.SpielstandspeichernSpieler(Login.getUser(), 0, wert, 1);
+				lblGeld.setText("Money: "+wert+"");
+				daten[0] = wert+"";
+				redraw();
+			}
+			else{
+				JOptionPane.showMessageDialog(null,"Sorry, but you don't have enough money!");
 
+			}
 		}
 	}
 
@@ -511,9 +563,22 @@ public class UnderworldE {
 			Controller c1 = new Controller();
 			int index = c1.getField(UnderworldFieldstest, lastclicked.getKoordX(), lastclicked.getKoordY());
 
-			UnderworldFieldstest.get(index).setZaun(new ZaunEnergie2(1));
-			UnderworldFieldstest.get(index).setBelegt(true);
-			redraw();
+			int money = Integer.parseInt(daten[0]);
+			
+			if(money >= new ZaunEnergie2(1).berechneKosten()){
+				UnderworldFieldstest.get(index).setZaun(new ZaunEnergie2(1));
+				UnderworldFieldstest.get(index).setBelegt(true);
+				int wert = money- new ZaunEnergie2(1).berechneKosten();
+				System.out.println("cash: "+wert);
+				DatenbankUnicorn.SpielstandspeichernSpieler(Login.getUser(), 0, wert, 1);
+				lblGeld.setText("Money: "+wert+"");
+				daten[0] = wert+"";
+				redraw();
+			}
+			else{
+				JOptionPane.showMessageDialog(null,"Sorry, but you don't have enough money!");
+
+			}
 
 		}
 	}
@@ -524,9 +589,22 @@ public class UnderworldE {
 			Controller c1 = new Controller();
 			int index = c1.getField(UnderworldFieldstest, lastclicked.getKoordX(), lastclicked.getKoordY());
 
-			UnderworldFieldstest.get(index).setZaun(new ZaunEnergie3(1));
-			UnderworldFieldstest.get(index).setBelegt(true);
-			redraw();
+			int money = Integer.parseInt(daten[0]);
+			
+			if(money >= new ZaunEnergie3(1).berechneKosten()){
+				UnderworldFieldstest.get(index).setZaun(new ZaunEnergie3(1));
+				UnderworldFieldstest.get(index).setBelegt(true);
+				int wert = money- new ZaunEnergie3(1).berechneKosten();
+				System.out.println("cash: "+wert);
+				DatenbankUnicorn.SpielstandspeichernSpieler(Login.getUser(), 0, wert, 1);
+				lblGeld.setText("Money: "+wert+"");
+				daten[0] = wert+"";
+				redraw();
+			}
+			else{
+				JOptionPane.showMessageDialog(null,"Sorry, but you don't have enough money!");
+
+			}
 
 		}
 	}
@@ -537,9 +615,22 @@ public class UnderworldE {
 			Controller c1 = new Controller();
 			int index = c1.getField(UnderworldFieldstest, lastclicked.getKoordX(), lastclicked.getKoordY());
 
-			UnderworldFieldstest.get(index).setGebäude(new GebEnergie1(1));
-			UnderworldFieldstest.get(index).setBelegt(true);
-			redraw();
+			int money = Integer.parseInt(daten[0]);
+			
+			if(money >= new GebEnergie1(1).berechneKosten()){
+				UnderworldFieldstest.get(index).setGebäude(new GebEnergie1(1));
+				UnderworldFieldstest.get(index).setBelegt(true);
+				int wert = money- new GebEnergie1(1).berechneKosten();
+				System.out.println("cash: "+wert);
+				DatenbankUnicorn.SpielstandspeichernSpieler(Login.getUser(), 0, wert, 1);
+				lblGeld.setText("Money: "+wert+"");
+				daten[0] = wert+"";
+				redraw();
+			}
+			else{
+				JOptionPane.showMessageDialog(null,"Sorry, but you don't have enough money!");
+
+			}
 
 		}
 	}
@@ -550,9 +641,22 @@ public class UnderworldE {
 			Controller c1 = new Controller();
 			int index = c1.getField(UnderworldFieldstest, lastclicked.getKoordX(), lastclicked.getKoordY());
 
-			UnderworldFieldstest.get(index).setGebäude(new GebEnergie2(1));
-			UnderworldFieldstest.get(index).setBelegt(true);
-			redraw();
+			int money = Integer.parseInt(daten[0]);
+			
+			if(money >= new GebEnergie2(1).berechneKosten()){
+				UnderworldFieldstest.get(index).setGebäude(new GebEnergie2(1));
+				UnderworldFieldstest.get(index).setBelegt(true);
+				int wert = money- new GebEnergie2(1).berechneKosten();
+				System.out.println("cash: "+wert);
+				DatenbankUnicorn.SpielstandspeichernSpieler(Login.getUser(), 0, wert, 1);
+				lblGeld.setText("Money: "+wert+"");
+				daten[0] = wert+"";
+				redraw();
+			}
+			else{
+				JOptionPane.showMessageDialog(null,"Sorry, but you don't have enough money!");
+
+			}
 
 		}
 	}
@@ -563,9 +667,24 @@ public class UnderworldE {
 			Controller c1 = new Controller();
 			int index = c1.getField(UnderworldFieldstest, lastclicked.getKoordX(), lastclicked.getKoordY());
 
-			UnderworldFieldstest.get(index).setGebäude(new GebEnergie3(1));
-			UnderworldFieldstest.get(index).setBelegt(true);
-			redraw();
+			int money = Integer.parseInt(daten[0]);
+			
+			if(money >= new GebEnergie3(1).berechneKosten()){
+				UnderworldFieldstest.get(index).setGebäude(new GebEnergie3(1));
+				UnderworldFieldstest.get(index).setBelegt(true);
+				int wert = money- new GebEnergie3(1).berechneKosten();
+				System.out.println("cash: "+wert);
+				DatenbankUnicorn.SpielstandspeichernSpieler(Login.getUser(), 0, wert, 1);
+				lblGeld.setText("Money: "+wert+"");
+				daten[0] = wert+"";
+				redraw();
+			}
+			else{
+				JOptionPane.showMessageDialog(null,"Sorry, but you don't have enough money!");
+
+			}
+			
+
 
 		}
 	}

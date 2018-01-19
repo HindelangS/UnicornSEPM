@@ -3,8 +3,8 @@ package control;
 public abstract class Gebäude {
 	private int leben;
 	private int level;
-	private int kosten;
-	private int bonikosten;
+	private int kosten = 1;
+	private int bonikosten = 1;
 	private int robustheit; 
 
 	
@@ -27,6 +27,7 @@ public abstract class Gebäude {
 
 	public int berechneKosten(){
 		int kosten = this.level * this.kosten + this.bonikosten;
+		System.out.println(this.level+this.kosten);
 		return kosten;
 	}
 
