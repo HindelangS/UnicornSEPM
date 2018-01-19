@@ -344,7 +344,5 @@ public class Controller {
 //			System.out.println("Zaun3: Kosten: "+zaunl3+", Robustheit: "+robustheit3+", Leben: "+lebenZ);
 //			System.out.println("------------------------------------------------------");
 //		}
-//		
-//		
 	}
 }
