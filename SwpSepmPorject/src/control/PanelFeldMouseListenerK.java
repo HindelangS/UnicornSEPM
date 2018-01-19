@@ -53,7 +53,7 @@ public class PanelFeldMouseListenerK extends MouseAdapter {
 			return;
 		}
 
-		System.out.println("geklickt");
+//		System.out.println("geklickt");
 		// System.out.println(pf.getKoordX()+" / "+pf.getKoordY()+" "+pf.getBild());
 		Color farbe = new Color(120, 0, 0);
 		pf.setBorder(new MatteBorder(2, 2, 2, 2, farbe));

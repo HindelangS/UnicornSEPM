@@ -130,14 +130,6 @@ public class UnderworldK {
 		lblWelt.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		panelStatus.add(lblWelt, "cell 0 0,alignx left,aligny top");
 
-		lblLevel = new JLabel("Level: "+ daten[2]);
-		lblLevel.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
-		panelStatus.add(lblLevel, "cell 1 0,alignx left,aligny top");
-
-		lblGeld = new JLabel("Money: "+ daten[0]);
-		lblGeld.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
-		panelStatus.add(lblGeld, "cell 2 0,alignx left,aligny top");
-
 		phPanel = new JPanel();
 		phPanel.setOpaque(false);
 		panelStatus.add(phPanel, "cell 3 0,growx");
@@ -383,7 +375,7 @@ public class UnderworldK {
 
 				}
 				if (geb == null && zaun == null && haus == null && einheit == null) {
-					System.out.println("Feld leer");
+//					System.out.println("Feld leer");
 					liste.get(i).add(new Field(i, j, "K", this));
 					panelFelder.add(liste.get(i).get(j));
 				}

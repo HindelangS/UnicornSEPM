@@ -65,8 +65,8 @@ public class PanelFeldMouseListener extends MouseAdapter {
 					
 //					if(pf.getBild().equals("")) {
 					if(pf.getUser().equals("")) {
-						System.out.println("leeres Feld");
-						JOptionPane.showMessageDialog(null, "Empty field, please choose a different one");
+//						System.out.println("leeres Feld");
+//						JOptionPane.showMessageDialog(null, "Empty field, please choose a different one"); TODO
 						return;
 					}
 					

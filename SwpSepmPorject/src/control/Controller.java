@@ -17,6 +17,7 @@ public class Controller {
 				Underworld2.add(new UnderworldField(false, a, i));
 			}
 		}
+		
 		return Underworld2;
 	}
 
@@ -208,8 +209,6 @@ public class Controller {
 
 	}
 	public static void main(String[] args) {
-<<<<<<< HEAD
-
 
 		System.out.println("Starten");
 		Controller c1 = new Controller();
@@ -230,7 +229,7 @@ public class Controller {
 		
 		for(int i = 1;i<= 3;i++){
 
-			System.out.println("--------------------- Energie: -------------------------");
+		
 
 			System.out.println("Level: "+i);
 			GebEnergie1 geb1 = new GebEnergie1(i);
@@ -243,6 +242,8 @@ public class Controller {
 			int prodrate1 = geb1.getProduktion();
 			int prodrate2 = geb2.getProduktion();
 			int prodrate3 = geb3.getProduktion();
+			
+			System.out.println("--------------------- Energie: -------------------------");
 
 			System.out.println("Geb1: Kosten: "+kosten1+", Produktion: "+prodrate1+", Leben: "+leben);
 			System.out.println("Geb2: Kosten: "+kosten2+", Produktion: "+prodrate2+", Leben: "+leben);
@@ -283,7 +284,7 @@ public class Controller {
 			System.out.println("Haus3: Kosten: "+haunl3+", Robustheit: "+robustheith3+", Leben: "+lebenH);
 			System.out.println("------------------------------------------------------");
 		}
-=======
+
 		HausEinheiten1 g3 = new HausEinheiten1(1);
 		System.out.println(g3.berechneKosten());
 		
@@ -345,7 +346,5 @@ public class Controller {
 //		}
 //		
 //		
-		
->>>>>>> branch 'master' of https://github.com/HindelangS/UnicornSEPM.git
 	}
 }

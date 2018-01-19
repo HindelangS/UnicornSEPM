@@ -577,9 +577,7 @@ public class UnderworldE {
 			}
 			else{
 				JOptionPane.showMessageDialog(null,"Sorry, but you don't have enough money!");
-
 			}
-
 		}
 	}
 
@@ -603,9 +601,7 @@ public class UnderworldE {
 			}
 			else{
 				JOptionPane.showMessageDialog(null,"Sorry, but you don't have enough money!");
-
 			}
-
 		}
 	}
 
