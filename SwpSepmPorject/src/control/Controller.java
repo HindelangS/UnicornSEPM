@@ -208,8 +208,6 @@ public class Controller {
 
 	}
 	public static void main(String[] args) {
-<<<<<<< HEAD
-
 
 		System.out.println("Starten");
 		Controller c1 = new Controller();
@@ -283,7 +281,7 @@ public class Controller {
 			System.out.println("Haus3: Kosten: "+haunl3+", Robustheit: "+robustheith3+", Leben: "+lebenH);
 			System.out.println("------------------------------------------------------");
 		}
-=======
+
 		HausEinheiten1 g3 = new HausEinheiten1(1);
 		System.out.println(g3.berechneKosten());
 		
@@ -346,6 +344,5 @@ public class Controller {
 //		
 //		
 		
->>>>>>> branch 'master' of https://github.com/HindelangS/UnicornSEPM.git
 	}
 }
