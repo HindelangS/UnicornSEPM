@@ -107,10 +107,10 @@ public class UnderworldK {
 		ImageIcon img = new ImageIcon(UnderworldK.class.getResource("/pictures/rosa.jpg"));
 		Image im = img.getImage().getScaledInstance(1920, 1080, Image.SCALE_FAST);
 		img = new ImageIcon(im);
+		
 		frame.setContentPane(new JLabel(img));
 		frame.setTitle("Cute Unicorn Fight to Death");
-		frame.setIconImage(
-				Toolkit.getDefaultToolkit().getImage(UnderworldK.class.getResource("/pictures/unicorn.PNG")));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(UnderworldK.class.getResource("/pictures/unicorn.PNG")));
 		frame.setBounds(100, 100, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
@@ -129,6 +129,14 @@ public class UnderworldK {
 		lblWelt = new JLabel("World from: " + username); // nicht eigener name, besitzer welt
 		lblWelt.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
 		panelStatus.add(lblWelt, "cell 0 0,alignx left,aligny top");
+
+		lblLevel = new JLabel("Level: "+ daten[2]);
+		lblLevel.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
+		panelStatus.add(lblLevel, "cell 1 0,alignx left,aligny top");
+
+		lblGeld = new JLabel("Money: "+ daten[0]);
+		lblGeld.setFont(new Font("Century Schoolbook", Font.PLAIN, 13));
+		panelStatus.add(lblGeld, "cell 2 0,alignx left,aligny top");
 
 		phPanel = new JPanel();
 		phPanel.setOpaque(false);
@@ -392,10 +400,6 @@ public class UnderworldK {
 					panelFelder.add(liste.get(i).get(j));
 
 				}
-
-				if (geb == null && zaun == null && haus == null && einheit == null) {
-//					System.out.println("Feld leer");
-					liste.get(i).add(new Field(i, j, "K", this));
 				if (haus != null) {
 
 					System.out.println("Haus vorhanden");
@@ -430,7 +434,7 @@ public class UnderworldK {
 		}
 	}
 
-	class btnU2ActionListener implements ActionListener {
+	private class btnU2ActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 
 			Controller c1 = new Controller();
